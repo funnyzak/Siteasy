@@ -1,0 +1,1 @@
+DELETE FROM [@tbprefix_variables] WHERE [key] = 'ctaa_connector_config'

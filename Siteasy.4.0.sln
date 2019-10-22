@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STA.Payment", "STA.Payment\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STA.CacLib", "STA.CacLib\STA.CacLib.csproj", "{670A5CD0-73CC-40CA-BC74-ED74F6C8B156}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STA.Web.Plus.CTAA.KJ", "STA.Web.Plus.CTAA.KJ\STA.Web.Plus.CTAA.KJ.csproj", "{C46FBDE8-D767-4185-9564-29DAC9439847}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -105,6 +107,10 @@ Global
 		{670A5CD0-73CC-40CA-BC74-ED74F6C8B156}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{670A5CD0-73CC-40CA-BC74-ED74F6C8B156}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{670A5CD0-73CC-40CA-BC74-ED74F6C8B156}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C46FBDE8-D767-4185-9564-29DAC9439847}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C46FBDE8-D767-4185-9564-29DAC9439847}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C46FBDE8-D767-4185-9564-29DAC9439847}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C46FBDE8-D767-4185-9564-29DAC9439847}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

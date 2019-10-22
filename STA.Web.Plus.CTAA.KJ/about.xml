@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <name>青少儿考级服务支持插件</name>
+  <email>hello@world.com</email>
+  <author>tiger</author>
+  <publishdate>2019-10-20</publishdate>
+  <officesite>http://www.hello.com/</officesite>
+  <menu></menu>
+</plugin>
