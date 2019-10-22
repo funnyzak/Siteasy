@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("STA.Web.Plus.CTAA.KJ")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("视协青少儿考级系统前段支持Service")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Microsoft")]
 [assembly: AssemblyProduct("STA.Web.Plus.CTAA.KJ")]
