@@ -118,14 +118,25 @@ namespace STA.Web.Plus.CTAA.KJ.Page
                 return;
             }
 
+
             JObject resultObject = JObject.Parse(result);
-            if (!TypeParse.StrToBool(resultObject["success"], false))
+
+            try
             {
-                AddErrLine(resultObject["errors]"][0].ToString());
-                return;
+                if (!TypeParse.StrToBool(resultObject["success"], false))
+                {
+                    AddErrLine(resultObject["errors]"][0].ToString());
+                    return;
+                }
+
+                info = JsonConvert.DeserializeObject<T>(resultObject["data"]["info"].ToString());
+            }
+            catch (Exception ex)
+            {
+
+                LogProvider.Logger.ErrorFormat("考级查询处理出错，出错信息：{0}", ex.ToString());
             }
 
-            info = JsonConvert.DeserializeObject<T>(resultObject["data"]["info"].ToString());
         }
     }
 }
