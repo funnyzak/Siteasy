@@ -6,7 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0CB021D0-1AD0-467C-961C-98C1F4F6C191}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
-		TemplateLanguage.txt = TemplateLanguage.txt
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STA.Web", "STA.Web\STA.Web.csproj", "{BB0195AD-968E-4DDF-BD37-9181DDFD9531}"

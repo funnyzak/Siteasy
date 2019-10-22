@@ -5,5 +5,5 @@
   <author>tiger</author>
   <publishdate>2019-10-20</publishdate>
   <officesite>http://www.hello.com/</officesite>
-  <menu></menu>
+  <menu>name="考级系统" url="http://www.ctaa.org.cn"</menu>
 </plugin>

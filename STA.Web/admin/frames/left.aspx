@@ -40,6 +40,14 @@
                 if (treeNode.url == "" ) {
                     return false;
                 }
+                else if(treeNode.url.indexOf("http://") === 0 || treeNode.url.indexOf("https://") === 0){
+                    window.open(treeNode.url);
+                    return false;
+                }
+            },
+            onClick:function(event,treeId,treeNode){
+
+                        
             }
         }
     };

@@ -128,7 +128,7 @@ namespace STA.Web.Admin.Frame
             foreach (DataRow dr in Globals.PluginMenu(Plugins.GetPluginTable(-1), pId).Rows)
             {
                 ret += "{" + string.Format("id:{0}, pId:{1}, name:\"{2}\",url:\"{3}\",target:\"{4}\"", dr["id"].ToString(),
-                    dr["pid"].ToString(), dr["name"], (dr["url"].ToString() != "" ? ("plus/" + dr["url"]) : ""), "main") + "},";
+                    dr["pid"].ToString(), dr["name"], (dr["url"].ToString() != "" && !dr["url"].ToString().StartsWith("http") ? ("plus/" + dr["url"]) : dr["url"].ToString()), "main") + "},";
             }
             return ret;
         }
