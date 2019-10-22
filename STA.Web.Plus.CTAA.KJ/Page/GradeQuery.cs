@@ -125,7 +125,7 @@ namespace STA.Web.Plus.CTAA.KJ.Page
             {
                 if (!TypeParse.StrToBool(resultObject["success"], false))
                 {
-                    AddErrLine(resultObject["errors]"][0].ToString());
+                    AddErrLine(resultObject["errors]"].ToString());
                     return;
                 }
 

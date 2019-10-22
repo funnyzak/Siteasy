@@ -95,7 +95,6 @@
     </form>
     <script type="text/javascript">
         $("#likeids").click(function () { RegisterPopInsertText($("#likeidlist").val(), "txtLikeid"); });
-        $("#txtVal").xheditor($.extend(xhconfig, { upImgUrl: "!../../tools/selectfile.aspx?root=<%=filesavepath%>&filetype=jpeg,jpg,gif,png,bmp&cltmed=3", upFlashUrl: "!../../tools/selectfile.aspx?root=<%=filesavepath%>&filetype=swf&cltmed=3" }));
     </script>
 </body>
 </html>
