@@ -130,7 +130,7 @@ DocProject/Help/html
 
 # Click-Once directory
 
-!STA.Core/Publish/
+!/Publish/*.cs
 
 
 publish/
