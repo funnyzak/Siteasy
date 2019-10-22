@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<rss version="2.0">
+<channel>
+<title><![CDATA[分类信息]]></title>
+<link>/channel-4.aspx</link>
+<language>zh-cn</language>
+<docs><![CDATA[分类信息]]></docs>
+<generator>Rss Powered By http://localhost:802</generator>
+<image>
+<url>http://localhost:802/templates/default/images/logo.png</url>
+</image>
+<description>站易建站</description>
+<ttl>5</ttl>
+
+<item>
+    <link>http://localhost:802/info-112.aspx</link>
+    <title><![CDATA[中视网维(北京)有限公司招聘PHP开发工程师]]></title>
+    <description><![CDATA[公司名称 佰邦达科技（北京）有限公司<br />
+	职位名称 PHP开发工程师<br />
+	招聘人数 10<br />
+	工作地点 北京海淀区<br />
+	薪水待遇 面议<br />
+	职位描述 计算机相关专业本科以上学历，一年以上开发工作经验；<br />
+	丰富的web开发经验，熟练掌握HTML/XHTML、CSS、Javascript;<br />
+	精通PHP，具备在Linux或者Unix平台下使用PHP开发网站的经验；<br />
+	熟悉数据库，精通SQL和数据结构，具有MySQL开发经验；<br />
+	有良好的团队合作能力，善于沟通，热爱开发事业；<br />
+	熟悉ucenter原理和相关康盛创想产品者优先;<br />
+	请将简历发送到liuzhi@bbdtek.com。<br />
+	联系人 刘先生<br />
+	联系电话 62557688<br />
+	电子邮箱 liuzhi@bbdtek.com<br />
+	QQ/MSN -<br />
+	公司网址 -<br />
+	公司介绍 建立时间：佰邦达科技（北京）有限公司成立于2006年，公司系由国内IT行业的战略投资人投资设立。<br />
+	使命与任务：为企业客户提供基本互联网的应用软件产品及整体解决方案；为企业客户提供互联网应用托管服务与信息服务。公司致力于不断创新产品与服务，提升企业客户运营效率，降低企业客户的IT投资成本。<br />
+	服务宗旨：创新科技，创新生活。公司相信科技根植于人，改善人的生活。致使公司将推出的所有产品与服务都注重于人性设计与环境保护。<br />
+	人文观念：公司致力于为自己的员工提供一个良好的工作环境。工作于斯，乐于斯。
+
+<p>
+	待遇从优，欢迎业内高手加盟。请将简历发到邮箱
+	&nbsp;</p>]]></description>
+    <author><![CDATA[站易建站]]></author>
+    <category><![CDATA[分类信息]]></category>
+    <pubDate> 2012-12-19 20:55:13</pubDate>
+</item>
+
+</channel>
+</rss>

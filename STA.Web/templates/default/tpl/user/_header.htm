@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{seotitle}</title>{meta}
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<link rel="shortcut icon" href="{siteurl}/favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" href="{siteurl}/sta/js/artdialog/artdialog.css" type="text/css" />
+<link rel="stylesheet" href="{tempurl}/css/reset.css" type="text/css" />
+<link rel="stylesheet" href="{tempurl}/css/member.css" type="text/css" />{link}
+<script type="text/javascript" src="{siteurl}/sta/js/jquery.js"></script>
+<script type="text/javascript" src="{siteurl}/sta/js/artdialog/jquery.artDialog.min.js"></script>
+<script type="text/javascript" src="{siteurl}/sta/js/artdialog/artDialog.plugins.js"></script>
+<script type="text/javascript" src="{siteurl}/sta/js/blockUI.js"></script>
+<script type="text/javascript" src="{siteurl}/sta/js/timeago/jquery.timeago.js"></script>
+<script type="text/javascript" src="{siteurl}/sta/js/timeago/locales/jquery.timeago.zh-CN.js"></script>
+<script type="text/javascript" src="{siteurl}/sta/js/config.js"></script>
+<script type="text/javascript" src="{siteurl}/sta/js/common.js"></script>
+<script type="text/javascript" src="{siteurl}/sta/js/member.js"></script>{script}
+</head>
+<body>
+<div class="header">
+  <div class="logo">
+  	<a href="{siteurl}/user/" class="left disblock"><img src="{tempurl}/images/member/eagle.png" width="124" height="108"/></a>
+    <h3 class="left disblock">会员中心</h3>
+  </div>
+  <div class="link">你好 ({username})<span> | <a href="{siteurl}/user/inboxpm.aspx">短消息</a> |<%if user.Adminid>0%> </span><a href="{siteurl}{baseconfig.adminpath}/" target="_blank">系统管理</a><span> |<%/if%> </span><a href="{siteurl}/useraction.aspx?action=loginout">退出</a><span> | </span><a href="{siteurl}/" target="_blank">首页</a> </div>
+<%csharp%>
+int curmenu = 1;
+if(Utils.InArray(pagename,"avatar.aspx,account.aspx,profile.aspx,changepassword.aspx,changeemail.aspx"))
+{
+    curmenu = 2;
+}
+else if(Utils.InArray(pagename,"favorite.aspx,comment.aspx"))
+{
+    curmenu = 3;
+}
+<%/csharp%>
+  <div class="menu">
+  	<div class="cont">
+        <ul class="nav">
+           <li<%if curmenu==1%> class="on"<%/if%>><a href="{siteurl}/user/">管理中心</a></li>
+           <li<%if curmenu==2%> class="on"<%/if%>><a href="{siteurl}/user/account.aspx">账号管理</a></li>
+           <li<%if curmenu==3%> class="on"<%/if%>><a href="{siteurl}/user/favorite.aspx">互动管理</a></li>
+        </ul>
+    </div>
+    <div class="bot"></div>
+  </div>
+</div>
+<div class="conarea">
+    <div class="left col-1 left-memu">
+        <%if curmenu==2%>
+        <h5 class="title"> 基本设置</h5>
+        <ul>
+            <li<%if pagename=="profile.aspx"%> class="on"<%/if%>><a href="{siteurl}/user/profile.aspx"><img src="{siteurl}/sta/pics/icon/user.gif" width="14" height="15" /> 个人信息维护</a></li>
+            <li<%if pagename=="avatar.aspx"%> class="on"<%/if%>><a href="{siteurl}/user/avatar.aspx"><img src="{siteurl}/sta/pics/icon/job.gif" width="14" height="16" /> 修改头像</a></li>
+        </ul>
+        <h6 class="title">安全设置</h6>
+        <ul>
+            <li<%if pagename=="changepassword.aspx"%> class="on"<%/if%>><a href="{siteurl}/user/changepassword.aspx"><img src="{siteurl}/sta/pics/icon/key.gif" width="14" height="16" /> 修改密码</a></li>
+            <li<%if pagename=="changeemail.aspx"%> class="on"<%/if%>><a href="{siteurl}/user/changeemail.aspx"><img src="{siteurl}/sta/pics/icon/email.gif" width="14" height="15" /> 更换邮箱</a></li>
+            <li><a href="#"><img src="{siteurl}/sta/pics/icon/configuration.gif" width="14" height="15" /> 隐私设置</a></li>
+        </ul>
+        <%else if curmenu==3%>
+        <h5 class="title"> 互动管理</h5>
+        <ul>
+            <li<%if pagename=="favorite.aspx"%> class="on"<%/if%>><a href="{siteurl}/user/favorite.aspx"><img src="{siteurl}/sta/pics/icon/log.gif" width="14" height="15" /> 我的收藏</a></li>
+            <li<%if pagename=="comment.aspx"%> class="on"<%/if%>><a href="{siteurl}/user/comment.aspx"><img src="{siteurl}/sta/pics/icon/comment.png" width="14" height="15" /> 我的评论</a></li>
+        </ul>
+        <%else%>
+        <h5 class="title"><img src="{siteurl}/sta/pics/icon/m_1.png" width="15" height="15" /> 管理中心</h5>
+        <ul>
+            <li<%if pagename=="con_add.aspx"%> class="on"<%/if%>><a href="{siteurl}/user/con_add.aspx"><img src="{siteurl}/sta/pics/icon/m_2.png" width="14" height="15" /> 在线投稿</a></li>
+            <li<%if pagename=="con_list.aspx"%> class="on"<%/if%>><a href="{siteurl}/user/con_list.aspx"><img src="{siteurl}/sta/pics/icon/m_3.png" width="14" height="16" /> 已发布稿件</a></li>
+            <li<%if pagename=="attachs.aspx"%> class="on"<%/if%>><a href="{siteurl}/user/attachs.aspx"><img src="{siteurl}/sta/pics/icon/attach2.gif" width="14" height="16" /> 已上传附件</a></li>
+        </ul>
+<!--        <h6 class="title">财务管理</h6>
+        <ul>
+            <li><a href="#"><img src="{siteurl}/sta/pics/icon/m_4.png" width="15" height="16" /> 在线充值</a></li>
+            <li><a href="#"><img src="{siteurl}/sta/pics/icon/m_8.png" width="16" height="16" /> 支付记录</a></li>
+            <li><a href="#"><img src="{siteurl}/sta/pics/icon/table-information.png" width="16" height="16" /> 消费记录</a></li>
+            <li><a href="#"><img src="{siteurl}/sta/pics/icon/coins_add.png" width="16" height="16" /> 积分购买/兑换</a></li>
+        </ul>-->
+        <h6 class="title">短消息</h6>
+        <ul>
+            <li<%if pagename=="sendpm.aspx"%> class="on"<%/if%>><a href="{siteurl}/user/sendpm.aspx"><img src="{siteurl}/sta/pics/icon/m_9.png" width="16" height="14" /> 发送短消息</a></li>
+            <li<%if pagename=="inboxpm.aspx"||(pagename=="readpm.aspx"&&STARequest.GetString("from")=="inbox")%> class="on"<%/if%>><a href="{siteurl}/user/inboxpm.aspx"><img src="{siteurl}/sta/pics/icon/m_11.png" width="16" height="16" /> 收件箱<%if user.Newpmcount>0%><font color="red">({user.newpmcount})</font><%/if%></a></li>
+            <li<%if pagename=="outboxpm.aspx"||(pagename=="readpm.aspx"&&STARequest.GetString("from")=="outbox")%> class="on"<%/if%>><a href="{siteurl}/user/outboxpm.aspx"><img src="{siteurl}/sta/pics/icon/m_10.png" width="16" height="16" /> 发件箱</a></li>
+            <li<%if pagename=="syspm.aspx"%> class="on"<%/if%>><a href="{siteurl}/user/syspm.aspx"><img src="{siteurl}/sta/pics/icon/lightbulb.png" width="16" height="16" /> 系统消息({STA.Core.PrivateMessages.GetAnnouncePrivateMessageCount()})</a></li>
+        </ul>
+        <%/if%>
+        <span class="o1"></span><span class="o2"></span><span class="o3"></span><span class="o4"></span>
+    </div>

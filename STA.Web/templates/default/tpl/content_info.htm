@@ -1,0 +1,59 @@
+﻿<%include _ifnull%>
+<%csharp%>
+AddLinkScript(siteurl + "/sta/data/select/infotype.js");
+AddLinkScript(siteurl + "/sta/data/select/nativeplace.js");
+AddLinkScript(siteurl + "/sta/js/select.js");
+<%/csharp%>
+    <%include _header%>    
+    <div class="icontent" style="padding:3px 0 0 0;">
+        <div class="ibleft clearfix">
+            <div class="bbar w_718">
+            	<%set {location}=location + "&nbsp;" + config.Locationseparator + "&nbsp;"+info.Title%>
+                <div class="tit cblue location">您现在的位置：{location}</div>
+            </div>
+            <div class="bcont w_718">
+				<div class="contit">
+                	<h1 style="text-align:center">{info.Title}</h1>
+                </div>
+                <div class="softinfo clearfix">
+                    <div class="softsummary">
+                        <%set (SelectInfo){nativeplace}=SelectByVal("nativeplace",info.Ext["ext_nativeplace"].ToString())%>
+                        <%set (SelectInfo){infotype}=SelectByVal("infotype",info.Ext["ext_infotype"].ToString())%>
+                        <label>所属地区：</label><span class="native">{nativeplace.Name}</span>
+                        <label>信息类型：</label><span class="infotype">{infotype.Name}</span>
+                        <label>截止日期：</label><span><%datetostr(Convert.ToDateTime({info.Ext[ext_endtime]}), "yyyy-MM-dd")%></span>
+                        <label>更新时间：</label><span><%datetostr(Convert.ToDateTime({info.Updatetime}), "yyyy-MM-dd")%></span>
+                        <label>联系人：</label><span>{info.Ext[ext_linkman]}</span>
+                        <label>联系电话：</label><span>{info.Ext[ext_tel]}</span>
+                        <label>联系邮件：</label><span>{info.Ext[ext_email]}</span>
+                        <label>联系地址：</label><span>{info.Ext[ext_address]}</span>
+                        <label>浏览次数：</label><span class="conclick">{info.Click}</span>
+                    </div>
+                    <script type="text/javascript">
+                        $("span.native").html(getSelectStrFromData("nativeplace", "{info.Ext[ext_nativeplace]}"));
+                        $("span.infotype").html(getSelectStrFromData("infotype", "{info.Ext[ext_infotype]}"));
+                    </script>
+                    <div class="softsummarypic">
+                         <%set (string){img}= {info.Img}==""?(tempurl+ "/images/pub/nopic.png"):{info.Img}%>
+                        <img src='{img}' onerror="this.src='{tempurl}/images/pub/nopic.png'"/>
+                    </div>
+				</div>
+				<div class="info-intro fyahei s16 bold">详细信息</div>
+                <div class="pcontent" style="width:670px;padding-left:10px;">
+                     {info.Content}
+                </div>
+                <%include _inner_left_summary%> 
+            </div>
+             <%include _inner_comment%> 
+        </div>
+        <div class="sright">
+        <%set (int){chnid}=info.Channelid%>
+        <%set (string){chnname}=info.Channelname%>
+        <%include _inner_right_info%>    
+        </div>
+    </div>
+	<script type="text/javascript">
+    $("span[val]").each(function () { $(this).html("[" + getSelectTextFromData("infotype", $(this).attr("val")) + "]"); });
+    setContentClick({info.Id},"yes",function(c){ $(".conclick").html(c); });
+    </script>
+	<%include _footer%>   

@@ -1,0 +1,44 @@
+﻿::selection {color: #800098;background-color: #cccccc;}
+::-moz-selection {color: #800098;background-color: #cccccc;}
+
+html,body,div,p,ul,ol,li,a:link,a:visited,a:hover,a:active,.conb-1 table,.conb-2 table,.conb-2 .bar.conb-2 table,.ztree,.ztree li a,.ztree li a.curSelectedNode{color:#6c037f;}
+#footer{color:#732e80;}
+table.list th{color:#732e80;}
+.dropbtn,.dropbtn_on{color:#f5e4f8}
+/*controls*/
+/*textbox button*/
+input.txt,input.txt_focus,textarea.txt,textarea.txt_focus{color:#5a2065;}
+button.ManagerButton,input.mbutton,button.ManagerButton[disabled=true]{color:#5a2065;}
+/*help*/
+.txthelp{color:#5a2065;}
+/*pageinfo*/
+.lightip .msg{}
+
+/*topframe*/
+#twrapper{background:url(topbg.gif) repeat-x left top;}
+.dropbtn,.dropbtn_on{background:url(menuout.gif) no-repeat left top;}
+.dropbtn_on{background-image:url(menuin.gif)}
+#topnav li,#topnav li.on{color:#f5e4f8;}
+#topnav li.on{color:#f5e4f8;}
+#topsearch{background:url(search.gif) no-repeat left top;}
+#statustip{color:#f5e4f8;}
+/*leftframe*/
+#fastmenu li.on{background:#c63fdf;} 
+#fastmenu .my{border-bottom:1px solid #c63fdf;}
+/*separator*/
+.swbg1,.swbg2{background:#f8d8fe url(separator1.gif) no-repeat center center}
+.swbg2{background-image:url(separator2.gif)}
+
+/*mainframe*/
+.jqmWindow{background-color:#fff;color:#5a2065;border:1px solid #ccc;}
+.jqmOverlay{background-color:#fff;}
+.mbtitle{color:#333;background:#B93DD0;}
+#msgtitle,#edittitle,#confirmtitle,.poptitle{color:#fff;}
+.mbclose{color:#fff;}
+.mbcontent,.mbcontent2,.mbcontent3{color:#333;background:#fff;}
+.jqmbutton input{color:#0b0b0b;background:#f4f2f2;border:1px solid #ccc;}
+
+.progressmsg{color:#333;}
+.progressbarside {border:1px solid #dd12dd;}
+.progressbar{background-color:#de12d1;color:#fff;}
+.probarpercent{color:#333;}

@@ -1,0 +1,15 @@
+﻿<%csharp%>
+String url = STARequest.GetString("url");
+String encode = STARequest.GetString("encode");
+encode = encode==""?"utf-8":encode;
+String ret = "";
+if(url.Trim() != "")
+{
+   if(url.StartsWith("/"))
+   {
+      url = siteurl + url;
+   }
+   ret = Utils.HtmlToJs(Utils.GetPageContent(new Uri(url),encode));
+}
+<%/csharp%>
+{ret}

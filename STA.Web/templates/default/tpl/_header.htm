@@ -1,0 +1,61 @@
+﻿<%set (string){defcolor} = "666"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{seotitle}</title>{meta}
+<meta name="description" content="{seodescription}"/>
+<meta name="keywords" content="{seokeywords}"/>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<link rel="shortcut icon" href="{siteurl}/favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" href="{tempurl}/css/base.css" type="text/css" />
+<link rel="stylesheet" href="{tempurl}/css/default.css" type="text/css" />{link}
+<script type="text/javascript" src="{siteurl}/sta/js/jquery.js"></script>
+<script type="text/javascript" src="{siteurl}/sta/js/config.js"></script>
+<script type="text/javascript" src="{siteurl}/sta/js/common.js"></script>
+<script type="text/javascript" src="{siteurl}/sta/js/jquery.tools.js"></script>
+<script type="text/javascript" src="{tempurl}/js/global.js"></script>{script}
+</head>
+<body>
+<div class="wrapper">
+    <div class="topheaderwrap">
+	    <div class="topheader">
+    	    <div class="left cgrey2">站易CMS - 让每个人都可以轻松建站！</div>
+            <div class="right cblue">
+        	    <span class="topuserinfo" style="display:none;padding-right:10px;">您好,<a href="{siteurl}/user/" class="cred"><script type="text/javascript">document.writeln(stauser.nickname);</script></a>&nbsp;<a href="{siteurl}/useraction.aspx?action=loginout" class="cgrey">[退出]</a></span><span class="toplogin" style="display:none;padding-right:10px;"><a href="{siteurl}/register.aspx" class="cblue" target="_self">注册</a> | <a href="{siteurl}/login.aspx" class="cblue" target="_self">登录</a></span> <a href="{Urls.Sitemap()}" class="cblue" target="_blank">网站地图</a> | <a href="{siteurl}/taglist.html" class="cblue" target="_blank">TAG标签</a>&nbsp;&nbsp;<a href="{siteurl}/rss.html" class="cblue" target="_blank">RSS订阅</a>&nbsp;&nbsp;[<a href="javascript:setHomePage('{siteurl}');" class="cblue" target="_self">设为首页</a>] [<a href="javascript:addFavourite('{webname}', '{weburl}');" class="cblue" target="_self">加入收藏</a>] 
+            </div>
+            <script type="text/javascript">
+                $(".topuserinfo").css("display", $.inArray(stauser.userid, ["", "0", "-1"]) < 0 ? "" : "none");
+                $(".toplogin").css("display", $.inArray(stauser.userid, ["", "0", "-1"]) < 0 ? "none" : "");
+            </script>
+        </div>
+    </div>
+    <div class="header">
+    	<div class="logo"><a href="{siteurl}" title="{webname}"><img src="{tempurl}/images/logo.png" /></a></div>
+        {ad 网站顶部logo右侧}
+    </div>
+    <div class="menu">
+    	<ul class="m">     
+        	<li style="background:none;"><a href="{siteurl}" title="{webname}" class="cwhite fyahei s14">首页</a></li>
+            <%load_data action=channel num=9 fields=id,name order=2%>
+            <%loop item list%>
+            <%set (int){cid}=TypeParse.StrToInt({item[id]})%>
+            <li><a href="{Urls.Channel(cid)}" class="cwhite fyahei s14">{item[name]}</a></li>
+            <%/loop%>
+            <li><a href="{siteurl}/magazine.aspx" class="cwhite fyahei s14">在线杂志</a></li>
+        </ul>
+        <div class="search">
+        	<div class="s_txt cblue s13">全站搜索：</div>
+            <div class="s_input"><input class="query" type="text" placeholder="键入关键字搜索.." name="query" autocomplete="off" id="query"/></div>
+            <div class="s_btn gosearch">&nbsp;</div>
+            <script type="text/javascript">searchEvent();</script>
+            <div class="s_hotwords">
+            	<span class="s13 cdarkgrey">热门标签:</span>
+                <%load_data action=tag num=10 fields=id,name order=2%>
+                <%loop item list%>
+                    <a href="{siteurl}/tags.aspx?id={item[id]}&name={item[name]}" title="{item[name]}" class="cblue" target="_blank">{item[name]}</a>&nbsp;
+                <%/loop%>
+            </div>
+        </div>
+    </div>
+    {ad 导航菜单下广告}

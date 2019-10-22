@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <name>幻灯片集</name>
+  <email>f@zak.hk</email>
+  <author>funnyzak</author>
+  <publishdate>2012-05-27</publishdate>
+  <officesite>http://www.stacms.com/</officesite>
+  <menu>name='图片管理' url='sta.slideimg/slideimglist.aspx' name='图片添加' url='sta.slideimg/slideimgadd.aspx'</menu>
+</plugin>

@@ -1,0 +1,258 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{seotitle}</title>
+<meta name="description" content="{seodescription}"/>
+<meta name="keywords" content="{seokeywords}"/>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<link rel="shortcut icon" href="{siteurl}/favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" href="{tempurl}/js/gallery/css/style.css" type="text/css" />
+<link rel="stylesheet" href="{tempurl}/js/gallery/css/elastislide.css" type="text/css" />
+<link rel="stylesheet" href="{tempurl}/css/base.css" type="text/css" />
+<link rel="stylesheet" href="{tempurl}/css/special.css" type="text/css" />
+<script type="text/javascript" src="{siteurl}/sta/js/jquery.js"></script>
+<script type="text/javascript" src="{siteurl}/sta/js/config.js"></script>
+<script type="text/javascript" src="{siteurl}/sta/js/common.js"></script>
+<script type="text/javascript" src="{siteurl}/sta/js/myfocus/myfocus.js"></script>
+<script type="text/javascript" src="{tempurl}/js/global.js"></script>{script}
+</head>
+<body class="wrapper">
+	<div class="topheader">
+    	<div class="left w230"><a href="{siteurl}"><img src="{tempurl}/images/pub/logo2.jpg" height="27" width="131"/></a></div>
+        <div class="right w730 tright">
+             <div class="right" style="padding:5px 0 0 10px;"><input type="text" class="ipt-query query" value="键入关键字搜索.." name="query" id="query" />
+             <input type="button" class="btn-search gosearch" name="gosearch" id="gosearch" value=""/></div>
+        	 <div class="right" style="padding:7px 0 0 0;"><a href="{siteurl}/plus/advancedsearch.aspx" class="cdarkgrey" target="_blank">高级搜索</a> - <a href="{Urls.Sitemap()}" class="cdarkgrey" target="_blank">网站地图</a> - <a href="{siteurl}/plus/advisory.aspx" class="cdarkgrey" target="_blank">留言建议</a> - <a href="{siteurl}/rss.html" class="cdarkgrey" target="_blank">RSS订阅</a> - <a href="javascript:addFavourite('{webname}', '{weburl}');" class="cdarkgrey" target="_self">加入收藏</a></div>
+             <script type="text/javascript"> searchEvent();</script>
+        </div>
+    </div>
+    <%set (DataTable){gps} = SpecConGroup()%>
+    <div class="header">
+    	<a href="{siteurl}" target="_blank"><img src="{info.Ext[ext_banner]}" width="960"/></a>
+    </div>
+    <div class="menu cwhite">
+    	<a href="{siteurl}" class="cwhite">网站首页</a>
+        <%loop item gps%>
+          <%set (int){gid}=TypeParse.StrToInt({item[id]})%>
+          <%set (string){url}=Urls.SpecGroup(id,gid)%>
+        | <a href="{url}" onclick="$('.group{item[id]}').ScrollTo(200);" class="cwhite" target="_blank">{item[name]}</a>
+        <%/loop%>
+    </div>
+    <div class="cont">
+ 		<div class="itop clearfix">
+        	<div class="itop-1 left">
+               <div id="topslide" style="visibility:hidden;padding-bottom:7px;">
+                  <div class="loading"></div>
+                  <div class="pic">
+                      <ul>        
+                    <%set (string){ssql} = "select title,img,thumb,text,url from plus_slideimgs where likeid = '专题:" + info.Title + "' order by orderid desc"%>
+                    <%sqlstring list variable_ssql%>
+                    <%loop item list%>
+                        <li><a href="{item[url]}" target="_blank"><img alt="{item[title]}" text="{item[text]}" width="319" height="255"  src="{item[img]}"/></a></li>
+                    <%/loop%>  
+                      </ul>
+                  </div>
+                </div>
+				<script type="text/javascript">
+				    $('#topslide').myFocus({ pattern: 'mF_classicHC', width: 319, auto: true, height: 255, trigger: "mouseover" });
+                </script>
+                <%if gps.Rows.Count>0%>
+                <%set (int){gid}=TypeParse.StrToInt(gps.Rows[0]["id"])%>
+                <%set (string){name}= gps.Rows[0]["name"].ToString()%>
+                <%set (string){url}=Urls.SpecGroup(id,gid)%>
+                <div class="bar-blue">
+                	<a href="{url}" target="_blank" title="{name}" class="group{gid} cwhite s14">&nbsp;{name}</a>
+                    <div class="bar-more"><a href="{url}" target="_blank" title="{name}" class="cwhite s12">更多>></a></div>
+                </div>
+                <ul class="tlist">
+                    <%load_data action=content type=special id=id group=gid num=6 fields=id,typeid,savepath,filename,title order=0%>
+                    <%loop item list%>
+                    <%set (int){cid}=TypeParse.StrToInt({item[id]})%>
+                    <%set (int){tid}=TypeParse.StrToInt({item[typeid]})%>
+                    <%set (string){curl}=Urls.Content(cid,tid,{item[savepath]},{item[filename]})%>
+                    <li class="lh23"><a href="{curl}" title="{item[title]}" target="_blank" class="s14 cdarkgrey"><%getsubstring({item[title]},44,"..")%></a></li>
+                    <%/loop%>
+                </ul>
+                <%/if%>
+            </div>
+            <div class="itop-2 left">
+            	<div class="headnews">
+                    <%load_data action=content type=special id=id num=2 fields=id,typeid,savepath,filename,title,content order=2 property=a%>
+                    <%loop item list%>
+                    <%set (int){cid}=TypeParse.StrToInt({item[id]})%>
+                    <%set (int){tid}=TypeParse.StrToInt({item[typeid]})%>
+                    <%set (string){curl}=Urls.Content(cid,tid,{item[savepath]},{item[filename]})%>
+                    <%set (string){html}=Utils.RemoveLine(Utils.RemoveHtml(item["content"].ToString())).Replace(" ","")%>
+                     	<div class="tcenter lh22"><a href="{curl}" target="_blank" title="{item[title]}" class="cdarkgrey s15 bold"><%getsubstring({item[title]},48,"..")%></a></div>
+                    <p class="lh20"><%getsubstring({html},164,"..")%><a href="{curl}" target="_blank" title="{item[title]}" class="cred">[详细]</a></p>
+                    <%/loop%>
+                </div>
+                <%if gps.Rows.Count>1%>
+                <%set (int){gid}=TypeParse.StrToInt(gps.Rows[1]["id"])%>
+                <%set (string){name}= gps.Rows[1]["name"].ToString()%>
+                <%set (string){url}=Urls.SpecGroup(id,gid)%>
+                <div class="bar-blue">
+                	<a href="{url}" target="_blank" title="{name}" class="group{gid} cwhite s14">&nbsp;{name}</a>
+                    <div class="bar-more"><a href="{url}" target="_blank" title="{name}" class="cwhite s12">更多>></a></div>
+                </div>
+                <ul class="tlist">
+                    <%load_data action=content type=special id=id group=gid num=10 fields=id,typeid,savepath,filename,title order=0%>
+                    <%loop item list%>
+                    <%set (int){cid}=TypeParse.StrToInt({item[id]})%>
+                    <%set (int){tid}=TypeParse.StrToInt({item[typeid]})%>
+                    <%set (string){curl}=Urls.Content(cid,tid,{item[savepath]},{item[filename]})%>
+                    <li class="lh23"><a href="{curl}" title="{item[title]}" target="_blank" class="s14 cdarkgrey"><%getsubstring({item[title]},52,"..")%></a></li>
+                    <%/loop%>
+                </ul>
+                <%/if%>
+            </div>
+            <div class="itop-3 left">
+                <div class="bar-blue">
+                	<a href="{siteurl}" target="_blank" class="cwhite s14">&nbsp;专题导读</a>
+                </div>
+                <div class="con260" style="width:205px;height:420px;">     
+					{info.Content}  
+                </div>
+            </div>
+        </div>
+        <%if gps.Rows.Count>2%>
+        <%loop gp gps%>
+        <%if gp__loop__id>2%>
+        <%set (int){gid}=TypeParse.StrToInt({gp[id]})%>
+        <%set (string){url}=Urls.SpecGroup(id,gid)%>
+        <div class="bar-blue">
+            <a href="{url}" target="_blank" title="{gp[name]}" class="group{gid} cwhite s14">&nbsp;{gp[name]}</a>
+            <div class="bar-more"><a href="{url}" target="_blank" title="{gp[name]}" class="cwhite s12">更多>></a></div>
+        </div>
+        <div class="mlist clearfix">
+            <%load_data action=content type=special id=id group=gid num=4 fields=id,typeid,savepath,filename,title,content,img order=0%>
+            <%loop item list%>
+            <%set (int){cid}=TypeParse.StrToInt({item[id]})%>
+            <%set (int){tid}=TypeParse.StrToInt({item[typeid]})%>
+            <%set (string){curl}=Urls.Content(cid,tid,{item[savepath]},{item[filename]})%>
+            <%set (string){img}= {item[img]}==""?(tempurl+ "/images/random/tb" + (new Random(Guid.NewGuid().GetHashCode())).Next(1,20)  + ".jpg"):{item[img]}%>
+            <%set (string){html}=Utils.RemoveLine(Utils.RemoveHtml(item["content"].ToString())).Replace(" ","")%>
+        	<div class="mitem">
+            	<div class="mleft left">
+                	<a href="{curl}" title="{item[title]}" target="_blank"><img src="{img}" alt="{item[title]}" onerror="this.src='{tempurl}/images/pub/nopic.png'" width="214" height="160" /></a>
+                </div>
+                <div class="mright left">
+                	<div class="cdarkgrey" style="padding-bottom:8px;"><a href="{curl}" title="{item[title]}" target="_blank" class="s14 bold cdarkgrey"><%getsubstring({item[title]},28,"..")%></a></div>
+                    <p class="cgrey lh22"><%getsubstring({html},200,"..")%></p>
+                </div>
+            </div>
+            <%/loop%>
+        </div>
+        <%/if%>
+        <%/loop%>
+        <%/if%>
+        <script type="text/javascript"> $(".mitem:odd").css("padding-right", "0");</script>
+        <%load_data action=content output=pht type=special id=id ctype=2  num=30 fields=id,typeid,title order=2%>
+        <%if pht.Rows.Count>0%>
+        <div class="bar-blue" style="margin-top:10px;">
+            <a href="{siteurl}" target="_blank" class="cwhite s14">&nbsp;高清大图</a>
+            <div class="bar-more"><a  href="{siteurl}" target="_blank" class="cwhite s12">更多>></a></div>
+        </div>
+		<div id="rg-gallery" class="rg-gallery">
+			<div class="rg-thumbs">
+				<div class="es-carousel-wrapper">
+					<div class="es-nav">
+						<span class="es-nav-prev">Previous</span>
+						<span class="es-nav-next">Next</span>
+					</div>
+					<div class="es-carousel">
+						<ul>
+                            <%loop im pht%>
+                             <%set (ContentInfo){cinfo}=Contents.GetContent(TypeParse.StrToInt({im[id]}), TypeParse.StrToInt({im[typeid]}))%>
+                             <%set {list}=PhotoList({cinfo.Ext[ext_imgs]})%> 
+                            <%loop item list%>
+                                <%set (string){name}= {item[name]} == ""? {im[title]}:{item[name]}%>
+                                <li><a href="#"><img src="{item[url]}" data-large="{item[url]}" alt="{item[id]}" data-description="{name}" /></a></li>
+                            <%/loop%>
+                            <%/loop%>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script id="img-wrapper-tmpl" type="text/x-jquery-tmpl">	
+			<div class="rg-image-wrapper">
+				{{if itemsCount > 1}}
+					<div class="rg-image-nav">
+						<a href="#" class="rg-image-nav-prev">Previous Image</a>
+						<a href="#" class="rg-image-nav-next">Next Image</a>
+					</div>
+				{{/if}}
+				<div class="rg-image"></div>
+				<div class="rg-loading"></div>
+				<div class="rg-caption-wrapper">
+					<div class="rg-caption" style="display:none;">
+						<p></p>
+					</div>
+				</div>
+			</div>
+		</script>
+		<script type="text/javascript" src="{tempurl}/js/gallery/js/jquery.tmpl.min.js"></script>
+		<script type="text/javascript" src="{tempurl}/js/gallery/js/jquery.elastislide.js"></script>
+		<script type="text/javascript" src="{tempurl}/js/gallery/js/gallery.js"></script>
+        <%/if%>
+        <div class="bar-blue" style="margin-top:10px;">
+            <a href="{siteurl}" target="_blank" class="cwhite s14">&nbsp;全部新闻</a>
+            <div class="bar-more"><a  href="{siteurl}" target="_blank" class="cwhite s12">更多>></a></div>
+        </div>
+        <ul class="tlist">
+            <%load_data action=content type=special id=id  num=30 fields=id,typeid,savepath,filename,title,addtime order=0%>
+            <%loop item list%>
+            <%set (int){cid}=TypeParse.StrToInt({item[id]})%>
+            <%set (int){tid}=TypeParse.StrToInt({item[typeid]})%>
+            <%set (string){curl}=Urls.Content(cid,tid,{item[savepath]},{item[filename]})%>
+        	<li class="lh23 all i1"><span class="left"><a href="{curl}" title="{item[title]}" target="_blank" class="s14 cdarkgrey"><%getsubstring({item[title]},50,"..")%></a></span><span class="right tright cgrey s14">(<%datetostr(Convert.ToDateTime({item[addtime]}), "MM-dd")%> )</span></li>
+            <%/loop%>      
+        </ul>
+        <script type="text/javascript">$("li.all:odd").css("padding-right", "0");</script>
+        
+    </div>
+    <div class="cont" style="padding-top:0;">
+		<div class="cmt960">
+        	<div class="s14"><span class="s14"><b>发帖区</b></span> 有 <span class="s14 cblue commentcount">{info.Commentcount}</span> 位网友参与评论 <a href="{siteurl}/comment.aspx?id={id}" target="_blank" class="cred s14">(点击查看)</a></div>
+            <div class="desc s13 cgrey" style="padding-top:10px;">网友评论仅供网友表达个人看法，并不表明本站同意其观点或证实其描述</div>
+            <textarea name="msg" id="msg" class="cmt"></textarea>
+            <div class="tright">
+            	<input type="button" value="提交评论" name="subcomment" id="subcomment" class="btn-comment"/>
+            </div>
+        </div>
+        <div class="sinfo960 clearfix">
+        	<div class="linfo left">
+            	<div class="left"><img src="{tempurl}/images/pub/info01.jpg" /></div>
+                <div class="left cgrey s12" style="padding:5px 0 0 10px;">责任编辑:{info.Author}&nbsp;&nbsp;&nbsp;&nbsp;时间:<%datetostr({info.Addtime}, "yyyy-MM-dd")%></div>
+            </div>
+            <div class="rinfo right tright" style="padding-top:7px;">
+                <!-- JiaThis Button BEGIN -->
+                <div class="jiathis_style">
+                    <span class="jiathis_txt">分享到：</span>
+                    <a class="jiathis_button_icons_1"></a>
+                    <a class="jiathis_button_icons_2"></a>
+                    <a class="jiathis_button_icons_3"></a>
+                    <a class="jiathis_button_icons_4"></a>
+                    <a href="http://www.jiathis.com/share?uid=1665239" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+                    <a class="jiathis_counter_style"></a>&nbsp;
+                    <a href="{siteurl}" class="cgrey">返回首页</a>
+                    <a href="javascript:;" onclick="$('.wrapper').ScrollTo(200);" class="cgrey">回到顶部</a>
+                </div>
+                <script type="text/javascript">
+                    var jiathis_config = { data_track_clickback: 'true' };
+                </script>
+                <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1344725024936987" charset="utf-8"></script>
+                <!-- JiaThis Button END -->
+            </div>
+        </div>
+    </div>
+    <%include _footer_com%> 
+<script type="text/javascript">
+    $(".btn-comment").click(function () { window.open("{siteurl}/comment.aspx?id={id}&msg=" + escape($("#msg").val())); });
+    setCommentCount({id},function(ret){ $(".commentcount").html(ret); });
+    setContentClick({info.Id},"no");
+</script>
+</body>
+</html>

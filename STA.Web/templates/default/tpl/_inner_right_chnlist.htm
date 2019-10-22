@@ -1,0 +1,20 @@
+﻿<%if info.Parentid!=0%>
+<%set {list}=SubChlList(info.Parentid)%>
+<%if list.Rows.Count>0%>
+             <div class="bbar w_235">
+                <div class="tit"><a href="{siteurl}" class="cblue bold">频道快速导航</a></div>
+            </div>
+            <div class="bcont w_235" style="height:auto;padding-bottom:5px;margin:0 0 6px 0;">
+                <ul class="l235">
+                <%loop item list%>
+                    <%set (int){cid}=TypeParse.StrToInt({item[id]})%>
+                    <%if cid==id%>
+                        <li><a href="{Urls.Channel(cid)}" class="s14 bold cblue underline">{item[name]}</a></li>
+                    <%else%>
+                        <li><a href="{Urls.Channel(cid)}" class="s14 bold cblue">{item[name]}</a></li>
+                    <%/if%>
+                <%/loop%>
+                </ul>
+            </div>
+<%/if%>
+ <%/if%>

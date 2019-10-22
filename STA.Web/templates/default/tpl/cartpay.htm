@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>买家付款 - {webname}</title>
+<meta name="description" content="买家付款,{webname}">
+<meta name="keywords" content="买家付款,{webname}">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<link rel="shortcut icon" href="{siteurl}/favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" href="{tempurl}/css/stacms.css" type="text/css" />
+<script type="text/javascript" src="{siteurl}/sta/js/jquery.js"></script>
+<script type="text/javascript" src="{siteurl}/sta/js/blockUI.js"></script>
+<script type="text/javascript" src="{siteurl}/sta/js/config.js"></script>
+<script type="text/javascript" src="{siteurl}/sta/js/common.js"></script>
+<script type="text/javascript" src="{tempurl}/js/global.js"></script>
+<style type="text/css">
+.payment-info{padding:2px;border:2px #ccc solid; background-color:#fff;display:none;width:334px;height:304px;position:absolute;top:50%;left:50%;margin:-100px 0 0 -167px;}
+.payment-info .cont{width:330px; height:300px; border:2px #ccc solid; background:#fff; text-align:center}
+</style>
+</head>
+<body>          
+<div class="vt_wrapper">
+    <%include _header_user%>
+    <div class="votetit">
+    	买家付款
+    </div>
+    <div class="votecon">
+        <input type="hidden" value="" name="adrid" id="adrid"/>
+        <table class="step">
+        	<tr>
+            	<td>下单购买</td>
+                <td class="cur">买家付款</td>
+                <td>确认收货</td>
+                <td>完成交易</td>
+           </tr>
+        </table>
+        <table class="cart olist">
+        	<tr class="caption">
+            	<th>&nbsp;&nbsp;<b>订单已提交,请尽快付款</b></th>
+            </tr>
+            <tr>
+                <td>
+                	<div class="cartpay">
+                    	<div class="cartpay-2">
+                        	您的订单号为：<span style="color:#ff0000;font-weight:bold;font-size:16px;">{info.Oid}</span>&nbsp;
+                            应付金额：<span style="color:#ff0000;font-weight:bold;font-size:16px;">{info.Totalprice}</span>元&nbsp;
+                            支付方式：{pinfo.Name}
+                        </div>
+                        <div class="cartpay-2 clearfix">
+                              <div class="left">还差一步，请立即支付(请您在{config.Orderbackday}日内付清款项，否则订单会被自动取消)</div>
+                              <div class="right"><a href="{siteurl}/user/orderdetail.aspx?orderno={info.Oid}" class="cblue bold"  target="_blank">查看订单状态</a>&nbsp;</div>
+                        </div>
+                        <div class="carpay-2 cartpay-3">
+							请选择以下支付平台支付
+                            <div class="cartpay-2 gopay">
+                            	{payurl}
+                            </div>
+                        </div>
+                        <div class="cartpay-2 s14">
+    						  完成支付后，您可以：<a href="{siteurl}/user/orderdetail.aspx?orderno={info.Oid}" class="s14" target="_blank">查看订单状态</a>　<a href="{siteurl}" class="s14" >继续购物</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <%include _footer_com%>
+</div>
+<div class="payment-info">
+    <div class="cont">
+    <p style="margin:0; padding:10px; text-align:right; background:#f1f1f1"><a href="javascript:;" style="text-decoration:underline" class="payment-info-close">关闭</a></p>
+    <table width="300" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="100" height="100" align="center"><img src="{tempurl}/images/cart_warn.gif" width="49" height="50" /></td>
+        <td width="200" style="font-size:14px; font-weight:bold; color:#000000; line-height:25px" align="left">请您在新打开的网上银行页面完成付款</td>
+      </tr>
+      <tr>
+        <td colspan="2" style="line-height:25px">付款完成前请不要关闭此窗口<br />
+          完成付款后请根据您的情况点击下列按纽</td>
+      </tr>
+      <tr>
+        <td height="30" colspan="2" align="center"><input type="button" name="button" value="已完成付款" onclick="location.href='{siteurl}/user/orderdetail.aspx?orderno={info.Oid}'"/> 
+            <input type="button" name="button1" value="付款遇到问题" onclick="location.href='{siteurl}/user/orderdetail.aspx?orderno={info.Oid}'"/></td>
+      </tr>
+    </table>
+    </div>
+</div>
+<script type="text/javascript">
+    $(".gopay").click(function () { $.blockUI({ message: $(".payment-info"), overlayCSS: { backgroundColor: '#fff', opacity: 0.5 }, css: { border: 'none', background: "transparent"} }) });
+    $(".payment-info-close").click(function () { $.unblockUI(); });
+</script>
+</body>
+</html>

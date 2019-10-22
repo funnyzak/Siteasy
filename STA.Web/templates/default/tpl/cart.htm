@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>我的购物车 - {webname}</title>
+<meta name="description" content="购物车,{webname}">
+<meta name="keywords" content="购物车,{webname}">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<link rel="shortcut icon" href="{siteurl}/favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" href="{tempurl}/css/stacms.css" type="text/css" />
+<script type="text/javascript" src="{siteurl}/sta/js/jquery.js"></script>
+<script type="text/javascript" src="{siteurl}/sta/js/config.js"></script>
+<script type="text/javascript" src="{siteurl}/sta/js/common.js"></script>
+</head>
+<body>          
+<div class="vt_wrapper">
+    <%include _header_user%>
+    <div class="votetit">
+    	我的购物车
+    </div>
+    <div class="votecon">
+    	<div class="cart-caption cdarkgrey">我挑选的商品</div>
+        <table class="cart">
+        	<tr class="caption">
+            	<th>&nbsp;&nbsp;选择</th>
+            	<th>商品编号</th>
+                <th>商品名称</th>
+                <th style="width:90px;">市场价(元)</th>
+                <th style="width:90px;">会员价(元)</th>
+                <th style="text-align:center;width:80px;">商品数量</th>
+                <th style="text-align:center;width:60px;">操作</th>
+            </tr>
+            <%if prods!=null%>
+            <%loop item prods%>
+            <%set (int){pid}=TypeParse.StrToInt({item[id]})%>
+            <tr pid="{item[id]}">
+            	<td>&nbsp;
+                    <input type="checkbox" value="{item[id]}" name="chbprod"/>
+                    <input type="hidden" value="{item[ext_weight]}" id="weight{item[id]}"/>
+                    <input type="hidden" value="{item[ext_storage]}" id="storage{item[id]}"/>
+                </td>
+                <td>{item[id]}</td>
+                <td>
+                	<div class="left" style="width:58px;"><a href="{Urls.Content(pid)}" target="_blank"><img src="{item[img]}" width="50" height="50" style="border:1px solid #ccc;cursor:pointer;" align="absmiddle"/></a></div>
+                	<div class="left" style="width:420px"><a href="{Urls.Content(pid)}" target="_blank" class="prodname{item[id]}">{item[title]}</a></div></td>
+                <td>{item[ext_price]}</td>
+                <td class="price{item[id]}">{item[ext_vipprice]}</td>
+                <td style="text-align:center"> 
+                	<div class="buynum clearfix">
+                        <div class="delnum" pid="{item[id]}">&nbsp;</div>
+                        <div class="iptnum"><input type="text" class="ipt-buynum buynum{item[id]}" value="{item[num]}" readonly="readonly"/></div>
+                        <div class="addnum" pid="{item[id]}">&nbsp;</div>
+                    </div>
+                </td>
+                <td style="text-align:center;"><a href="javascript:;" class="delprod" pid="{item[id]}">删除</a></td>
+            </tr>
+            <%/loop%>
+            <%/if%>
+            <tr>
+            	<td colspan="7" style="background:none;">
+                	<div class="operate">
+                    	&nbsp;&nbsp;<a href="javascript:;" class="delsel">删除选中商品</a>
+                        &nbsp;<a href="javascript:;" class="emptyprods">清空购物车</a>
+                    </div>
+                    <div class="description">
+						<span class="corange totalnum">0</span>件商品,总重量<span class="corange totalweight">0</span>KG,总金额(不含运费)：<span class="cred s14"><b class="totalmoney">￥{Pays.TotalProductPrice(prods)}</b></span>元&nbsp;&nbsp;
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <div class="votecon gobuy">
+        	<input type="button" class="com" value="继续购物" title="返回首页" onclick="location.href='{weburl}'"/>&nbsp;
+            <input type="button" class="com nextsetp" value="去结算" />
+        </div>
+        <div class="votecon emptycart" style="display:none;">
+            购物车内暂时没有商品，您可以去<a href="{siteurl}" target="_blank" class="cblue">首页</a>挑选喜欢的商品
+        </div>
+    </div>
+    <%include _footer_com%>
+</div>
+<script type="text/javascript">
+    function delProd(pid) {
+        shopCart.delProudct(pid);
+        $("tr[pid ='" + pid + "']").remove();
+    };
+
+    function delProdConfirm(pid) {
+        if (confirm("确认删除" + $("a.prodname" + pid).html() + "吗？")) {
+            shopCart.delProudct(pid);
+            $("tr[pid ='" + pid + "']").remove();
+        };
+    };
+
+    function getProd(pid){
+        return {
+            id: pid, 
+            num: parseInt($("input.buynum" + pid).val()),
+            price: parseFloat($("td.price" + pid).html()),
+            name: $("a.prodname" + pid).html(),
+            weight: parseFloat($("#weight" + pid).val()),
+            storage: parseInt($("#storage" + pid).val()) 
+         };
+    };
+
+    function cartReset() {
+        var wht = 0;
+        $.each(shopCart.getProductlist(), function (idx, obj) {
+            $("input.buynum" + obj.id).val(obj.num);
+            wht += getProd(obj.id).weight * obj.num;
+        });
+        $(".totalweight").html(wht.toFixed(2));
+        $(".totalnum").html(shopCart.count());
+        $(".totalmoney").html("￥" + shopCart.money());
+        $(".gobuy,table.cart,.cart-caption").css("display", shopCart.count() > 0 ? "" : "none");
+        $(".emptycart").css("display", shopCart.count() > 0 ? "none" : "");
+    };
+
+    $(".delprod").click(function () {
+        delProdConfirm($(this).attr("pid"));
+        cartReset();
+    });
+
+    $(".delnum").click(function () {
+        var prod = getProd($(this).attr("pid"));
+        if (prod.num == 1) {
+            delProdConfirm(prod.id);
+        } else {
+            prod.num -= 1;
+            $("input.buynum" + prod.id).val(prod.num);
+            shopCart.setProduct(prod);
+        }
+        cartReset();
+    });
+
+    $(".delsel").click(function () {
+        if ($('input[name="chbprod"]:checked').length >0 && confirm("确认删除所选的商品吗？")) {
+            $('input[name="chbprod"]:checked').each(function (idx, obj) {
+                delProd($(this).val());
+            });
+            cartReset();
+        }
+    });
+
+    $(".emptyprods").click(function () {
+        if (confirm("确定清空您的购物车吗？")) {
+            shopCart.clear(); 
+            cartReset();
+        }
+    });
+
+    $(".addnum").click(function () {
+        var prod = getProd($(this).attr("pid"));
+        prod.num += 1;
+        if (prod.num <= prod.storage) {
+            $("input.buynum" + prod.id).val(prod.num);
+            shopCart.setProduct(prod);
+            cartReset();
+        } else {
+            alert("抱歉," + prod.name + "没有足够的库存,不能继续添加了！");
+        }
+    });
+
+    $(".nextsetp").click(function () {
+        location.href = "cartstep.aspx";
+    });
+    cartReset();
+</script>
+</body>
+</html>

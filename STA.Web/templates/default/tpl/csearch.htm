@@ -1,0 +1,48 @@
+﻿<%inherits STA.Page.Search%>
+	<%include _header%>    
+    <div class="icontent" style="padding:3px 0 0 0;">
+        <div class="ibleft clearfix">
+            <div class="bbar w_718">
+                <div class="tit cblue location">您现在的位置：{location}</div>
+            </div>
+<%set (DataTable){datas}=null%>
+<%set (int){pagecount}=0%>
+<%set (int){recordcount}=0%>
+<%set (string){pageguide}=Paging("id,img,click,commentcount,savepath,filename,color,property,title,addtime,channelid,channelname,content",8,out datas,out pagecount,out recordcount)%>
+          <div class="bcont w_718" style="min-height:700px;padding:0 0 15px 0;">
+          		<%if datas.Rows.Count>0 %>
+          		<div class="searchdesc"><strong>关于"<span class="cred">{query}</span>"的内容,有 {recordcount} 个</strong></div>
+
+                <div class="cmlist">
+                    <%loop item datas%>
+                    <%set (int){cid}=TypeParse.StrToInt({item[id]})%>
+                    <%set (int){chid}=TypeParse.StrToInt({item[channelid]})%>
+                    <%set (int){tid}=TypeParse.StrToInt({item[typeid]})%>
+                    <%set (string){img}= {item[img]}==""?(tempurl+ "/images/random/tb" + (new Random(Guid.NewGuid().GetHashCode())).Next(1,20)  + ".jpg"):{item[img]}%>
+                    <%set (string){curl}=Urls.Content(cid,tid,{item[savepath]},{item[filename]})%>
+                    <%set (string){hname}=Utils.HightLightStr(Utils.GetUnicodeSubString(item["title"].ToString(),82,".."), query, "f00", false, "14")%>
+                    <%set (string){html}=Utils.RemoveLine(Utils.RemoveHtml(item["content"].ToString())).Replace(" ","")%>
+                	<div class="cmitem clearfix">
+                    	<div class="left">
+                        	<a href="{curl}" title="{item[title]}" target="_blank"><img alt="{item[title]}" src="{img}" onerror="this.src='{tempurl}/images/pub/nopic.png'" width="85" height="85" class="pad-bdr-1"/></a>
+                        </div>
+                        <span class="s14 clightgrey">[<a href="{Urls.Channel(chid)}" title="{item[channelname]}" class="s14 cgrey bold" target="_blank">{item[channelname]}</a>]</span> <a href="{curl}" target="_blank" title="{item[title]}" class="s14 cgrey bold">{hname}</a>
+                        <p class="ainfo s13 clightgrey">发布日期：<label class="cgrey"><%datetostr(Convert.ToDateTime({item[addtime]}), "yyyy-MM-dd HH:mm:ss")%></label>&nbsp;&nbsp;浏览：<label class="cgrey">{item[click]}</label>&nbsp;&nbsp;评论：<label class="cgrey">{item[commentcount]}</label></p>
+                        <p class="desc cgrey s13"><%getsubstring({html},252,"..")%> <a href="{curl}" title="{item[title]}" target="_blank" class="s13 cblue">查看更多>></a></p>
+                    </div>
+                    <%/loop%>
+                </div>
+                <%else%>
+                <div class="searchdesc" style="border:none;"><strong>抱歉，没有找到关于"<span class="cred">{query}</span>"的内容。您也许可以 <a target="_blank" class="cred" href="http://www.baidu.com/s?wd={query}">百度</a>&nbsp;或&nbsp;<a target="_blank" href="https://www.google.com.hk/#hl=zh-CN&newwindow=1&safe=strict&site=&source=hp&q={query}" class="cred">Google</a> 一下。</strong></div>
+                <%/if%>
+                
+                <%if pageguide!=""%>
+                <div class="pages">{pageguide}</div>
+                <%/if%>
+            </div>
+        </div>
+        <div class="sright">
+            <%include _inner_right_com%>
+        </div>
+    </div>
+	<%include _footer%>   

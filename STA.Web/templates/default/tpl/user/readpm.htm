@@ -1,0 +1,42 @@
+﻿<%include _header%>
+    <%set (string){from}=STARequest.GetString("from")=="inbox"?"inbox":"outbox"%>
+    <div class="left right-container">
+    	<div class="con-box left col-1">
+            <%if canread%>
+        	<div class="bartitle"><h3>与 <%if info.Msgfromid==userid%>{info.msgto}<%else%>{info.Msgfrom}<%/if%>的短消息</h3></div>
+            <div class="con-info">
+                <table width="100%" cellspacing="0" class="zform">      
+                 <tr>
+                       <td>
+                       <div class="readpm">
+                       <h3>{info.subject} - <%datetostr(Convert.ToDateTime({info.Addtime}), "yyyy-MM-dd HH:mm:ss")%></h3>
+                       发送人: <a href="{siteurl}/user/sendpm.aspx?action=re&pmid={info.Id}"><%if info.Msgfromid==userid%>{info.msgto}<%else%>{info.Msgfrom}<%/if%></a>
+                       <br /><br /><p>{info.content}</p>
+                       </div>
+                       </td>
+                 </tr>
+                </table>
+                	<div class="btn-manage">
+                    	<input name="btnback" id="btnback" type="button" class="button" value="返回列表" onclick="location.href='{siteurl}/user/{from}pm.aspx'"/>&nbsp;
+                        <%if (int)info.Folder==0%>
+                        <input name="replay" id="replay" type="button" class="button" value="回复" onclick="location.href='{siteurl}/user/sendpm.aspx?action=re&pmid={info.Id}'"/>&nbsp;
+                        <%/if%>
+                        <input name="forward" id="forward" type="button" class="button" value="转发" onclick="location.href='{siteurl}/user/sendpm.aspx?action=fw&pmid={info.Id}'"/>&nbsp;
+                        <!--<input name="noread" id="noread" type="button" class="button" value="标记为未读"  onclick="setPmsState({pmid},1,'{siteurl}/user/readpm.aspx?action=noread&pmid={info.Id}')"/>&nbsp;-->
+                        <input name="del" id="del" type="button" class="button" value="删除" onclick="delPms({pmid},'{siteurl}/user/{from}pm.aspx')"/>&nbsp;
+                    </div> 
+            </div>
+        	<span class="o1"></span><span class="o2"></span><span class="o3"></span><span class="o4"></span>
+        </div>
+        <%else%>
+        <div class="bartitle"><h3>查看短消息</h3></div>
+            <div class="con-info">
+                <div class="zerotable">{msgtext}</div>
+            </div>
+            <script type="text/javascript">
+                $.dialog.tip("{msgtext}", 1, function () { location.href = '{siteurl}/user/{from}pm.aspx'; });
+            </script>
+        <%/if%>
+    </div>
+</div>
+<%include _footer%>

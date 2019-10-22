@@ -1,0 +1,223 @@
+﻿<%csharp%>
+AddLinkRss(siteurl + "/sta/data/rss/0.xml",webname+"RSS订阅");
+AddLinkScript(siteurl + "/sta/js/myfocus/myfocus.js");
+AddMetaInfo("","","<base target='_blank' />");
+<%/csharp%>
+	<%include _header%>
+    <div class="icontent">
+    	<div class="itop">
+            <div style="width:282px;height:358px;overflow:hidden;float:left;">
+
+        	<div class="slide">
+               <div id="topslide" style="visibility:hidden">
+                  <div class="loading"><span>请稍候...</span></div>
+                  <ul class="pic">
+                    <%load_data action=content num=7 fields=id,typeid,savepath,filename,subtitle,img order=2 property=f%>
+                    <%loop item list%>
+                    <%set (int){cid}=TypeParse.StrToInt({item[id]})%>
+                    <%set (int){tid}=TypeParse.StrToInt({item[typeid]})%>
+                    <%set (string){curl}=Urls.Content(cid,tid,{item[savepath]},{item[filename]})%>
+                    <li><a href="{curl}" target="_blank"><img alt="{item[subtitle]}" text="" width="273" height="188" src="{item[img]}"/></a></li> 
+                    <%/loop%>       
+                  </ul>
+                </div>
+            </div>
+            <div class="bbar w_275" style="margin:6px 0 0 0;">
+                <div class="tit"><a href="{siteurl}" class="cblue bold">编辑特荐内容</a></div>
+            </div>
+            <div class="bcont w_275" style="height:135px;">
+                <ul class="l275" style="padding-top:4px">
+                    <%load_data action=content num=5 fields=id,typeid,savepath,filename,color,property,title order=2 property=a%>
+                    <%loop item list%>
+                        <%set (int){cid}=TypeParse.StrToInt({item[id]})%>
+                        <%set (int){tid}=TypeParse.StrToInt({item[typeid]})%>
+                        <%set (string){curl}=Urls.Content(cid,tid,{item[savepath]},{item[filename]})%>
+                        <%set (string){title}=TitleFormat({item[title]},{item[property]},(item["color"].ToString().Trim() == "000000"? defcolor: {item[color]}),36,"..")%>	
+                    <li><a href="{curl}" target="_blank" title="{item[title]}">{title}</a></li>
+                    <%/loop%>  
+                </ul>
+            </div>
+
+            </div>
+
+            <script type="text/javascript">
+                $('#topslide').myFocus({ pattern: 'mF_classicHB', time: 5, width: 273, auto: true, height: 188, delay: 0, trigger: "mouseover" });
+            </script>
+            <div class="cntbox">
+                <div class="topcons">
+                    <div class="onecon">   
+                    <%load_data action=content type=channel num=1 fields=id,typeid,savepath,filename,subtitle,title,seodescription order=2 property=h%>
+                    <%loop item list%>
+                    <%set (int){cid}=TypeParse.StrToInt({item[id]})%>
+                    <%set (int){tid}=TypeParse.StrToInt({item[typeid]})%>
+                    <%set (string){curl}=Urls.Content(cid,tid,{item[savepath]},{item[filename]})%>
+                        <h2><a href="{curl}" class="s18 bold cdarkgrey">{item[subtitle]}</a></h2>
+                        <p class="cgrey"><%getsubstring({item[seodescription]},110,"..")%><a class="cgrey" href="{curl}" target="_blank">[查看全文]</a></p>
+                    <%/loop%>    
+                        <ul class="ulast clearfix">
+                    <%load_data action=content type=congroup id=1 num=4 fields=id,typeid,savepath,filename,color,property,subtitle,title order=2%>
+                    <%loop item list%> 
+                    <%set (int){cid}=TypeParse.StrToInt({item[id]})%>
+                    <%set (int){tid}=TypeParse.StrToInt({item[typeid]})%>
+                    <%set (string){curl}=Urls.Content(cid,tid,{item[savepath]},{item[filename]})%>
+                    <%set (string){title}=TitleFormat({item[title]},{item[property]},(item["color"].ToString().Trim() == "000000"? defcolor: {item[color]}),28,"..")%>	
+                            <li><a href="{curl}" title="{item[title]}">{title}</a></li>
+                    <%/loop%> 
+                        </ul>
+                     </div>
+                </div>
+                <div class="lastest">&nbsp;</div>
+                <ul class="ulast">
+                    <%load_data action=content num=14 fields=id,typeid,savepath,filename,color,property,title order=0%>
+                    <%loop item list%>
+                    <%set (int){cid}=TypeParse.StrToInt({item[id]})%>
+                    <%set (int){tid}=TypeParse.StrToInt({item[typeid]})%>
+                    <%set (string){curl}=Urls.Content(cid,tid,{item[savepath]},{item[filename]})%>
+                    <%set (string){title}=TitleFormat({item[title]},{item[property]},(item["color"].ToString().Trim() == "000000"? defcolor: {item[color]}),24,"..")%>	
+                    <li class="middot"><a href="{curl}" tilte="{item[title]}">{title}</a></li>
+                    <%/loop%>  
+               </ul>
+            </div>
+            <div class="sright">
+            	<div class="bbar w_235">
+                	<div class="tit"><a href="#" class="cblue bold">资讯点击排行</a></div>
+                    <div class="more"><a href="{siteurl}" class="s12 clightgrey">更多>></a></div>
+                </div>
+                <div class="bcont w_235" style="height:332px;">
+                	<ul class="l235">
+                <%load_data action=content type=channel id=1 num=12 fields=id,typeid,savepath,filename,color,property,title,click order=3%>
+                <%loop item list%> 
+                    <%set (int){cid}=TypeParse.StrToInt({item[id]})%>
+                    <%set (int){tid}=TypeParse.StrToInt({item[typeid]})%>
+                    <%set (string){curl}=Urls.Content(cid,tid,{item[savepath]},{item[filename]})%>
+                    <%set (string){title}=TitleFormat({item[title]},{item[property]},(item["color"].ToString().Trim() == "000000"? defcolor: {item[color]}),30,"..")%>	
+                        <li><a href="{curl}" title="{item[title]}(点击:{item[click]})">{title}</a></li>
+                <%/loop%> 
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="icontent">
+        <div class="ibleft clearfix">
+            <div class="iclist-718">
+            	<div class="bbar w_718">
+                	<div class="tit"><a href="{Urls.Channel(2)}" class="cblue bold">图集推荐</a></div>
+                    <div class="more"><a href="{Urls.Channel(2)}" target="_blank" class="s12 clightgrey">更多>></a></div>
+                </div>
+                <div class="bcont w_718" style="height:auto;">
+                	
+                 	<div class="pslide">
+                    	<div class="scrollable">
+                        <div class="items">
+                        <div class="pslide-con">
+                        <%load_data action=content ctype=2 num=28 fields=id,typeid,savepath,filename,color,property,title,img order=0 property=r%>
+                        <%loop item list%>
+                        <%set (int){cid}=TypeParse.StrToInt({item[id]})%>
+                        <%set (int){tid}=TypeParse.StrToInt({item[typeid]})%>
+                        <%set (string){curl}=Urls.Content(cid,tid,{item[savepath]},{item[filename]})%>
+                        <%set (string){title}=TitleFormat({item[title]},{item[property]},(item["color"].ToString().Trim() == "000000"? defcolor: {item[color]}),20,"..")%>	
+                        	<ul>
+                            	<li class="m"><a href="{curl}" title="{item[title]}" target="_blank"><img src="{item[img]}" alt="{item[title]}"/></a></li>
+                                <li class="t"><a href="{curl}" title="{item[title]}" target="_blank">{title}</a></li>
+                            </ul>
+                        <%if item__loop__id%4==0&&item__loop__id!=list.Rows.Count%>
+                        </div><div class="pslide-con">
+                        <%/if%>
+                        <%/loop%>
+                        </div>
+                     	</div>
+                        </div>
+                        <div class="lbtn">&nbsp;</div>
+                        <div class="rbtn">&nbsp;</div>
+						<script type="text/javascript">
+						     $(".scrollable").scrollable({ next: ".lbtn", prev: ".rbtn", circular: true, speed: 700 });
+                        </script>
+                    </div>
+                </div>
+            </div>
+            <%load_data action=channel type=chlgroup id=2 num=30 fields=id,name order=2%>
+            <%loop citem list%>
+            <%set (int){chid}=TypeParse.StrToInt({citem[id]})%>
+            <%if citem__loop__id%2==1%>
+        	<div class="iclist" style="margin-right:6px;">
+            <%else%>
+            <div class="iclist">
+            <%/if%>
+            	<div class="bbar w_356">
+                	<div class="tit"><a href="{Urls.Channel(chid)}" class="cblue bold">{citem[name]}</a></div>
+                    <div class="more"><a href="{Urls.Channel(chid)}" target="_blank" class="s12 clightgrey">更多>></a></div>
+                </div>
+                <div class="bcont w_356" style="padding-bottom:5px">
+                	<ul class="l356">
+                        <%load_data action=content type=channel id=chid num=8 fields=id,typeid,savepath,filename,color,property,title,addtime order=0%>
+                        <%loop item list%>
+                        <%set (int){cid}=TypeParse.StrToInt({item[id]})%>
+                        <%set (int){tid}=TypeParse.StrToInt({item[typeid]})%>
+                        <%set (string){curl}=Urls.Content(cid,tid,{item[savepath]},{item[filename]})%>
+                        <%set (string){title}=TitleFormat({item[title]},{item[property]},(item["color"].ToString().Trim() == "000000"? defcolor: {item[color]}),34,"..")%>	
+                        <li class="middot"><span class="left"><a href="{curl}" target="_blank" title="{item[title]}">{title}</a></span><span class="right cgrey"><%datetostr(Convert.ToDateTime({item[addtime]}), "MM-dd")%></span></li>
+                        <%/loop%>  
+                    </ul>
+                </div>
+            </div>
+            <%/loop%>
+        </div>
+        <div class="sright">
+            <div class="bbar w_235">
+                <div class="tit"><a href="{siteurl}" class="cblue bold">编辑推荐内容</a></div>
+            </div>
+            <div class="bcont w_235" style="height:299px;margin:0 0 6px 0;">
+                <ul class="l235">
+                    <%load_data action=content num=11 fields=id,typeid,savepath,filename,color,property,title order=2 property=r%>
+                    <%loop item list%>
+                        <%set (int){cid}=TypeParse.StrToInt({item[id]})%>
+                        <%set (int){tid}=TypeParse.StrToInt({item[typeid]})%>
+                        <%set (string){curl}=Urls.Content(cid,tid,{item[savepath]},{item[filename]})%>
+                        <%set (string){title}=TitleFormat({item[title]},{item[property]},(item["color"].ToString().Trim() == "000000"? defcolor: {item[color]}),30,"..")%>	
+                    <li><a href="{curl}" target="_blank" title="{item[title]}">{title}</a></li>
+                    <%/loop%>  
+                </ul>
+            </div>
+            <div class="bbar w_235">
+                <div class="tit"><a href="{siteurl}" class="cblue bold">做个小调查</a></div>
+            </div>
+            <div class="bcont w_235" style="height:auto;margin:0 0 6px 0;">
+                <div style="padding:0 0 10px 8px;">
+                    <script type="text/javascript" src="{siteurl}/sta/plus/vote.aspx?id=1"></script>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="friend">
+        <div class="bbar w_960">
+            <div class="tit"><a href="{weburl}/flink.aspx" class="cblue bold">友情链接</a></div>
+            <div class="fnav">
+                <ul class="fnav-ul">
+            <%dbtable table=sta_linktypes output=lts num=100 fields=id,name order=orderid_desc cache=0%>
+            <%loop item lts%>
+                 <li>{item[name]}</li>
+            <%/loop%>
+                </ul>
+            </div>
+            <div class="more"><a href="{siteurl}/plus/flinkreg.aspx" class="s12 clightgrey">申请加入</a>&nbsp;&nbsp;<a href="{siteurl}/flink.aspx" class="s12 clightgrey">所有链接</a></div>
+        </div>
+        <div class="bcont w_960" style="min-height:30px;padding:7px 0 15px;">
+            <div class="flink">
+            <%load_data action=linktype num=8 fields=id,name order=2%>
+            <%loop im list%>
+                <div class="flink-con">
+                <%set (int){cid}=TypeParse.StrToInt({im[id]},0)%>	
+                <%load_data action=link id=cid num=500 fields=id,name,url order=2%>
+                <%loop item list%>
+                    <a href="{item[url]}" title="{item[name]}" target="_blank" class="s12 cgrey">{item[name]}</a>&nbsp;&nbsp;
+                <%/loop%>
+                </div>
+            <%/loop%>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $("ul.fnav-ul").tabs(".flink-con", { event: 'mouseover', current: 'on' });
+        </script>
+    </div>
+    <%include _footer%>

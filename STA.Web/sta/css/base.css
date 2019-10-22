@@ -1,0 +1,117 @@
+﻿/*reset*/
+body,html,input{font:12px/1.5 tahoma,arial,\5b8b\4f53,sans-serif;}
+body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,legend,button,input,textarea,th,td{margin:0;padding:0;word-wrap:break-word}
+ul,li{list-style:none;}
+table{border-collapse:collapse;border-spacing:0}
+img{border:0;vertical-align:top;}
+em{font-style:italic}
+th{font-weight:700;text-align:center}
+caption{margin-bottom:.5em;text-align:center}
+p,fieldset,table,pre{margin-bottom:10px}
+p{text-indent:2em;}
+select,input,img{vertical-align:middle}
+a:link,a:visited,a:hover,a:active{text-decoration:none;color:#555555;font-size:13px}
+a:hover{text-decoration:underline;cursor:pointer;}
+sup{vertical-align:text-top;}
+sub{vertical-align:text-bottom;}
+input{vertical-align:middle;display:inline-block;*display:inline;*zoom:1;_height:auto;_line-height:15px;}
+
+/* clear both */
+.clearfix:after{content: ".";display:block;height:0;clear:both;visibility:hidden}
+.clearfix{zoom:1; display:inline-block; _height: 1px}
+*html .clearfix{height: 1%}
+*+html .clearfix{height: 1%}
+
+/*global*/
+.s11,.s11:link,.s11:visited,.s11:hover,.s11:active{font-size:11px;}
+.s12,.s12:link,.s12:visited,.s12:hover,.s12:active{font-size:12px;}
+.s13,.s13:link,.s13:visited,.s13:hover,.s13:active{font-size:13px;}
+.s14,.s14:link,.s14:visited,.s14:hover,.s14:active{font-size:14px;}
+.s15,.s15:link,.s15:visited,.s15:hover,.s15:active{font-size:15px;}
+.s16,.s16:link,.s16:visited,.s16:hover,.s16:active{font-size:16px;}
+.s18,.s18:link,.s18:visited,.s18:hover,.s18:active{font-size:18px;}
+.s20,.s20:link,.s20:visited,.s20:hover,.s20:active{font-size:20px;}
+.s22,.s22:link,.s22:visited,.s22:hover,.s22:active{font-size:22px;}
+.s30,.s30:link,.s30:visited,.s30:hover,.s30:active{font-size:30px;}
+.fyahei,.fyahei:link,.fyahei:visited,.fyahei:hover,.fyahei:active{font-family:微软雅黑;}
+.cred,.cred:link,.cred:visited,.cred:hover,.cred:active{color:#ff0000;}
+.cyellow,.cyellow:link,.cyellow:visited,.cyellow:hover,.cyellow:active{color:#FF9900;}
+.cdarkgrey,.cdarkgrey:link,.cdarkgrey:visited,.cdarkgrey:hover,.cdarkgrey:active{color:#333;}
+.cgrey,.cgrey:link,.cgrey:visited,.cgrey:hover,.cgrey:active{color:#666;}
+.cgrey2,.cgrey2:link,.cgrey2:visited,.cgrey2:hover,.cgrey2:active{color:#2f2f2f;}
+.clightgrey,.clightgrey:link,.clightgrey:visited,.clightgrey:hover,.clightgrey:active{color:#999;}
+.cblue,.cblue:link,.cblue:visited,.cblue:hover,.cblue:active{color:#1678da;}
+.cgreen,.cgreen:link,.cgreen:visited,.cgreen:hover,.cgreen:active{color:#739b20;}
+.corange,.corange:link,.corange:visited,.corange:hover,.corange:active{color:#fe510c;}
+.cwhite,.cwhite:link,.cwhite:visited,.cwhite:hover,.cwhite:active{color:#fff;}
+.cdullred,.cdullred:link,.cdullred:visited,.cdullred:hover,.cdullred:active{color:#aa0d06;}
+.bold,.bold:link,.bold:visited,.bold:hover,.bold:active{font-weight:bold;}
+.blod,.normal:link,.normal:visited,.normal:hover,.normal:active{font-weight:normal;}
+.underline,.underline:link,.underline:visited,.underline:hover,.underline:active{text-decoration:underline;}
+.lh20{line-height:20px;}
+.lh21{line-height:21px;}
+.lh22{line-height:22px;}
+.lh23{line-height:23px;}
+.lh24{line-height:24px;}
+.lh25{line-height:25px;}
+
+.opacity10{filter:alpha(opacity=10);opacity:0.1;}
+.opacity20{filter:alpha(opacity=20);opacity:0.2;}
+.opacity30{filter:alpha(opacity=30);opacity:0.3;}
+.opacity40{filter:alpha(opacity=40);opacity:0.4;}
+.opacity50{filter:alpha(opacity=50);opacity:0.5;}
+.opacity60{filter:alpha(opacity=60);opacity:0.6;}
+.opacity70{filter:alpha(opacity=70);opacity:0.7;}
+.opacity80{filter:alpha(opacity=80);opacity:0.8;}
+.opacity90{filter:alpha(opacity=90);opacity:0.9;}
+
+.left{float:left;}
+.right{float:right;}
+.absolute{position:absolute;}
+.relative{position:relative;}
+.tleft{text-align:left;}
+.tcenter{text-align:center;}
+.tright{text-align:right;}
+.flowhidden{overflow:hidden;}
+.marginbottom0{margin-bottom:0;}
+.marginbottom5{margin-bottom:5px;}
+.marginbottom7{margin-bottom:7px;}
+
+/*pagebase*/
+.votepre{width:100%;}
+.votepre dl{padding:14px 0 0 0;}
+.votepre dt{padding-bottom:5px;}
+.votepre dd{margin-bottom:5px;font-family:Tahoma, Geneva, sans-serif;}
+.votepre dd input{margin-right:5px;}
+.votepre dd lable{cursor:pointer;}
+.votepre .votevcode{height:25px;overflow:hidden;}
+.votepre .votevcode .txt{float:left;width:80px;font-size:13px;text-align:right;}
+.votepre .votevcode .ipt{float:left;width:70px;}
+.votepre .ipt input{float:left;width:270px;background:url(../pics/css/reg_input_bg.jpg) repeat-x scroll left top;height:15px;line-height:15px;padding:2px;border:1px solid #a8a5a5;font-size:12px;color:#333;}
+.votepre .infofield .row{display:block;padding:5px 0;}
+.votepre .infofield .txt{float:left;width:80px;font-size:13px;text-align:right;}
+.votepre .infofield .ipt{float:left;width:21px;}
+.votepre .infofield .ipt input{width:200px;}
+.votepre .votevcode .ipt input{width:50px;}
+.votepre .votevcode .cimg{float:left;}
+.votepre .votevcode .cimg img{height:20px;border:0;padding:0;}
+.votepre .votebtn{padding:10px 0;}
+.votepre .votebtn input{width:73px;height:24px;cursor:pointer;border:0;background:url(../pics/css/vbtn.gif) no-repeat left top;text-align:center;color:#424242;font-size:12px;margin:0 10px 0 0;}
+
+.pages,.pagination{display:block;padding:10px 0 20px;text-align:center;}
+.pages a,.pages a:link, .pages a:visited,.pages a:hover,.pages a.on,.pagination a,.pagination span{display: inline;color:#333;padding:2px 7px;margin:0px 2px 0px;font-size:13px;border:1px solid #d8d7d7;}
+.pages a:hover,.pages a.on:hover{ text-decoration:none;border:1px solid #1b76cb;color:#1b76cb;}
+.pagination .current{font-weight:bold;}
+.pagination .current.prev,.pagination .current.next{color:#999;}
+.pages a.on,.pages a.on:visited,.pages a.on:hover{ font-weight:bold; color:#fff;background:#1b76cb;border:0;}
+.pages select{margin:0;}
+
+.pagination a {text-decoration: none;border: solid 1px #AAE;color: #15B;}
+.pagination a, .pagination span {margin-right: 5px;margin-bottom: 5px;}
+.pagination .current {background: #26B;color: #fff;border: solid 1px #AAE;}
+.pagination .current.prev, .pagination .current.next{color:#999;border-color:#999;background:#fff;}
+
+.pguide{display:block;padding:20px 0 42px;text-align:center;}
+.pguide a:link,.pguide a:visited,.pguide a:hover,.pguide a:active,.pguide a.on{display: inline;color:#333;padding:2px 7px;margin:0px 2px 0px;font-size:13px;border:1px solid #d8d7d7}
+.pguide a:hover,.pguide a.on:hover{ text-decoration:none;background:#1b76cb;color:#ffffff;font-weight:bold;}
+.pguide a.on{font-weight:bold; color:#000;}

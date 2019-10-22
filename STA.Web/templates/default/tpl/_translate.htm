@@ -1,0 +1,10 @@
+﻿ <%csharp%>
+ if(config.Opentran==1 && curlang!=config.Weblang){
+    string tranrlt = Translate(templateBuilder.ToString(), config.Weblang, curlang);
+    if(tranrlt != "")
+    {
+        Response.Write(iscompress ? Utils.CompressHtml(tranrlt) : tranrlt);
+        return;
+    }
+ }
+ <%/csharp%>

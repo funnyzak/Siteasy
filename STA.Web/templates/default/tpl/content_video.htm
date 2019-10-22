@@ -1,0 +1,50 @@
+﻿    <%include _ifnull%>
+    <%include _header%>    
+    <div class="icontent" style="padding:3px 0 0 0;">
+        <div class="ibleft clearfix">
+            <div class="bbar w_718">
+            	<%set {location}=location + "&nbsp;" + config.Locationseparator + "&nbsp;"+info.Title%>
+                <div class="tit cblue location">您现在的位置：{location}</div>
+            </div>
+            <div class="bcont w_718">
+				<div class="contit">
+                	<h1>{info.Title}</h1>
+                    <div class="summary">
+                        <span class="copyright">版权方：{info.Ext[ext_copyright]}</span>
+                        <span class="source">来源：{info.Source}</span>
+                        <span class="time">发布时间：<%datetostr(Convert.ToDateTime({info.Addtime}), "yyyy-MM-dd HH:mm:ss")%></span>
+                        <span class="conclick click">{info.Click}人浏览</span>
+                        <%if info.Iscomment==1&&config.Opencomment==1%>
+                        <span class="commentcount" onclick="$('.cmtpublish').ScrollTo(200);"><small class="cred cmtcount"></small>条评论</span>
+                        <%/if%>
+                    </div>
+                </div>
+                <div class="pcontent">
+                    <%if info.Ext["ext_vfile"].ToString().EndsWith(".mp4")||info.Ext["ext_vfile"].ToString().EndsWith(".flv")%>
+                    <div style="width:100%;padding-bottom:15px;" id="vdobox"></div>
+                    <script type="text/javascript">
+                        videoPlay("vdobox", "{info.Ext[ext_vfile]}", "{info.Img}", 680, 450);
+                    </script>
+                    <%else%>
+                    <%set (string){vstr}=UBB.ParseMedia("flv", 680, 450, true, {info.Ext[ext_vfile]})%>
+                    <div style="width:100%;padding-bottom:15px;">{vstr}</div>
+                    <%/if%>
+                </div>
+                <div class="info-intro fyahei s16 bold">视频说明</div>
+				<div class="pcontent" style="width:670px;padding-left:10px;">
+                    {info.Content}
+                </div>
+                <%include _inner_left_summary%> 
+            </div>
+             <%include _inner_comment%> 
+			<script type="text/javascript">
+            setContentClick({info.Id},"yes",function(c){ $(".conclick").html(c); });
+            </script>
+        </div>
+        <div class="sright">
+        <%set (int){chnid}=info.Channelid%>
+        <%set (string){chnname}=info.Channelname%>
+        <%include _inner_right_video%>    
+        </div>
+    </div>
+	<%include _footer%>   

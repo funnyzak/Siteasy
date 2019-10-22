@@ -1,0 +1,67 @@
+﻿<%include _header%>
+    <div class="left right-container">
+        <div class="con-box left col-1">
+            <div class="bartitle clearfix">
+            	<div class="bartit-picon left" style="background-position:-188px 0;">&nbsp;</div><h3 class="disblock left pad">发件箱</h3>
+            	<button class="btn-pmsend" title="" onclick="location.href='{siteurl}/user/sendpm.aspx'">&nbsp;</button>
+            </div>
+            <div class="con-info">
+                <%set (int){page}=STARequest.GetQueryInt("page",1)%>
+                <%set (int){pagecount}=0%>
+                <%set (int){recordcount}=0%>
+                <%set (DataTable){msglist}=STA.Core.PrivateMessages.GetPrivateMessageList(userid,1,9,page,2,out pagecount,out recordcount)%>
+                <form name="zform" id="zform" action="" method="post">
+                    <%if msglist.Rows.Count<=0%>
+                    <div class="zerotable">发件箱暂无短信息</div>
+                    <%else%>
+                     <table width="100%" cellspacing="0"  class="list">
+                        <thead>
+                            <tr>
+                            <th width="5%"><input type="checkbox" value="" id="check_box" onclick="checkAll(this.form,this.checked);"/></th>
+                            <th width="3%"></th>
+                            <th width="40%">标 题</th>
+                            <th width="15%">收件人</th>
+                            <th width="15%">发送时间</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%loop item msglist%>
+                            <tr>
+                                <td width="5%" align="center"><input type="checkbox" name="cbid" value="{item[id]}" onclick="checkedEnabledButton(this.form, 'cbid', 'btndelete', 'btnread')"/></td>
+                                <td width="3%" align="center"><img src="{tempurl}/images/pub/pm_{item[new]}.gif" alt="<%if {item[new]}=="1"%>未读<%else%>已读<%/if%>"/></td>
+                                <td width="40%" align="left"><a href="{siteurl}/user/readpm.aspx?pmid={item[id]}&from=outbox" class="cblue<%if {item[new]}=="1"%> bold<%/if%>">{item[subject]}</a></td>
+                                <td width="15%" align="center" class="cgrey">{item[msgto]}</td>
+                                <td width="15%" align="center" class="cgrey"><span class="posttime" title="<%datetostr(Convert.ToDateTime({item[addtime]}), "yyyy-MM-dd HH:mm:ss")%>"></span></td>
+                            </tr>
+                            <%/loop%>
+                        </tbody>
+                    </table>
+                	<div class="btn-manage">
+                    	<input name="btndelete" id="btndelete" type="button" class="button" value="删除选中" onclick="delPms(getCbCheckedVals(),'{siteurl}/user/outboxpm.aspx')" disabled="disabled"/>&nbsp;
+                        <input name="btnread" id="btnread" type="button" class="button" value="标记为已读" disabled="disabled" onclick="setPmsState(getCbCheckedVals(),0,'{siteurl}/user/outboxpm.aspx')"/>&nbsp;&nbsp;
+                    </div> 
+                        <%if pagecount>1%>
+                        <%set (string){pagenumbers}=PageNumber(siteurl+"/user/outboxpm.aspx",siteurl+"/user/outboxpm.aspx?page=@page",page,pagecount,recordcount,7, false).ToString()%>
+                            <div class="pages">
+                                {pagenumbers}
+                            </div>
+                        <%/if%>
+                    
+		                <script type="text/javascript">
+		                    $(function () {
+		                        $("table.list tr:even").css({ "background-color": "#f8f8f8" });
+		                        $("span.posttime").timeago();
+		                    });
+		                    function checkAll(form, checked) {
+		                        checkByName(form, 'cbid', checked);
+		                        checkedEnabledButton(form, 'cbid', 'btndelete', 'btnread')
+		                    };
+                        </script>
+                    <%/if%>
+                </form>   
+            </div>
+            <span class="o1"></span><span class="o2"></span><span class="o3"></span><span class="o4"></span>
+        </div>
+    </div>
+</div>
+<%include _footer%>

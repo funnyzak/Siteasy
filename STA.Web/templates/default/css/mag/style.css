@@ -1,0 +1,17 @@
+﻿body,th,td,div,input{font-size:12px;}
+img{border:0;}
+a,a:hover,a:link,a:visited,a:active{color:#000;text-decoration:none;cursor:pointer;}
+a:hover{color:#FFF;text-decoration:underline;}
+body{background:url(images/wod.jpg) repeat left top;padding:0;margin:0;}
+.maglisttitle{background-image:url(images/tabbar.png);height:50px;}
+.bookcaseico{background-image:url(images/bookico2.png);width:140px;background-repeat:no-repeat;background-position:center;padding-left:8px;}
+.bookcasename{font-size:16px;font-weight:700;font-family:微软雅黑;color:#461600;padding-left:5px;}
+.maglist_l{background-image:url(images/bookshelf_layer_left.png);width:28px;height:100%;background-repeat:repeat-y;}
+.maglist_r{background-image:url(images/bookshelf_layer_right.png);width:28px;height:100%;background-repeat:repeat-y;}
+.maglist_m{background-image:url(images/bookshelf_layer_center.png);height:100%;}
+.magdt{background-image:url(images/mag.png);background-repeat:no-repeat;margin-left:19px;margin-top:12px;width:122px;float:left;height:194px;overflow:hidden;}
+.magdt img{width:100px;height:142px;}
+.magname{font-size:12px;margin-bottom:14px;padding-top:3px;text-align:center;padding-right:22px;}
+.bookcaseico .g3booklink{width:140px;height:50px;display:block;}
+.magimg{cursor:pointer;}
+.g3link{width:142px;display:block;font-size:12px;color:#fff;float:right;line-height:50px;}

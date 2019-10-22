@@ -1,0 +1,44 @@
+﻿::selection {color: #000;background-color: #cccccc;}
+::-moz-selection {color: #000;background-color: #cccccc;}
+
+html,body,div,p,ul,ol,li,a:link,a:visited,a:hover,a:active,.conb-1 table,.conb-2 table,.conb-2 .bar.conb-2 table,.ztree,.ztree li a,.ztree li a.curSelectedNode{color:#000;}
+#footer{color:#333;}
+table.list th{color:#333;}
+.dropbtn,.dropbtn_on{color:#d6d2d2}
+/*controls*/
+/*textbox button*/
+input.txt,input.txt_focus,textarea.txt,textarea.txt_focus{color:#000;}
+button.ManagerButton,input.mbutton,button.ManagerButton[disabled=true]{color:#0b0b0b;}
+/*help*/
+.txthelp{color:#000;}
+/*pageinfo*/
+.lightip .msg{color:#666762;}
+
+/*topframe*/
+#twrapper{background:url(topbg.gif) repeat-x left top;}
+.dropbtn,.dropbtn_on{background:url(menuout.gif) no-repeat left top;}
+.dropbtn_on{background-image:url(menuin.gif)}
+#topnav li,#topnav li.on{color:#d6d2d2;}
+#topnav li.on{color:#d6d2d2;}
+#topsearch{background:url(search.gif) no-repeat left top;}
+#statustip{color:#d6d2d2;}
+/*leftframe*/
+#fastmenubg{background:url(droptop.gif) no-repeat left bottom;}
+
+/*separator*/
+.swbg1,.swbg2{background:#d4d4d2 url(separator1.gif) no-repeat center center}
+.swbg2{background-image:url(separator2.gif)}
+
+/*mainframe*/
+.jqmWindow{background-color:#fff;color:#000;border:1px solid #999;}
+.jqmOverlay{background-color:#fff;}
+.mbtitle{color:#333;background:#e9e9e9;}
+#msgtitle,#edittitle,#confirmtitle,.poptitle{color:#fff;}
+.mbclose{color:#d6d2d2;}
+.mbcontent,.mbcontent2,.mbcontent3{color:#000;background:#fff;}
+.jqmbutton input{color:#0b0b0b;background:#f4f2f2;border:1px solid #ccc;}
+
+.progressmsg{color:#000;}
+.progressbarside {border:1px solid #666;background:#FBF8FC;}
+.progressbar{background-color:#999;color:#fff;}
+.probarpercent{color:#fff;}

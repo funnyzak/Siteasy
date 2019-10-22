@@ -1,0 +1,106 @@
+﻿<%inherits STA.Page.User.ContentAdd%>
+<%include _header%>
+    <script type="text/javascript" src="{siteurl}/sta/js/formvalidator/formValidator.js"></script>
+    <script type="text/javascript" src="{siteurl}/sta/js/formvalidator/formValidatorRegex.js"></script>
+    <script type="text/javascript" src="{siteurl}/sta/editor/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" src="{siteurl}/sta/editor/ueditor/ueditor.all.min.js"></script>
+    <div class="left right-container">
+        <div class="con-box left col-1">
+            <div class="bartitle clearfix"><div class="bartit-picon left" style="background-position:-47px -47px;">&nbsp;</div><h3 class="disblock left pad"><%if action=="add"%>发表<%else%>编辑<%/if%>{ctinfo.name}</h3></div>
+            <div class="con-info">
+                <form name="zform" id="zform" action="" method="post" enctype="multipart/form-data">	
+				<table width="100%" cellspacing="0" class="zform">
+					<tr>
+						<th width="100">标题：</th> 
+						<td><input id="title" name="title" value="{title}" type="text" class="input-text" size="50" /></td>
+                        <td width="340" style="padding-top:1px;"><div id="titleTip"></div></td>
+					</tr>
+					<tr>
+						<th>标签(Tags)：</th> 
+                        <td><input id="tags" name="tags" value="{tags}" type="text" class="input-text" size="50" /></td>
+                        <td style="padding-top:1px;"><div id="tagsTip"></div></td>
+					</tr>
+					<tr>
+						<th>作者：</th> 
+						<td><input id="author" name="author" value="{author}" type="text" class="input-text" size="20" /></td>
+                        <td style="padding-top:1px;"><div id="authorTip"></div></td>
+					</tr>
+                    <tr>
+                        <th>所属频道：</th>
+                        <td>
+                            <%set (string){chlstr}=ChlSelects("channelid",typeid,channelid.ToString())%>
+                            {chlstr}
+                        </td>
+                        <td style="padding-top:1px;"><div id="channelidTip"></div></td>
+                    </tr>
+					<tr>
+						<th>缩略图：</th> 
+						<td colspan="2">
+                            <input id="img" name="img" value="{img}" type="text" class="input-text" size="50" />
+                            &nbsp;<span class="cblue bold" style="width:30px">上传</span>
+                            <span class="locup-span" style="margin-left:-30px;"><input name="conimg" type="file" size="1" class='locup-input-file'/></span>
+                            <span class="previewimgbox" style="margin-left:50px;"></span>
+                        </td>
+					</tr>
+                    <tr>
+                        <th>详细内容：</th>
+                        <td colspan="2">
+                            <textarea name="content" id="editcontent">{content}</textarea>
+                            <script type="text/javascript">
+                                UE.getEditor('editcontent', {
+                                    initialFrameWidth: 650,
+                                    initialFrameHeight: 200,
+                                    toolbars: ue_deftoolbars,
+                                    imageUrl: "{siteurl}/useraction.aspx?action=ueditorimgup",
+                                    imageManagerUrl: "{siteurl}/useraction.aspx?action=ueditorimgmanage",
+                                    fileUrl: "{siteurl}/useraction.aspx?action=ueditorattup" 
+                                });
+                            </script>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>验证码：</th>
+                        <td>
+                            <input id="vcode" name="vcode" value="" type="text" class="input-text" size="15" />  
+                            <img src="#" id="vimg" height="28" style="cursor:pointer;" />
+                        </td>
+                        <td style="padding-top:1px;"><div id="vcodeTip"></div></td>
+                    </tr>
+					<tr>
+                    	<th width="100"></th>
+						<td style="padding-top:10px;">
+                            <input name="savebtn" type="submit" id="savebtn" value="保存{ctinfo.name}" class="button"/>
+                             <input name="goback" type="submit" id="goback" onclick="location.href='{siteurl}/{ctinfo.listmod}'" value="返回" class="button"/>
+                        </td>
+					</tr>
+				</table>
+                </form>
+            </div>
+            <span class="o1"></span><span class="o2"></span><span class="o3"></span><span class="o4"></span>
+        </div>
+		<script type="text/javascript">
+		    $(function () {
+		        $("#title").focus();
+		        $.formValidator.initConfig({ formID: "zform", mode: "FixTip", onError: function (msg) { }, onSuccess: function () { return subConForm(); } });
+		        $("#title").formValidator({ onShow: "请填写标题", onFocus: "请填写标题" }).inputValidator({ min: 1, max: 100, onError: "标题不能为空" });
+		        $("#tags").formValidator({ onShow: "请填写标签,多个标签请用半角逗号隔开", onFocus: "请填写标签,多个标签请用半角逗号隔开" }).inputValidator({ min: 1, max: 100, onError: "标签不能为空" });
+		        $("#vcode").formValidator({ onShow: "请填写验证码", onFocus: "请填写验证码" }).inputValidator({ min: 4, max: 4, onError: "验证码输入有误" });
+		        $("#channelid").formValidator({ onShow: "请选择所属频道", onFocus: "请选择所属频道" }).functionValidator({ fun: function (val) { if (val == "0") { return "必须选择一个频道" } } });
+		        $("#vimg").click(function () { $("#vimg").attr("src", "{siteurl}/sta/vcode/vcode.aspx?cookiename=staconadd&live=0&date=" + new Date()); }).trigger("click"); ;
+		        conImgUp("conimg", function (path) { $("#img").val(path).trigger("change"); });
+		        regPreviewImgBox("#img", ".previewimgbox");
+		        function subConForm() {
+		            if (UE.getEditor('editcontent').getContent() == "") {
+		                $.dialog.alert("内容没有添加,还不能保存！");
+		                return false;
+		            }
+		            return true;
+		        };
+                <%if IsErr()&&ispost%>
+                $.dialog.alert("{msgtext}");
+                <%/if%>
+		    });
+        </script>
+    </div>
+</div>
+<%include _footer%>

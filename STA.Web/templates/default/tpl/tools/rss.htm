@@ -1,0 +1,42 @@
+﻿<%inherits STA.Page.PageBase%>
+<%set (string){defname}=webname%>
+<%set (string){defurl}=weburl%>
+<%set (int){count}=STARequest.GetInt("count",50)%>
+<%set (int){order}=STARequest.GetInt("order",0)%>
+<%set (int){cache}=STARequest.GetInt("cache",0)%>
+<%set (int){chl}=STARequest.GetInt("chl",0)%>
+<%if chl>0%>
+    <%set (ChannelInfo){cinfo}=Contents.GetChannel(chl)%>
+    <%if cinfo!=null%>
+       <%set {defname}=cinfo.Name%> 
+       <%set {defurl}= {Urls.Channel(chl)}%> 
+    <%/if%>
+<%/if%>
+<?xml version="1.0" encoding="utf-8" ?>
+<rss version="2.0">
+<channel>
+<title><![CDATA[{defname}]]></title>
+<link>{defurl}</link>
+<language>zh-cn</language>
+<docs><![CDATA[{defname}]]></docs>
+<generator>Rss Powered By {weburl}</generator>
+<image>
+<url>{tempurl}/images/logo.png</url>
+</image>
+<description>{config.Description}</description>
+<ttl>5</ttl>
+<%load_data action=content type=channel id=chl num=count fields=id,title,channelname,author,source,addtime,content order=order cache=cache%>
+<%loop item list%>
+    <%set (int){cid}=TypeParse.StrToInt({item[id]},0)%>	
+    <%set (string){author}=item["author"].ToString()==String.Empty?webname:{item[author]}%>
+<item>
+    <link><%if config.Withweburl!=1%>{weburl}<%/if%>{Urls.Content(cid)}</link>
+    <title><![CDATA[{item[title]}]]></title>
+    <description><![CDATA[{item[content]}]]></description>
+    <author><![CDATA[{author}]]></author>
+    <category><![CDATA[{item[channelname]}]]></category>
+    <pubDate><%datetostr(Convert.ToDateTime({item[addtime]}), "yyyy-MM-dd HH:mm:ss")%></pubDate>
+</item>
+<%/loop%>
+</channel>
+</rss>

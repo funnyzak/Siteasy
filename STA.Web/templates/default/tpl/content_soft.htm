@@ -1,0 +1,74 @@
+﻿    <%include _ifnull%>
+    <%include _header%>    
+    <div class="icontent" style="padding:3px 0 0 0;">
+        <div class="ibleft clearfix">
+            <div class="bbar w_718">
+            	<%set {location}=location + "&nbsp;" + config.Locationseparator + "&nbsp;"+info.Title%>
+                <div class="tit cblue location">您现在的位置：{location}</div>
+            </div>
+            <div class="bcont w_718">
+				<div class="contit">
+                	<h1 style="text-align:center">{info.Title}</h1>
+                </div>
+                <div class="softinfo clearfix">
+                    <div class="softsummary">
+                         <%set (int){softlevel}=TypeParse.StrToInt(info.Ext["ext_softlevel"])%>
+                        <label>软件类型：</label><span>{info.Ext[ext_softtype]}</span>
+                        <label>授权方式：</label><span>{info.Ext[ext_license]}</span>
+                        <label>界面语言：</label><span>{info.Ext[ext_language]}</span>
+                        <label>软件大小：</label><span>{info.Ext[ext_filesize]}</span>
+                        <label>运行环境：</label><span title="{info.Ext[ext_environment]}">{info.Ext[ext_environment]}</span>
+                        <label>软件等级：</label><span><%for("★",softlevel)%><%for("☆",5-softlevel)%></span>
+                        <label>发布时间：</label><span><%datetostr(Convert.ToDateTime({info.Addtime}), "yyyy-MM-dd")%></span>
+                        <label>更新时间：</label><span><%datetostr(Convert.ToDateTime({info.Updatetime}), "yyyy-MM-dd")%></span>
+                        <label>官方网址：</label><span><a href="{info.Ext[ext_officesite]}" title="{info.Ext[ext_officesite]}" target="_blank">{info.Ext[ext_officesite]}</a></span>
+                        <label>演示网址：</label><span><a href="{info.Ext[ext_demourl]}" title="{info.Ext[ext_demourl]}" target="_blank">{info.Ext[ext_demourl]}</a></span>
+                        <label>浏览次数：</label><span class="conclick">{info.Click}</span>
+                        <label>下载次数：</label><span class="downcount">{info.Ext[ext_downcount]}</span>
+                    </div>
+                    <script type="text/javascript">
+                        getDowncount({id},function(ret){ $(".downcount").html(ret); });
+                    </script>
+                    <div class="softsummarypic">
+                         <%set (string){softimg}= {info.Img}==""?(tempurl+ "/images/pub/nopic.png"):{info.Img}%>
+                        <a href="{softimg}" target="_blank"><img width="320" src='{softimg}' onerror="this.src='{tempurl}/images/pub/nopic.png'"/></a>
+                    </div>
+				</div>
+				<div class="info-intro fyahei s16 bold">软件介绍</div>
+                <div class="pcontent" style="width:670px;padding-left:10px;">
+                     {info.Content}
+                </div>
+                <div class="info-intro fyahei s16 bold">下载地址</div>
+				<div class="pcontent" style="width:670px;padding-left:10px;">
+                <%set {list}=SoftList({info.Ext[ext_downlinks]})%>
+                    <%if list.Rows.Count>0%>
+                    <ul class="softdownlist">
+                        <%loop item list%>
+                        <%set (string){durl}=GetDownloadUrl({item[url]},info.Id)%>
+                        <li><a href="{durl}"  target="_blank">{item[name]}</a></li>
+                        <%/loop%>
+                    </ul>
+                    <%/if%>
+                </div>
+                <div class="info-intro fyahei s16 bold">下载说明</div>
+				<div class="pcontent" style="width:670px;padding-left:10px;">
+?推荐使用第三方专业下载工具下载本站软件，使用 WinRAR v3.10 以上版本解压本站软件。<br />	
+?如果这个软件总是不能下载的请点击报告错误,谢谢合作!!<br />	
+?下载本站资源，如果服务器暂不能下载请过一段时间重试！<br />	
+?如果遇到什么问题，请到本站论坛去咨寻，我们将在那里提供更多 、更好的资源！<br />	
+?本站提供的一些商业软件是供学习研究之用，如用于商业用途，请购买正版。
+                </div>
+                <%include _inner_left_summary%> 
+            </div>
+             <%include _inner_comment%> 
+			<script type="text/javascript">
+            setContentClick({info.Id},"yes",function(c){ $(".conclick").html(c); });
+            </script>
+        </div>
+        <div class="sright">
+        <%set (int){chnid}=info.Channelid%>
+        <%set (string){chnname}=info.Channelname%>
+        <%include _inner_right_soft%>    
+        </div>
+    </div>
+	<%include _footer%>   

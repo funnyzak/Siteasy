@@ -1,0 +1,30 @@
+﻿            <div class="bbar w_235">
+                <div class="tit"><a href="{Urls.Channel(chnid)}" class="cblue bold">人气排行榜</a></div>
+            </div>
+            <div class="bcont w_235" style="margin:0 0 6px 0;padding-bottom:6px;">
+                <ul class="l235">
+                    <%load_data action=content type=channel id=chnid num=10 fields=id,typeid,savepath,filename,color,property,title order=3%>
+                    <%loop item list%>
+                    <%set (int){cid}=TypeParse.StrToInt({item[id]})%>
+                    <%set (int){tid}=TypeParse.StrToInt({item[typeid]})%>
+                    <%set (string){curl}=Urls.Content(cid,tid,{item[savepath]},{item[filename]})%>
+                    <%set (string){title}=TitleFormat({item[title]},{item[property]},(item["color"].ToString().Trim() == "000000"? defcolor: {item[color]}),30,"..")%>	
+                    <li><a href="{curl}" tilte="{item[title]}">{title}</a></li>
+                    <%/loop%>  
+                </ul>
+            </div>
+            <div class="bbar w_235">
+                <div class="tit"><a href="{Urls.Channel(chnid)}" class="cblue bold">编辑推荐</a></div>
+            </div>
+            <div class="bcont w_235" style="margin:0 0 6px 0;padding-bottom:6px;">
+                <ul class="l235">
+                    <%load_data action=content type=channel id=chnid num=10 fields=id,typeid,savepath,filename,color,property,title order=2 property=r%>
+                    <%loop item list%>
+                    <%set (int){cid}=TypeParse.StrToInt({item[id]})%>
+                    <%set (int){tid}=TypeParse.StrToInt({item[typeid]})%>
+                    <%set (string){curl}=Urls.Content(cid,tid,{item[savepath]},{item[filename]})%>
+                    <%set (string){title}=TitleFormat({item[title]},{item[property]},(item["color"].ToString().Trim() == "000000"? defcolor: {item[color]}),30,"..")%>	
+                    <li><a href="{curl}" tilte="{item[title]}">{title}</a></li>
+                    <%/loop%>         
+                </ul>
+            </div>

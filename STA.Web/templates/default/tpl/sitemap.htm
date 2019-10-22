@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>站点地图 - {webname}</title>
+<base target="_blank" />
+<meta name="description" content="{seodescription}"/>
+<meta name="keywords" content="{seokeywords}"/>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<link rel="shortcut icon" href="{siteurl}/favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" href="{tempurl}/css/stacms.css" type="text/css" />
+</head>
+<body class="sitemapwp">
+    <div class="sm_header">
+        <div class="left header_logo"><a href="{siteurl}" title="{webname}" target="_self"><img title="{webname}" src="{tempurl}/images/logo.png" /></a></div>
+        <div class="right header_summary"><a href="{siteurl}" title="{webname}" class="cblue s14">返回首页</a>&nbsp;&nbsp;<a href="{siteurl}" class="cblue s14">帮助</a></div>
+    </div>
+	<div class="icont">
+    	<div class="con_bar_1">
+        	<div class="tit left s14">网站内容一目了然，让您的访问更加方便快捷！</div>
+        </div>
+        <div class="con_body">
+            <%set (DataTable){chls}=SubChlList(0)%>
+            <%loop item chls%>
+           <%if item["ishidden"].ToString()!="1"%>
+                <%set (int){cid}=TypeParse.StrToInt({item[id]},0)%>	
+        	<div class="forsm">
+            	<div class="tit"><a href="{Urls.Channel(cid)}" title="{item[name]}" class="s14 bold cblue2">{item[name]}</a></div>
+                <%set (DataTable){lls}=SubChlList(cid)%>
+                <%if lls.Rows.Count>0%>
+                <div class="sub">
+                	<ul class="clearfix">
+                        <%loop i lls%>
+                        <%set (int){iid}=TypeParse.StrToInt({i[id]},0)%>	
+                        <%if i["ishidden"].ToString()!="1"%>
+                        <li><a href="{Urls.Channel(iid)}" title="{i[name]}">{i[name]}</a></li>
+                        <%/if%>
+                        <%/loop%>
+                    </ul>
+                </div>
+                <%/if%>
+            </div>
+            <%/if%>
+            <%/loop%>
+        </div>
+    </div>
+   <%include _footer_com%>
+</body>
+</html>

@@ -1,0 +1,77 @@
+﻿<%csharp%>
+AddLinkScript(siteurl + "/sta/js/pagination.js");
+
+string tagname = STARequest.GetString("name");
+string r_name= Utils.RemoveUnsafeHtml(tagname);
+if(tagname != r_name){
+	PageInfo("非法参数", siteurl + sitedir, 2);
+	return;
+}
+<%/csharp%>
+    <%include _header%>    
+    <div class="icontent" style="padding:3px 0 0 0;">
+        <div class="ibleft clearfix">
+            <div class="bbar w_718">
+                <div class="tit cblue location">您现在的位置：{location}</div>
+            </div>
+          <div class="bcont w_718" style="min-height:700px;padding:0 0 15px 0;">
+                <div class="cdata" style="display:none;">
+                    <%load_data action=content type=tag id=id num=10000 fields=id,title,typeid,channelid,channelname,content,savepath,filename,addtime,img,click,commentcount order=0%>
+                    <%loop item list%>
+                    <%set (int){cid}=TypeParse.StrToInt({item[id]})%>
+                    <%set (int){chid}=TypeParse.StrToInt({item[channelid]})%>
+                    <%set (int){tid}=TypeParse.StrToInt({item[typeid]})%>
+                    <%set (string){img}= {item[img]}==""?(tempurl+ "/images/random/tb" + (new Random(Guid.NewGuid().GetHashCode())).Next(1,20)  + ".jpg"):{item[img]}%>
+                    <%set (string){curl}=Urls.Content(cid,tid,{item[savepath]},{item[filename]})%>
+                    <%set (string){html}=Utils.RemoveLine(Utils.RemoveHtml(item["content"].ToString())).Replace(" ","")%>
+                    <div class="cateitem">
+                	<div class="cmitem clearfix">
+                    	<div class="left">
+                        	<a href="{curl}" title="{item[title]}"><img alt="{item[title]}" src="{img}" onerror="this.src='{tempurl}/images/pub/nopic.png'" width="85" height="85" class="pad-bdr-1"/></a>
+                        </div>
+                        <span class="s14 clightgrey">[<a href="{Urls.Channel(chid)}" title="{item[channelname]}" class="s14 cgrey bold">{item[channelname]}</a>]</span> <a href="{curl}" title="{item[title]}" class="s14 cgrey bold"><%getsubstring({item[title]},100,"..")%></a>
+                        <p class="ainfo s13 clightgrey">发布日期：<label class="cgrey"><%datetostr(Convert.ToDateTime({item[addtime]}), "yyyy-MM-dd HH:mm:ss")%></label>&nbsp;&nbsp;浏览：<label class="cgrey">{item[click]}</label>&nbsp;&nbsp;评论：<label class="cgrey">{item[commentcount]}</label></p>
+                        <p class="desc cgrey s13"><%getsubstring({html},252,"..")%> <a href="{curl}" title="{item[title]}" class="s13 cblue">查看更多>></a></p>
+                    </div>
+                    </div>
+                    <%/loop%>
+                </div>
+                <div class="cmlist">
+                     内容加载中...
+                </div>
+                <div id="pagination" class="pagination"></div> 
+                <script type="text/javascript">
+                    var recordcount = $(".cateitem").length, percount = 12;
+                    var pagecount = parseInt((recordcount + percount - 1) / percount);
+                    function PageSelectCallBack(page_index, doc) {
+                        var items_per_page = $('#items_per_page').val();
+                        var max_elem = Math.min((page_index + 1) * percount, recordcount), newcontent = "";
+                        for (var i = page_index * percount; i < max_elem; i++) {
+                            newcontent += $(".cateitem:eq(" + i + ")").html();
+                        }
+                        location.href = location.href.substring(0, location.href.indexOf("#")) + "#page=" + page_index;
+                        $('.cmlist').html(newcontent);
+                        return false;
+                    };
+                    function Paging() {
+                        PageSelectCallBack(hashString("page", 0));
+                        if (pagecount <= 1) return;
+                        $("#pagination").pagination(recordcount, {
+                            prev_text: "上一页",
+                            next_text: "下一页",
+                            items_per_page: percount,
+                            num_display_entries: 7,
+                            num_edge_entries: 2,
+                            current_page: hashString("page", 0),
+                            callback: PageSelectCallBack
+                        });
+                    };
+                    Paging();
+                </script>
+            </div>
+        </div>
+        <div class="sright">
+            <%include _inner_right_com%>
+        </div>
+    </div>
+	<%include _footer%>

@@ -1,0 +1,80 @@
+﻿<%namespace STA.Entity.Plus%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>留言&建议 - {webname}</title>
+<meta name="description" content="咨询建议,{webname}"/>
+<meta name="keywords" content="咨询建议,{webname}"/>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<link rel="shortcut icon" href="{siteurl}/favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" href="{tempurl}/css/stacms.css" type="text/css" />
+<script type="text/javascript" src="{siteurl}/sta/js/jquery.js"></script>
+</head>
+<body>          
+<div class="vt_wrapper">
+	<%include _header%>
+    <div class="votetit">
+    	我们会认真考虑来自您的评论、建议、批评，并在我们力所能及的情况下尽快回复您。
+    </div>
+    <div class="votecon">
+    <form action="" method="post">
+    <div class="vform">
+        <div class="row clearfix">
+            <div class="field left s13">留言类型：</div>
+            <div class="radio left">
+                <%csharp%>
+                string[] mtypes = Variable("advisory_msgtype").Split(',');
+                <%/csharp%>
+                <%loop (string) ty mtypes%>
+                <%if ty__loop__id==1%>
+                <input type="radio" name="qtype" value="{ty}" id="ty{ty__loop__id}" checked="checked"/><label for="ty{ty__loop__id}">{ty}</label>
+                <%else%>
+                <input type="radio" name="qtype" value="{ty}" id="Radio1"/><label for="ty{ty__loop__id}">{ty}</label>
+                <%/if%>
+                <%csharp%>
+                ty__loop__id++;
+                <%/csharp%>
+                <%/loop%>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="field left s13">留言标题：</div>
+            <div class="input left">
+                <input type="text" class="txt" id="title" name="title" value="{request[title]}"/>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="field left s13">联&nbsp;系&nbsp;人：</div>
+            <div class="input left">
+                <input type="text" class="txt" id="uname" name="uname" value="{request[uname]}"/>
+            </div>
+        </div> 
+        <div class="row clearfix">
+            <div class="field left s13">邮件地址：</div>
+            <div class="input left">
+                <input type="text" class="txt" id="email" name="email" value="{request[email]}"/>
+            </div>
+        </div> 
+        <div class="row clearfix">
+            <div class="field left s13">联系电话：</div>
+            <div class="input left">
+                <input type="text" class="txt" id="phone" name="phone" value="{request[phone]}"/>
+            </div>
+        </div> 
+        <div class="row clearfix" style="height:auto;padding-bottom:0;">
+            <div class="field left s13">留言&建议内容：</div>
+            <div class="input left" style="width:750px;">
+                <textarea class="msg" name="message" id="message"></textarea>
+            </div>
+        </div> 
+        <div class="row2">
+            <input type="button" id="btnsub" name="btnsub" class="com" value="提交建议" onclick="$('form').get(0).submit();"/>
+        </div>
+    </div>
+            </form>
+    </div>
+    <%include _footer%>
+</div>
+</body>
+</html>

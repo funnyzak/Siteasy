@@ -1,0 +1,21 @@
+﻿    <%include _header%>    
+    <div class="icontent" style="padding:3px 0 0 0;">
+        <div class="ibleft clearfix" style="width:960px;">
+            <div class="bbar w_960">
+            	<%set {location}=location + "&nbsp;" + config.Locationseparator + "&nbsp;NoFound"%>
+                <div class="tit cblue location">您现在的位置：{location}</div>
+            </div>
+            <div class="bcont w_960">
+
+                <div class="pcontent" style="width:930px;">
+                    <h3>抱歉，您所访问的页面不存在！</h3>
+                    <div class="lh24">
+                    <span class="cblue">请参照以下步骤进行操作！</span><br />
+                    1. 请检查您输入的网址是否正确。<br />
+                    2. 如果您不能确认您输入的网址，请浏览 <a href="{siteurl}" target="_blank" class="cred">{webname}</a>，来查看您所要访问的网址，或 <a onclick="javascript:window.history.back()" href="#" class="red">返回上一页</a>。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<%include _footer%>   

@@ -1,0 +1,70 @@
+﻿/*reset*/
+body,html,input{font:12px/1.5 tahoma,arial,\5b8b\4f53,sans-serif;}
+body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,legend,button,input,textarea,th,td{margin:0;padding:0;word-wrap:break-word;color:#333}
+ul,li{list-style:none;}
+table{border-collapse:collapse;border-spacing:0}
+img{border:0;vertical-align:top;}
+em{font-style:italic}
+th{font-weight:700;text-align:center}
+caption{margin-bottom:.5em;text-align:center}
+p,fieldset,table,pre{margin-bottom:10px}
+p{text-indent:2em;}
+select,input,img,label{vertical-align:middle}
+a:link,a:visited,a:hover,a:active{text-decoration:none;color:#333;font-size:13px}
+a:hover{text-decoration:underline;cursor:pointer;}
+sup{vertical-align:text-top;}
+sub{vertical-align:text-bottom;}
+input{vertical-align:middle;display:inline-block;*display:inline;*zoom:1;_height:auto;_line-height:15px;}
+input.button ,input.btn,textarea{padding:0.25em;width:auto;_width:0;overflow:visible;}
+/* clear both */
+.clearfix:after{content: ".";display:block;height:0;clear:both;visibility:hidden}
+.clearfix{zoom:1; display:inline-block; _height: 1px}
+*html .clearfix{height: 1%}
+*+html .clearfix{height: 1%}
+
+/*global*/
+.s11,.s11:link,.s11:visited,.s11:hover,.s11:active{font-size:11px;}
+.s12,.s12:link,.s12:visited,.s12:hover,.s12:active{font-size:12px;}
+.s13,.s13:link,.s13:visited,.s13:hover,.s13:active{font-size:13px;}
+.s14,.s14:link,.s14:visited,.s14:hover,.s14:active{font-size:14px;}
+.s15,.s15:link,.s15:visited,.s15:hover,.s15:active{font-size:15px;}
+.s16,.s16:link,.s16:visited,.s16:hover,.s16:active{font-size:16px;}
+.s18,.s18:link,.s18:visited,.s18:hover,.s18:active{font-size:18px;}
+.s20,.s20:link,.s20:visited,.s20:hover,.s20:active{font-size:20px;}
+.s22,.s22:link,.s22:visited,.s22:hover,.s22:active{font-size:22px;}
+.s30,.s30:link,.s30:visited,.s30:hover,.s30:active{font-size:30px;}
+.fyahei,.fyahei:link,.fyahei:visited,.fyahei:hover,.fyahei:active{font-family:微软雅黑;}
+.cred,.cred:link,.cred:visited,.cred:hover,.cred:active{color:#ff0000;}
+.cyellow,.cyellow:link,.cyellow:visited,.cyellow:hover,.cyellow:active{color:#FF9900;}
+.cdarkgrey,.cdarkgrey:link,.cdarkgrey:visited,.cdarkgrey:hover,.cdarkgrey:active{color:#333;}
+.cgrey,.cgrey:link,.cgrey:visited,.cgrey:hover,.cgrey:active{color:#666;}
+.cgrey2,.cgrey2:link,.cgrey2:visited,.cgrey2:hover,.cgrey2:active{color:#2f2f2f;}
+.clightgrey,.clightgrey:link,.clightgrey:visited,.clightgrey:hover,.clightgrey:active{color:#999;}
+.cblue,.cblue:link,.cblue:visited,.cblue:hover,.cblue:active{color:#477fb2;}
+.cgreen,.cgreen:link,.cgreen:visited,.cgreen:hover,.cgreen:active{color:#739b20;}
+.corange,.corange:link,.corange:visited,.corange:hover,.corange:active{color:#fe510c;}
+.cwhite,.cwhite:link,.cwhite:visited,.cwhite:hover,.cwhite:active{color:#fff;}
+.cdullred,.cdullred:link,.cdullred:visited,.cdullred:hover,.cdullred:active{color:#aa0d06;}
+.bold,.bold:link,.bold:visited,.bold:hover,.bold:active{font-weight:bold;}
+.blod,.normal:link,.normal:visited,.normal:hover,.normal:active{font-weight:normal;}
+.underline,.underline:link,.underline:visited,.underline:hover,.underline:active{text-decoration:underline;}
+.lh20{line-height:20px;}
+.lh21{line-height:21px;}
+.lh22{line-height:22px;}
+.lh23{line-height:23px;}
+.lh24{line-height:24px;}
+.lh25{line-height:25px;}
+
+.disblock{display:block}
+.disnone{display:none}
+.left{float:left;}
+.right{float:right;}
+.absolute{position:absolute;}
+.relative{position:relative;}
+.tleft{text-align:left;}
+.tcenter{text-align:center;}
+.tright{text-align:right;}
+.flowhidden{overflow:hidden;}
+.marginbottom0{margin-bottom:0;}
+.marginbottom5{margin-bottom:5px;}
+.marginbottom7{margin-bottom:7px;}

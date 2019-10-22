@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{seotitle}</title>
+<meta name="description" content="{seodescription}"/>
+<meta name="keywords" content="投票,{seokeywords}"/>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<link rel="shortcut icon" href="{siteurl}/favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" href="{tempurl}/css/stacms.css" type="text/css" />
+<script type="text/javascript" src="{siteurl}/sta/js/jquery.js"></script>
+</head>
+<body>          
+<div class="vt_wrapper">
+	<%include _header_com%>
+    <%loop item votelist%>
+    <%set (int){tid}=TypeParse.StrToInt({item[id]})%>
+    <%set (DataTable){options}=VoteOptionList(tid,"name,count,orderid","count","desc")%>
+    <%if options.Rows.Count>0%>
+    <div class="votetit">
+    <%if votelist.Rows.Count>1%>
+        {item__loop__id}、{item[name]}
+    <%else%>
+    	{item[name]}
+    <%/if%>
+    </div>
+    <%csharp%>
+    int maxcount = TypeParse.StrToInt(options.Rows[0]["count"]);
+    <%/csharp%>
+    <div class="votecon">
+        <%loop oitem options%>
+        <%set (string){prec}=""%>
+        <%set (int){count}=TypeParse.StrToInt({oitem[count]})%>
+        <%set (int){wid}=VoteBarWid(TypeParse.StrToInt({item[votecount]}),maxcount,count,470,out prec)%>
+    	<div class="voteitem clearfix">
+        	<div class="tit">{oitem__loop__id}、{oitem[name]}</div>
+            <div class="precent">{prec}%</div>
+            <%csharp%>
+            string[] colors = new string[] {"6fb82c","4dbfd6","e04564","7064ab","8c559f","f8dd45","5d5d5d","4b89dd" };
+            string color = colors[(oitem__loop__id-1)%8];
+            <%/csharp%>
+            <div class="bar" style="width:0;background:#{color};" wid="{wid}"></div>
+            <div class="count">{oitem[count]}票</div>
+        </div>
+        <%/loop%>
+    </div>
+    <div class="voteinfo">总票数：{item[votecount]}</div>
+    <%/if%>
+    <%/loop%>
+    <script type="text/javascript">
+        $(".bar").each(function (idx, obj) {
+            $(obj).animate({ width: $(obj).attr("wid") }, 1500);
+        });
+    </script>
+    <%include _footer_com%>
+</div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>友情链接 - {webname}</title>
+<meta name="description" content="{seodescription}"/>
+<meta name="keywords" content="{seokeywords}"/>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<link rel="shortcut icon" href="{siteurl}/favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" href="{tempurl}/css/stacms.css" type="text/css" />
+</head>
+<body class="sitemapwp">
+    <div class="sm_header">
+        <div class="left header_logo"><a href="{siteurl}" title="{webname}" target="_self"><img title="{webname}" src="{tempurl}/images/logo.png" /></a></div>
+        <div class="right header_summary"><a href="{siteurl}" title="{webname}" class="cblue s14">返回首页</a>&nbsp;&nbsp;<a href="plus/flinkreg.aspx" class="cblue s14">申请友链</a></div>
+    </div>
+	<div class="icont">
+    	<div class="con_bar_1">
+        	<div class="tit left s14">欢迎您和我们交换友情链接！</div>
+        </div>
+        <div class="con_body">
+            <%load_data action=linktype num=1000 fields=id,name order=2%>
+            <%loop item list%>
+            <%set (int){cid}=TypeParse.StrToInt({item[id]},0)%>	
+        	<div class="forsm">
+            	<div class="tit"><a href="javascript:;" title="{item[name]}" class="s14 bold cblue2">{item[name]}</a></div>
+                <%load_data action=link output=ls num=1000 id=cid fields=name,url order=2%>
+                <%if ls.Rows.Count>0%>
+                <div class="sub">
+                	<ul class="clearfix">
+                        <%loop i ls%>
+                        <li><a href="{i[url]}" title="{i[name]}" target="_blank">{i[name]}</a></li>
+                        <%/loop%>
+                    </ul>
+                </div>
+                <%/if%>
+            </div>
+            <%/loop%>
+        </div>
+    </div>
+   <%include _footer_com%>
+</body>
+</html>

@@ -1,0 +1,86 @@
+﻿<%include _ifnull%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{seotitle}</title>{meta}
+<meta name="description" content="{seodescription}"/>
+<meta name="keywords" content="{seokeywords}"/>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<link rel="shortcut icon" href="{siteurl}/favicon.ico" type="image/x-icon" />
+<link type="text/css" rel="stylesheet" href="{tempurl}/js/sgallery/p_show.css">
+<script type="text/javascript" src="{siteurl}/sta/js/jquery.js"></script>
+<script type="text/javascript" src="{siteurl}/sta/js/config.js"></script>
+<script type="text/javascript" src="{siteurl}/sta/js/common.js"></script>
+<script type="text/javascript" src="{tempurl}/js/sgallery/jquery.sgallery.js"></script>
+<script type="text/javascript" src="{tempurl}/js/global.js"></script>{script}
+</head>
+<body>
+<div class="center">
+	<div class="banner"><a href="{weburl}" title="图片频道"></a></div>
+    <div class="photo-channel">
+        <div id="Article">
+            <div class="png_warp">
+                <div class="pngtm_t"></div>
+                <div class="big-pic">
+                	<div id="nhp_poparea"><a href="{Urls.Content(id)}" class="nhp_pclose"></a><span>支持键盘← →键翻阅图片</span></div>
+
+                    <div id="big-pic"></div>
+                    <div class="photo_prev"><a id="photoPrev" title="&lt;上一张" class="btn_pphoto" target="_self" hidefocus="true" href="javascript:;" onclick="showpic('pre');"></a></div>
+                    <div class="photo_next"><a id="photoNext" title="下一张&gt;"class="btn_nphoto" target="_self" hidefocus="true" href="javascript:;" onclick="showpic('next')"></a></div>
+                    <div id="text_warp" class="active">
+                        <div class="text-bg"></div>
+                        <div class="text-warp">
+                        	<h1>{info.title}</h1>
+                        	<div class="text" id="picinfo"></div>
+                        	来源│{info.source}&nbsp;&nbsp;&nbsp;&nbsp;热度│<span class="conclick">{info.click}</span>&nbsp;&nbsp;&nbsp;&nbsp;编辑│{info.author}</div>
+			                <script type="text/javascript">
+                            setContentClick({info.Id},"yes",function(c){ $(".conclick").html(c); });
+                            </script>
+                    </div>
+                    <div id="disp_text"></div>
+                    <div id="endSelect" style="display: none;">
+                        <div id="endSelClose" onClick="$('#endSelect').hide();"></div>
+                        <div class="bg"></div>
+                        <div class="E_Cont">
+                            <p>您已经浏览完所有图片</p>
+                            <p><a id="rePlayBut" href="javascript:void(0)" onClick="showpic('next', 1);"></a>
+                        <%set (ContentInfo){pinfo}=PrevCon(true, "")%> 
+                        <%if pinfo!=null%>
+                            <%set (string){url}=Urls.Content(pinfo.Id,pinfo.Typeid,pinfo.Savepath,pinfo.Filename)%>
+                             <a id="nextPicsBut" href="{url}"></a>
+                        <%else%>
+                             <a id="nextPicsBut" href="javascript:alert('最后一页');"></a>
+                        <%/if%>
+                           
+                            
+                            </p>	
+                        </div>
+                    </div>
+                </div><!--/big-pic-->
+                <div class="pngtm_m"></div>
+            </div>
+            <div class="list-pic">
+                <a href="javascript:;" onclick="showpic('pre')" class="pre-bnt"><span></span></a>
+                <div class="cont" style="position:relative">
+                    <ul class="cont picbig" id="pictureurls" style="position:absolute">
+                     <%set {list}=PhotoList({info.Ext[ext_imgs]})%> 
+                     <%if list.Rows.Count>0%>
+                        <%loop item list%>
+                            <%set (string){thumb}=ImgThumb({item[url]})%>
+                            <li class=""><div class="img-wrap"><a href="javascript:;" hidefocus="true"><img src="{thumb}" width="160" height="100" alt="{item[name]}" rel="{item[url]}" data-pinit="registered"></a><span>{item__loop__id}/{list.Rows.Count}</span></div></li>
+                        <%/loop%>
+                     <%/if%>
+                    </ul>
+                </div>
+                <a href="javascript:;" onclick="showpic('next')" class="next-bnt"><span></span></a>
+            </div><!--/list-pic-->
+        </div><!--/Article-->
+    </div><!--/photo-channel-->
+    <script type="text/javascript" src="{tempurl}/js/sgallery/show_picture.js"></script>
+</div><!--/center-->
+<div class="footer">
+    <p> Copyright &copy; 2007-2011 <a href="http://www.stacms.com" title="站易内容管理系统" target="_blank" class="cdarkgrey">STACMS</a> 中视网维 版权所有{config.Extcode}</p>
+</div>
+</body>
+</html>

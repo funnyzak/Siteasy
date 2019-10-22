@@ -1,0 +1,2359 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C174189F-ADDD-4FFC-80F4-928DAC4A9E42}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>STA.Web.Admin</RootNamespace>
+    <AssemblyName>STA.Web.Admin</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="zxing, Version=0.16.5.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ZXing.Net.0.16.5\lib\net45\zxing.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="zxing.presentation, Version=0.16.5.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ZXing.Net.0.16.5\lib\net45\zxing.presentation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Code\Admin.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Code\Ajax.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Code\Global.cs" />
+    <Compile Include="App_Code\Tools\EditorUpload.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Code\Tools\Multupload.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Code\Tools\ReadFileContent.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Code\Tools\View.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Code\Tools\Magpload.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Code\Tools\Contdo.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="com\ctmvariable\add.aspx.cs">
+      <DependentUpon>add.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="com\ctmvariable\add.aspx.designer.cs">
+      <DependentUpon>add.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="com\ctmvariable\list.aspx.cs">
+      <DependentUpon>list.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="com\ctmvariable\list.aspx.designer.cs">
+      <DependentUpon>list.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="com\vote\voteadd.aspx.cs">
+      <DependentUpon>voteadd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="com\vote\voteadd.aspx.designer.cs">
+      <DependentUpon>voteadd.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="com\vote\votelist.aspx.cs">
+      <DependentUpon>votelist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="com\vote\votelist.aspx.designer.cs">
+      <DependentUpon>votelist.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="com\vote\voteview.aspx.cs">
+      <DependentUpon>voteview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="com\vote\voteview.aspx.designer.cs">
+      <DependentUpon>voteview.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="controls\Pager.ascx.cs">
+      <DependentUpon>Pager.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="controls\Pager.ascx.designer.cs">
+      <DependentUpon>Pager.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="controls\pagetip.ascx.cs">
+      <DependentUpon>pagetip.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="controls\pagetip.ascx.designer.cs">
+      <DependentUpon>pagetip.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="controls\editor.ascx.cs">
+      <DependentUpon>editor.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="controls\editor.ascx.designer.cs">
+      <DependentUpon>editor.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frames\separator.aspx.cs">
+      <DependentUpon>separator.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frames\separator.aspx.designer.cs">
+      <DependentUpon>separator.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frames\left.aspx.cs">
+      <DependentUpon>left.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frames\left.aspx.designer.cs">
+      <DependentUpon>left.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frames\main.aspx.cs">
+      <DependentUpon>main.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frames\main.aspx.designer.cs">
+      <DependentUpon>main.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frames\Loading.aspx.cs">
+      <DependentUpon>Loading.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frames\Loading.aspx.designer.cs">
+      <DependentUpon>Loading.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_attachmentedit.aspx.cs">
+      <DependentUpon>global_attachmentedit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_attachmentedit.aspx.designer.cs">
+      <DependentUpon>global_attachmentedit.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_createprogress.aspx.cs">
+      <DependentUpon>global_createprogress.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_createprogress.aspx.designer.cs">
+      <DependentUpon>global_createprogress.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_pluginlist.aspx.cs">
+      <DependentUpon>global_pluginlist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_pluginlist.aspx.designer.cs">
+      <DependentUpon>global_pluginlist.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_pluginadd.aspx.cs">
+      <DependentUpon>global_pluginadd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_pluginadd.aspx.designer.cs">
+      <DependentUpon>global_pluginadd.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_softadd.aspx.cs">
+      <DependentUpon>global_softadd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_softadd.aspx.designer.cs">
+      <DependentUpon>global_softadd.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_urlstaticizeadd.aspx.cs">
+      <DependentUpon>global_urlstaticizeadd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_urlstaticizeadd.aspx.designer.cs">
+      <DependentUpon>global_urlstaticizeadd.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_urlstaticize.aspx.cs">
+      <DependentUpon>global_urlstaticize.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_urlstaticize.aspx.designer.cs">
+      <DependentUpon>global_urlstaticize.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_selects.aspx.cs">
+      <DependentUpon>global_selects.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_selects.aspx.designer.cs">
+      <DependentUpon>global_selects.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_selectlist.aspx.cs">
+      <DependentUpon>global_selectlist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_selectlist.aspx.designer.cs">
+      <DependentUpon>global_selectlist.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_productadd.aspx.cs">
+      <DependentUpon>global_productadd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_productadd.aspx.designer.cs">
+      <DependentUpon>global_productadd.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_userregset.aspx.cs">
+      <DependentUpon>global_userregset.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_userregset.aspx.designer.cs">
+      <DependentUpon>global_userregset.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_pluginzip.aspx.cs">
+      <DependentUpon>global_pluginzip.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_pluginzip.aspx.designer.cs">
+      <DependentUpon>global_pluginzip.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_collectset.aspx.cs">
+      <DependentUpon>global_collectset.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_collectset.aspx.designer.cs">
+      <DependentUpon>global_collectset.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_otherset.aspx.cs">
+      <DependentUpon>global_otherset.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_otherset.aspx.designer.cs">
+      <DependentUpon>global_otherset.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_createrss.aspx.cs">
+      <DependentUpon>global_createrss.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_createrss.aspx.designer.cs">
+      <DependentUpon>global_createrss.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_visitset.aspx.cs">
+      <DependentUpon>global_visitset.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_visitset.aspx.designer.cs">
+      <DependentUpon>global_visitset.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_translate.aspx.cs">
+      <DependentUpon>global_translate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_translate.aspx.designer.cs">
+      <DependentUpon>global_translate.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_wordsfilterset.aspx.cs">
+      <DependentUpon>global_wordsfilterset.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_wordsfilterset.aspx.designer.cs">
+      <DependentUpon>global_wordsfilterset.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_syspms.aspx.cs">
+      <DependentUpon>global_syspms.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_syspms.aspx.designer.cs">
+      <DependentUpon>global_syspms.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_clearpms.aspx.cs">
+      <DependentUpon>global_clearpms.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_clearpms.aspx.designer.cs">
+      <DependentUpon>global_clearpms.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_sendpmsingle.aspx.cs">
+      <DependentUpon>global_sendpmsingle.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_sendpmsingle.aspx.designer.cs">
+      <DependentUpon>global_sendpmsingle.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_emailsendtogroup.aspx.cs">
+      <DependentUpon>global_emailsendtogroup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_emailsendtogroup.aspx.designer.cs">
+      <DependentUpon>global_emailsendtogroup.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="magazine\magset.aspx.cs">
+      <DependentUpon>magset.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="magazine\magset.aspx.designer.cs">
+      <DependentUpon>magset.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="magazine\magups.aspx.cs">
+      <DependentUpon>magups.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="magazine\magups.aspx.designer.cs">
+      <DependentUpon>magups.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="magazine\magadd.aspx.cs">
+      <DependentUpon>magadd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="magazine\magadd.aspx.designer.cs">
+      <DependentUpon>magadd.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="magazine\maglist.aspx.cs">
+      <DependentUpon>maglist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="magazine\maglist.aspx.designer.cs">
+      <DependentUpon>maglist.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="mail\mailsubadd.aspx.cs">
+      <DependentUpon>mailsubadd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="mail\mailsubadd.aspx.designer.cs">
+      <DependentUpon>mailsubadd.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="mail\mailsubcribe.aspx.cs">
+      <DependentUpon>mailsubcribe.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="mail\mailsubcribe.aspx.designer.cs">
+      <DependentUpon>mailsubcribe.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="mail\mailrecords.aspx.cs">
+      <DependentUpon>mailrecords.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="mail\mailrecords.aspx.designer.cs">
+      <DependentUpon>mailrecords.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="mail\mailsend.aspx.cs">
+      <DependentUpon>mailsend.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="mail\mailsend.aspx.designer.cs">
+      <DependentUpon>mailsend.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_sendpmtogroup.aspx.cs">
+      <DependentUpon>global_sendpmtogroup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_sendpmtogroup.aspx.designer.cs">
+      <DependentUpon>global_sendpmtogroup.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pay\deliveryadd.aspx.cs">
+      <DependentUpon>deliveryadd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pay\deliveryadd.aspx.designer.cs">
+      <DependentUpon>deliveryadd.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pay\deliverylist.aspx.cs">
+      <DependentUpon>deliverylist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pay\deliverylist.aspx.designer.cs">
+      <DependentUpon>deliverylist.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pay\paylist.aspx.cs">
+      <DependentUpon>paylist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pay\paylist.aspx.designer.cs">
+      <DependentUpon>paylist.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pay\payset.aspx.cs">
+      <DependentUpon>payset.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pay\payset.aspx.designer.cs">
+      <DependentUpon>payset.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pay\orderlist.aspx.cs">
+      <DependentUpon>orderlist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pay\orderlist.aspx.designer.cs">
+      <DependentUpon>orderlist.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pay\orderset.aspx.cs">
+      <DependentUpon>orderset.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pay\orderset.aspx.designer.cs">
+      <DependentUpon>orderset.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pay\paylogs.aspx.cs">
+      <DependentUpon>paylogs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pay\paylogs.aspx.designer.cs">
+      <DependentUpon>paylogs.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tools\qrcode.aspx.cs">
+      <DependentUpon>qrcode.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tools\qrcode.aspx.designer.cs">
+      <DependentUpon>qrcode.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tools\sysinfo.aspx.cs">
+      <DependentUpon>sysinfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tools\sysinfo.aspx.designer.cs">
+      <DependentUpon>sysinfo.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tools\likeset.aspx.cs">
+      <DependentUpon>likeset.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tools\likeset.aspx.designer.cs">
+      <DependentUpon>likeset.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tools\fastmenumanage.aspx.cs">
+      <DependentUpon>fastmenumanage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tools\fastmenumanage.aspx.designer.cs">
+      <DependentUpon>fastmenumanage.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_runsql.aspx.cs">
+      <DependentUpon>global_runsql.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_runsql.aspx.designer.cs">
+      <DependentUpon>global_runsql.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_baseset.aspx.cs">
+      <DependentUpon>global_baseset.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_baseset.aspx.designer.cs">
+      <DependentUpon>global_baseset.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_flinks.aspx.cs">
+      <DependentUpon>global_flinks.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_flinks.aspx.designer.cs">
+      <DependentUpon>global_flinks.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_flinkadd.aspx.cs">
+      <DependentUpon>global_flinkadd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_flinkadd.aspx.designer.cs">
+      <DependentUpon>global_flinkadd.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_databasebackup.aspx.cs">
+      <DependentUpon>global_databasebackup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_databasebackup.aspx.designer.cs">
+      <DependentUpon>global_databasebackup.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_databaseshrink.aspx.cs">
+      <DependentUpon>global_databaseshrink.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_databaseshrink.aspx.designer.cs">
+      <DependentUpon>global_databaseshrink.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_dbtableview.aspx.cs">
+      <DependentUpon>global_dbtableview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_dbtableview.aspx.designer.cs">
+      <DependentUpon>global_dbtableview.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_dbfieldreplace.aspx.cs">
+      <DependentUpon>global_dbfieldreplace.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_dbfieldreplace.aspx.designer.cs">
+      <DependentUpon>global_dbfieldreplace.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_repeatconcheck.aspx.cs">
+      <DependentUpon>global_repeatconcheck.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_repeatconcheck.aspx.designer.cs">
+      <DependentUpon>global_repeatconcheck.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_templatelist.aspx.cs">
+      <DependentUpon>global_templatelist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_templatelist.aspx.designer.cs">
+      <DependentUpon>global_templatelist.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_tplfiles.aspx.cs">
+      <DependentUpon>global_tplfiles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_tplfiles.aspx.designer.cs">
+      <DependentUpon>global_tplfiles.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_createchannels.aspx.cs">
+      <DependentUpon>global_createchannels.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_createchannels.aspx.designer.cs">
+      <DependentUpon>global_createchannels.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_createcontents.aspx.cs">
+      <DependentUpon>global_createcontents.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_createcontents.aspx.designer.cs">
+      <DependentUpon>global_createcontents.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_createpages.aspx.cs">
+      <DependentUpon>global_createpages.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_createpages.aspx.designer.cs">
+      <DependentUpon>global_createpages.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_createspecials.aspx.cs">
+      <DependentUpon>global_createspecials.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_createspecials.aspx.designer.cs">
+      <DependentUpon>global_createspecials.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_useredit.aspx.cs">
+      <DependentUpon>global_useredit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_useredit.aspx.designer.cs">
+      <DependentUpon>global_useredit.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_errorlogs.aspx.cs">
+      <DependentUpon>global_errorlogs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_errorlogs.aspx.designer.cs">
+      <DependentUpon>global_errorlogs.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_optimizeset.aspx.cs">
+      <DependentUpon>global_optimizeset.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_optimizeset.aspx.designer.cs">
+      <DependentUpon>global_optimizeset.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_safeset.aspx.cs">
+      <DependentUpon>global_safeset.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_safeset.aspx.designer.cs">
+      <DependentUpon>global_safeset.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_interactset.aspx.cs">
+      <DependentUpon>global_interactset.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_interactset.aspx.designer.cs">
+      <DependentUpon>global_interactset.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_comments.aspx.cs">
+      <DependentUpon>global_comments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_comments.aspx.designer.cs">
+      <DependentUpon>global_comments.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_schedulemanage.aspx.cs">
+      <DependentUpon>global_schedulemanage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_schedulemanage.aspx.designer.cs">
+      <DependentUpon>global_schedulemanage.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_scheduleadd.aspx.cs">
+      <DependentUpon>global_scheduleadd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_scheduleadd.aspx.designer.cs">
+      <DependentUpon>global_scheduleadd.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_voteset.aspx.cs">
+      <DependentUpon>global_voteset.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_voteset.aspx.designer.cs">
+      <DependentUpon>global_voteset.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_votecates.aspx.cs">
+      <DependentUpon>global_votecates.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_votecates.aspx.designer.cs">
+      <DependentUpon>global_votecates.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_votecateadd.aspx.cs">
+      <DependentUpon>global_votecateadd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_votecateadd.aspx.designer.cs">
+      <DependentUpon>global_votecateadd.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_votelist.aspx.cs">
+      <DependentUpon>global_votelist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_votelist.aspx.designer.cs">
+      <DependentUpon>global_votelist.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_voteadd.aspx.cs">
+      <DependentUpon>global_voteadd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_voteadd.aspx.designer.cs">
+      <DependentUpon>global_voteadd.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_voteitems.aspx.cs">
+      <DependentUpon>global_voteitems.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_voteitems.aspx.designer.cs">
+      <DependentUpon>global_voteitems.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_voteoptionadd.aspx.cs">
+      <DependentUpon>global_voteoptionadd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_voteoptionadd.aspx.designer.cs">
+      <DependentUpon>global_voteoptionadd.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_voterecords.aspx.cs">
+      <DependentUpon>global_voterecords.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_voterecords.aspx.designer.cs">
+      <DependentUpon>global_voterecords.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_dbcollect.aspx.cs">
+      <DependentUpon>global_dbcollect.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_dbcollect.aspx.designer.cs">
+      <DependentUpon>global_dbcollect.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_dbcollectadd.aspx.cs">
+      <DependentUpon>global_dbcollectadd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_dbcollectadd.aspx.designer.cs">
+      <DependentUpon>global_dbcollectadd.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_webcollectadd.aspx.cs">
+      <DependentUpon>global_webcollectadd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_webcollectadd.aspx.designer.cs">
+      <DependentUpon>global_webcollectadd.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_webcollect.aspx.cs">
+      <DependentUpon>global_webcollect.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_webcollect.aspx.designer.cs">
+      <DependentUpon>global_webcollect.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_menumanage.aspx.cs">
+      <DependentUpon>global_menumanage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_menumanage.aspx.designer.cs">
+      <DependentUpon>global_menumanage.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_menulist.aspx.cs">
+      <DependentUpon>global_menulist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_menulist.aspx.designer.cs">
+      <DependentUpon>global_menulist.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_menuadd.aspx.cs">
+      <DependentUpon>global_menuadd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_menuadd.aspx.designer.cs">
+      <DependentUpon>global_menuadd.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_menuauthority.aspx.cs">
+      <DependentUpon>global_menuauthority.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_menuauthority.aspx.designer.cs">
+      <DependentUpon>global_menuauthority.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="tools\flinkclsadd.aspx.cs">
+      <DependentUpon>flinkclsadd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tools\flinkclsadd.aspx.designer.cs">
+      <DependentUpon>flinkclsadd.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_contentlist.aspx.cs">
+      <DependentUpon>global_contentlist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_contentlist.aspx.designer.cs">
+      <DependentUpon>global_contentlist.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_channeladd.aspx.cs">
+      <DependentUpon>global_channeladd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_channeladd.aspx.designer.cs">
+      <DependentUpon>global_channeladd.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_channelist.aspx.cs">
+      <DependentUpon>global_channelist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_channelist.aspx.designer.cs">
+      <DependentUpon>global_channelist.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_channelbatchadd.aspx.cs">
+      <DependentUpon>global_channelbatchadd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_channelbatchadd.aspx.designer.cs">
+      <DependentUpon>global_channelbatchadd.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_contentadd.aspx.cs">
+      <DependentUpon>global_contentadd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_contentadd.aspx.designer.cs">
+      <DependentUpon>global_contentadd.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_contypes.aspx.cs">
+      <DependentUpon>global_contypes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_contypes.aspx.designer.cs">
+      <DependentUpon>global_contypes.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_contypeadd.aspx.cs">
+      <DependentUpon>global_contypeadd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_contypeadd.aspx.designer.cs">
+      <DependentUpon>global_contypeadd.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_contypefieldedit.aspx.cs">
+      <DependentUpon>global_contypefieldedit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_contypefieldedit.aspx.designer.cs">
+      <DependentUpon>global_contypefieldedit.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_contypefieldadd.aspx.cs">
+      <DependentUpon>global_contypefieldadd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_contypefieldadd.aspx.designer.cs">
+      <DependentUpon>global_contypefieldadd.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_pageadd.aspx.cs">
+      <DependentUpon>global_pageadd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_pageadd.aspx.designer.cs">
+      <DependentUpon>global_pageadd.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_pagelist.aspx.cs">
+      <DependentUpon>global_pagelist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_pagelist.aspx.designer.cs">
+      <DependentUpon>global_pagelist.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_congroups.aspx.cs">
+      <DependentUpon>global_congroups.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_congroups.aspx.designer.cs">
+      <DependentUpon>global_congroups.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_congroupadd.aspx.cs">
+      <DependentUpon>global_congroupadd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_congroupadd.aspx.designer.cs">
+      <DependentUpon>global_congroupadd.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_congroupconedit.aspx.cs">
+      <DependentUpon>global_congroupconedit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_congroupconedit.aspx.designer.cs">
+      <DependentUpon>global_congroupconedit.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_congroupchannels.aspx.cs">
+      <DependentUpon>global_congroupchannels.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_congroupchannels.aspx.designer.cs">
+      <DependentUpon>global_congroupchannels.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_adminlogs.aspx.cs">
+      <DependentUpon>global_adminlogs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_adminlogs.aspx.designer.cs">
+      <DependentUpon>global_adminlogs.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_useradd.aspx.cs">
+      <DependentUpon>global_useradd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_useradd.aspx.designer.cs">
+      <DependentUpon>global_useradd.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_userlist.aspx.cs">
+      <DependentUpon>global_userlist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_userlist.aspx.designer.cs">
+      <DependentUpon>global_userlist.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_usergroupadd.aspx.cs">
+      <DependentUpon>global_usergroupadd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_usergroupadd.aspx.designer.cs">
+      <DependentUpon>global_usergroupadd.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_usergrouplist.aspx.cs">
+      <DependentUpon>global_usergrouplist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_usergrouplist.aspx.designer.cs">
+      <DependentUpon>global_usergrouplist.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_usergrouptype.aspx.cs">
+      <DependentUpon>global_usergrouptype.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_usergrouptype.aspx.designer.cs">
+      <DependentUpon>global_usergrouptype.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_siteinfo.aspx.cs">
+      <DependentUpon>global_siteinfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_siteinfo.aspx.designer.cs">
+      <DependentUpon>global_siteinfo.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_emailset.aspx.cs">
+      <DependentUpon>global_emailset.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_emailset.aspx.designer.cs">
+      <DependentUpon>global_emailset.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_sysgrouplist.aspx.cs">
+      <DependentUpon>global_sysgrouplist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_sysgrouplist.aspx.designer.cs">
+      <DependentUpon>global_sysgrouplist.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_emailsend.aspx.cs">
+      <DependentUpon>global_emailsend.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_emailsend.aspx.designer.cs">
+      <DependentUpon>global_emailsend.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_attachmentset.aspx.cs">
+      <DependentUpon>global_attachmentset.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_attachmentset.aspx.designer.cs">
+      <DependentUpon>global_attachmentset.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_waterset.aspx.cs">
+      <DependentUpon>global_waterset.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_waterset.aspx.designer.cs">
+      <DependentUpon>global_waterset.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_attachments.aspx.cs">
+      <DependentUpon>global_attachments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_attachments.aspx.designer.cs">
+      <DependentUpon>global_attachments.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_attachmentupload.aspx.cs">
+      <DependentUpon>global_attachmentupload.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_attachmentupload.aspx.designer.cs">
+      <DependentUpon>global_attachmentupload.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_attachmentuploadpre.aspx.cs">
+      <DependentUpon>global_attachmentuploadpre.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_attachmentuploadpre.aspx.designer.cs">
+      <DependentUpon>global_attachmentuploadpre.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_filesexplore.aspx.cs">
+      <DependentUpon>global_filesexplore.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_filesexplore.aspx.designer.cs">
+      <DependentUpon>global_filesexplore.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_jsmin.aspx.cs">
+      <DependentUpon>global_jsmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_jsmin.aspx.designer.cs">
+      <DependentUpon>global_jsmin.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_html2js.aspx.cs">
+      <DependentUpon>global_html2js.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_html2js.aspx.designer.cs">
+      <DependentUpon>global_html2js.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_photoadd.aspx.cs">
+      <DependentUpon>global_photoadd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_photoadd.aspx.designer.cs">
+      <DependentUpon>global_photoadd.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_photolist.aspx.cs">
+      <DependentUpon>global_photolist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_photolist.aspx.designer.cs">
+      <DependentUpon>global_photolist.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_contentrecycle.aspx.cs">
+      <DependentUpon>global_contentrecycle.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_contentrecycle.aspx.designer.cs">
+      <DependentUpon>global_contentrecycle.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_contentmine.aspx.cs">
+      <DependentUpon>global_contentmine.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_contentmine.aspx.designer.cs">
+      <DependentUpon>global_contentmine.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_contentverify.aspx.cs">
+      <DependentUpon>global_contentverify.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_contentverify.aspx.designer.cs">
+      <DependentUpon>global_contentverify.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_specialadd.aspx.cs">
+      <DependentUpon>global_specialadd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_specialadd.aspx.designer.cs">
+      <DependentUpon>global_specialadd.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_specialcontents.aspx.cs">
+      <DependentUpon>global_specialcontents.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_specialcontents.aspx.designer.cs">
+      <DependentUpon>global_specialcontents.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_tags.aspx.cs">
+      <DependentUpon>global_tags.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_tags.aspx.designer.cs">
+      <DependentUpon>global_tags.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_adadd.aspx.cs">
+      <DependentUpon>global_adadd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_adadd.aspx.designer.cs">
+      <DependentUpon>global_adadd.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_adlist.aspx.cs">
+      <DependentUpon>global_adlist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_adlist.aspx.designer.cs">
+      <DependentUpon>global_adlist.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_adminoperatelogs.aspx.cs">
+      <DependentUpon>global_adminoperatelogs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_adminoperatelogs.aspx.designer.cs">
+      <DependentUpon>global_adminoperatelogs.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_admintasklogs.aspx.cs">
+      <DependentUpon>global_admintasklogs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_admintasklogs.aspx.designer.cs">
+      <DependentUpon>global_admintasklogs.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="global\global_flinkcls.aspx.cs">
+      <DependentUpon>global_flinkcls.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\global_flinkcls.aspx.designer.cs">
+      <DependentUpon>global_flinkcls.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="index.aspx.designer.cs">
+      <DependentUpon>index.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="frames\top.aspx.cs">
+      <DependentUpon>top.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frames\top.aspx.designer.cs">
+      <DependentUpon>top.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="login.aspx.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="login.aspx.designer.cs">
+      <DependentUpon>login.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tools\congroupconselect.aspx.cs">
+      <DependentUpon>congroupconselect.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tools\congroupconselect.aspx.designer.cs">
+      <DependentUpon>congroupconselect.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tools\commonfieldedit.aspx.cs">
+      <DependentUpon>commonfieldedit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tools\commonfieldedit.aspx.designer.cs">
+      <DependentUpon>commonfieldedit.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tools\createnewfile.aspx.cs">
+      <DependentUpon>createnewfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tools\createnewfile.aspx.designer.cs">
+      <DependentUpon>createnewfile.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tools\createtag.aspx.designer.cs">
+      <DependentUpon>createtag.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tools\createtplfile.aspx.cs">
+      <DependentUpon>createtplfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tools\createtplfile.aspx.designer.cs">
+      <DependentUpon>createtplfile.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tools\statusprogress.aspx.cs">
+      <DependentUpon>statusprogress.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tools\statusprogress.aspx.designer.cs">
+      <DependentUpon>statusprogress.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tools\sitemapmake.aspx.cs">
+      <DependentUpon>sitemapmake.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tools\sitemapmake.aspx.designer.cs">
+      <DependentUpon>sitemapmake.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tools\usermailselect.aspx.cs">
+      <DependentUpon>usermailselect.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tools\usermailselect.aspx.designer.cs">
+      <DependentUpon>usermailselect.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tools\selectfile.aspx.cs">
+      <DependentUpon>selectfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tools\selectfile.aspx.designer.cs">
+      <DependentUpon>selectfile.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tools\selectpath.aspx.cs">
+      <DependentUpon>selectpath.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tools\selectpath.aspx.designer.cs">
+      <DependentUpon>selectpath.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tools\readfilecontent.aspx.cs">
+      <DependentUpon>readfilecontent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tools\readfilecontent.aspx.designer.cs">
+      <DependentUpon>readfilecontent.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tools\uploadfiles.aspx.cs">
+      <DependentUpon>uploadfiles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tools\uploadfiles.aspx.designer.cs">
+      <DependentUpon>uploadfiles.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tools\createnewfolder.aspx.cs">
+      <DependentUpon>createnewfolder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tools\createnewfolder.aspx.designer.cs">
+      <DependentUpon>createnewfolder.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tools\fastcontentedit.aspx.cs">
+      <DependentUpon>fastcontentedit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tools\fastcontentedit.aspx.designer.cs">
+      <DependentUpon>fastcontentedit.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tools\specgroups.aspx.cs">
+      <DependentUpon>specgroups.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tools\specgroups.aspx.designer.cs">
+      <DependentUpon>specgroups.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tools\createtag.aspx.cs">
+      <DependentUpon>createtag.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tools\runad.aspx.cs">
+      <DependentUpon>runad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tools\runad.aspx.designer.cs">
+      <DependentUpon>runad.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tools\voteoptionmuladd.aspx.cs">
+      <DependentUpon>voteoptionmuladd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tools\voteoptionmuladd.aspx.designer.cs">
+      <DependentUpon>voteoptionmuladd.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tools\collectpre.aspx.cs">
+      <DependentUpon>collectpre.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tools\collectpre.aspx.designer.cs">
+      <DependentUpon>collectpre.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tools\plugindesc.aspx.cs">
+      <DependentUpon>plugindesc.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tools\plugindesc.aspx.designer.cs">
+      <DependentUpon>plugindesc.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tools\playvideo.aspx.cs">
+      <DependentUpon>playvideo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tools\playvideo.aspx.designer.cs">
+      <DependentUpon>playvideo.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tools\createselect.aspx.cs">
+      <DependentUpon>createselect.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tools\createselect.aspx.designer.cs">
+      <DependentUpon>createselect.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tools\qrcodemake.aspx.cs">
+      <DependentUpon>qrcodemake.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tools\qrcodemake.aspx.designer.cs">
+      <DependentUpon>qrcodemake.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tools\imgcut.aspx.cs">
+      <DependentUpon>imgcut.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tools\imgcut.aspx.designer.cs">
+      <DependentUpon>imgcut.aspx.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="com\ctmvariable\add.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="com\ctmvariable\list.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="com\vote\voteadd.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="com\vote\votelist.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="com\vote\voteview.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="controls\Pager.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="controls\pagetip.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="controls\editor.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="frames\separator.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="frames\left.aspx" />
+    <Content Include="frames\main.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="frames\Loading.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_attachmentedit.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_createprogress.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_pluginlist.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_pluginadd.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_softadd.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_urlstaticizeadd.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_urlstaticize.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_selects.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_selectlist.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_productadd.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_userregset.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_pluginzip.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_collectset.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_otherset.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_createrss.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_visitset.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_translate.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_wordsfilterset.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_syspms.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_clearpms.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_sendpmsingle.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_emailsendtogroup.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="images\bg-scrollbar-thumb-y.png" />
+    <Content Include="images\bg-scrollbar-track-y.png" />
+    <Content Include="images\bg-scrollbar-trackend-y.png" />
+    <Content Include="images\file\docx.gif" />
+    <Content Include="images\file\flv.gif" />
+    <Content Include="images\ico_advise.png" />
+    <Content Include="js\select.js" />
+    <Content Include="magazine\magset.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="magazine\magups.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="magazine\magadd.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="magazine\maglist.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="mail\mailsubadd.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="mail\mailsubcribe.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="mail\mailrecords.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="mail\mailsend.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_sendpmtogroup.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="pay\deliveryadd.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="pay\deliverylist.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="pay\paylist.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="pay\payset.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="pay\orderlist.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="pay\orderset.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="pay\paylogs.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="plugin\scripts\Jcrop\css\Jcrop.gif" />
+    <Content Include="plugin\scripts\Jcrop\css\jquery.Jcrop.css" />
+    <Content Include="plugin\scripts\Jcrop\css\jquery.Jcrop.min.css" />
+    <Content Include="plugin\scripts\Jcrop\js\jquery.color.js" />
+    <Content Include="plugin\scripts\Jcrop\js\jquery.Jcrop.js" />
+    <Content Include="plugin\scripts\Jcrop\js\jquery.Jcrop.min.js" />
+    <Content Include="plugin\scripts\jqueryui\images\animated-overlay.gif" />
+    <Content Include="plugin\scripts\jqueryui\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="plugin\scripts\jqueryui\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="plugin\scripts\jqueryui\images\ui-bg_flat_10_000000_40x100.png" />
+    <Content Include="plugin\scripts\jqueryui\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="plugin\scripts\jqueryui\images\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="plugin\scripts\jqueryui\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="plugin\scripts\jqueryui\images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="plugin\scripts\jqueryui\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="plugin\scripts\jqueryui\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="plugin\scripts\jqueryui\images\ui-icons_222222_256x240.png" />
+    <Content Include="plugin\scripts\jqueryui\images\ui-icons_228ef1_256x240.png" />
+    <Content Include="plugin\scripts\jqueryui\images\ui-icons_ef8c08_256x240.png" />
+    <Content Include="plugin\scripts\jqueryui\images\ui-icons_ffd27a_256x240.png" />
+    <Content Include="plugin\scripts\jqueryui\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="plugin\scripts\jqueryui\jquery-ui.js" />
+    <Content Include="plugin\scripts\jqueryui\jquery-ui.css" />
+    <Content Include="plugin\scripts\selectbox\css\jquery.selectbox.css" />
+    <Content Include="plugin\scripts\selectbox\img\select-icons.png" />
+    <Content Include="plugin\scripts\selectbox\js\jquery.selectbox.js" />
+    <Content Include="themes\grey\droptopscroll.gif" />
+    <Content Include="themes\grey\droptop.gif" />
+    <Content Include="themes\pink\about.png" />
+    <Content Include="themes\pink\about.xml" />
+    <Content Include="themes\pink\droptop.gif" />
+    <Content Include="themes\pink\droptopscroll.gif" />
+    <Content Include="themes\pink\menuin.gif" />
+    <Content Include="themes\pink\menuout.gif" />
+    <Content Include="themes\pink\search.gif" />
+    <Content Include="themes\pink\separator1.gif" />
+    <Content Include="themes\pink\separator2.gif" />
+    <Content Include="themes\pink\style.css" />
+    <Content Include="themes\pink\topbg.gif" />
+    <Content Include="tools\qrcode.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="tools\sysinfo.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="tools\likeset.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="tools\fastmenumanage.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_runsql.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_baseset.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_flinks.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_flinkadd.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_databasebackup.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_databaseshrink.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_dbtableview.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_dbfieldreplace.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_repeatconcheck.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_templatelist.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_tplfiles.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_createchannels.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_createcontents.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_createpages.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_createspecials.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_useredit.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_errorlogs.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_optimizeset.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_safeset.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_interactset.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_comments.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_schedulemanage.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_scheduleadd.aspx" />
+    <Content Include="global\global_voteset.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_votecates.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_votecateadd.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_votelist.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_voteadd.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_voteitems.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_voteoptionadd.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_voterecords.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_dbcollect.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_dbcollectadd.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_webcollectadd.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_webcollect.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_menumanage.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_menulist.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_menuadd.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_menuauthority.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="images\loading3.gif" />
+    <Content Include="images\loading2.gif" />
+    <Content Include="images\tempnouse.gif" />
+    <Content Include="images\tempuse.gif" />
+    <Content Include="js\tinyscrollbar.js" />
+    <Content Include="styles\img\diy\1_close.png" />
+    <Content Include="styles\img\diy\1_open.png" />
+    <Content Include="styles\img\diy\2.png" />
+    <Content Include="styles\img\diy\3.png" />
+    <Content Include="styles\img\diy\4.png" />
+    <Content Include="styles\img\diy\5.png" />
+    <Content Include="styles\img\diy\6.png" />
+    <Content Include="styles\img\diy\7.png" />
+    <Content Include="styles\img\diy\8.png" />
+    <Content Include="styles\img\diy\9.png" />
+    <Content Include="styles\img\line_conn.gif" />
+    <Content Include="styles\img\loading.gif" />
+    <Content Include="styles\img\zTreeStandard.gif" />
+    <Content Include="styles\img\zTreeStandard.png" />
+    <Content Include="styles\ztree.css" />
+    <Content Include="tools\flinkclsadd.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_contentlist.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_channeladd.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_channelist.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_channelbatchadd.aspx" />
+    <Content Include="global\global_contentadd.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_contypes.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_contypeadd.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_contypefieldedit.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_contypefieldadd.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_pageadd.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_pagelist.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_congroups.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_congroupadd.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_congroupconedit.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_congroupchannels.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_adminlogs.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_useradd.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_userlist.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_usergroupadd.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_usergrouplist.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_usergrouptype.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_siteinfo.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_emailset.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_sysgrouplist.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_emailsend.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_attachmentset.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_waterset.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_attachments.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_attachmentupload.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_attachmentuploadpre.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_filesexplore.aspx" />
+    <Content Include="global\global_jsmin.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_html2js.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_photoadd.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_photolist.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_contentrecycle.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_contentmine.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_contentverify.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_specialadd.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_specialcontents.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_tags.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_adadd.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_adlist.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_adminoperatelogs.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_admintasklogs.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="global\global_flinkcls.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="images\add.gif" />
+    <Content Include="images\addmenu.gif" />
+    <Content Include="images\anchor.gif" />
+    <Content Include="images\arrow01.gif" />
+    <Content Include="images\choose-file.gif" />
+    <Content Include="images\dot.gif" />
+    <Content Include="images\droptop.gif" />
+    <Content Include="images\droptopscroll.gif" />
+    <Content Include="images\fileinputbg.png" />
+    <Content Include="images\file\aac.gif" />
+    <Content Include="images\file\ace.gif" />
+    <Content Include="images\file\ai.gif" />
+    <Content Include="images\file\ain.gif" />
+    <Content Include="images\file\amr.gif" />
+    <Content Include="images\file\app.gif" />
+    <Content Include="images\file\arj.gif" />
+    <Content Include="images\file\asax.gif" />
+    <Content Include="images\file\ascx.gif" />
+    <Content Include="images\file\asf.gif" />
+    <Content Include="images\file\ashx.gif" />
+    <Content Include="images\file\asmx.gif" />
+    <Content Include="images\file\asp.gif" />
+    <Content Include="images\file\aspx.gif" />
+    <Content Include="images\file\av.gif" />
+    <Content Include="images\file\avi.gif" />
+    <Content Include="images\file\bin.gif" />
+    <Content Include="images\file\bmp.gif" />
+    <Content Include="images\file\cab.gif" />
+    <Content Include="images\file\cad.gif" />
+    <Content Include="images\file\cat.gif" />
+    <Content Include="images\file\cd.gif" />
+    <Content Include="images\file\cdr.gif" />
+    <Content Include="images\file\chm.gif" />
+    <Content Include="images\file\com.gif" />
+    <Content Include="images\file\config.gif" />
+    <Content Include="images\file\CS.gif" />
+    <Content Include="images\file\css.gif" />
+    <Content Include="images\file\cur.gif" />
+    <Content Include="images\file\dat.gif" />
+    <Content Include="images\file\db.gif" />
+    <Content Include="images\file\dll.gif" />
+    <Content Include="images\file\dmv.gif" />
+    <Content Include="images\file\doc.gif" />
+    <Content Include="images\file\dot.gif" />
+    <Content Include="images\file\dps.gif" />
+    <Content Include="images\file\dpt.gif" />
+    <Content Include="images\file\dwg.gif" />
+    <Content Include="images\file\dxf.gif" />
+    <Content Include="images\file\emf.gif" />
+    <Content Include="images\file\eps.gif" />
+    <Content Include="images\file\et.gif" />
+    <Content Include="images\file\ett.gif" />
+    <Content Include="images\file\exe.gif" />
+    <Content Include="images\file\exit.gif" />
+    <Content Include="images\file\file_script.gif" />
+    <Content Include="images\file\fla.gif" />
+    <Content Include="images\file\flash.gif" />
+    <Content Include="images\file\folder.gif" />
+    <Content Include="images\file\xlsx.gif" />
+    <Content Include="images\file\_folder.gif" />
+    <Content Include="images\file\ftp.gif" />
+    <Content Include="images\file\gif.gif" />
+    <Content Include="images\file\help.gif" />
+    <Content Include="images\file\hlp.gif" />
+    <Content Include="images\file\htm.gif" />
+    <Content Include="images\file\html.gif" />
+    <Content Include="images\file\icl.gif" />
+    <Content Include="images\file\ico.gif" />
+    <Content Include="images\file\img.gif" />
+    <Content Include="images\file\inf.gif" />
+    <Content Include="images\file\ini.gif" />
+    <Content Include="images\file\iso.gif" />
+    <Content Include="images\file\jpeg.gif" />
+    <Content Include="images\file\jpg.gif" />
+    <Content Include="images\file\js.gif" />
+    <Content Include="images\file\m3u.gif" />
+    <Content Include="images\file\master.gif" />
+    <Content Include="images\file\max.gif" />
+    <Content Include="images\file\mdb.gif" />
+    <Content Include="images\file\mde.gif" />
+    <Content Include="images\file\mht.gif" />
+    <Content Include="images\file\mid.gif" />
+    <Content Include="images\file\midi.gif" />
+    <Content Include="images\file\mov.gif" />
+    <Content Include="images\file\mp3.gif" />
+    <Content Include="images\file\mp4.gif" />
+    <Content Include="images\file\mpeg.gif" />
+    <Content Include="images\file\mpg.gif" />
+    <Content Include="images\file\msi.gif" />
+    <Content Include="images\file\newdir.gif" />
+    <Content Include="images\file\nrg.gif" />
+    <Content Include="images\file\ocx.gif" />
+    <Content Include="images\file\ogg.gif" />
+    <Content Include="images\file\ogm.gif" />
+    <Content Include="images\file\other.gif" />
+    <Content Include="images\file\pdf.gif" />
+    <Content Include="images\file\php.gif" />
+    <Content Include="images\file\pic.gif" />
+    <Content Include="images\file\png.gif" />
+    <Content Include="images\file\pot.gif" />
+    <Content Include="images\file\ppt.gif" />
+    <Content Include="images\file\psd.gif" />
+    <Content Include="images\file\pub.gif" />
+    <Content Include="images\file\qt.gif" />
+    <Content Include="images\file\ra.gif" />
+    <Content Include="images\file\ram.gif" />
+    <Content Include="images\file\rar.gif" />
+    <Content Include="images\file\resx.gif" />
+    <Content Include="images\file\rm.gif" />
+    <Content Include="images\file\rmvb.gif" />
+    <Content Include="images\file\rtf.gif" />
+    <Content Include="images\file\sitemap.gif" />
+    <Content Include="images\file\sql.gif" />
+    <Content Include="images\file\swf.gif" />
+    <Content Include="images\file\tar.gif" />
+    <Content Include="images\file\tif.gif" />
+    <Content Include="images\file\tiff.gif" />
+    <Content Include="images\file\topdir.gif" />
+    <Content Include="images\file\tpl.gif" />
+    <Content Include="images\file\tt.gif" />
+    <Content Include="images\file\txt.gif" />
+    <Content Include="images\file\unknown.gif" />
+    <Content Include="images\file\url.gif" />
+    <Content Include="images\file\vbs.gif" />
+    <Content Include="images\file\vsd.gif" />
+    <Content Include="images\file\vss.gif" />
+    <Content Include="images\file\vst.gif" />
+    <Content Include="images\file\wav.gif" />
+    <Content Include="images\file\wave.gif" />
+    <Content Include="images\file\wm.gif" />
+    <Content Include="images\file\wma.gif" />
+    <Content Include="images\file\wmd.gif" />
+    <Content Include="images\file\wmf.gif" />
+    <Content Include="images\file\wmv.gif" />
+    <Content Include="images\file\wps.gif" />
+    <Content Include="images\file\wpt.gif" />
+    <Content Include="images\file\xls.gif" />
+    <Content Include="images\file\xlt.gif" />
+    <Content Include="images\file\xml.gif" />
+    <Content Include="images\file\xsl.gif" />
+    <Content Include="images\file\zip.gif" />
+    <Content Include="images\foldernew.gif" />
+    <Content Include="images\conedit.png" />
+    <Content Include="images\helpico01.gif" />
+    <Content Include="images\helpico02.gif" />
+    <Content Include="images\icon\52.png" />
+    <Content Include="images\icon\accept.png" />
+    <Content Include="images\icon\add.gif" />
+    <Content Include="images\icon\add.png" />
+    <Content Include="images\icon\administrator.gif" />
+    <Content Include="images\icon\advertisement.gif" />
+    <Content Include="images\icon\archive.gif" />
+    <Content Include="images\icon\arrow_inout.png" />
+    <Content Include="images\icon\arrow_undo.gif" />
+    <Content Include="images\icon\backup.gif" />
+    <Content Include="images\icon\blog.gif" />
+    <Content Include="images\icon\buildings.png" />
+    <Content Include="images\icon\cache_reset.gif" />
+    <Content Include="images\icon\cache_resetall.gif" />
+    <Content Include="images\icon\cmodel.gif" />
+    <Content Include="images\icon\comment.gif" />
+    <Content Include="images\icon\comment.png" />
+    <Content Include="images\icon\configuration.gif" />
+    <Content Include="images\icon\content.gif" />
+    <Content Include="images\icon\count.gif" />
+    <Content Include="images\icon\create.gif" />
+    <Content Include="images\icon\data.png" />
+    <Content Include="images\icon\database.gif" />
+    <Content Include="images\icon\database.png" />
+    <Content Include="images\icon\del.gif" />
+    <Content Include="images\icon\document.gif" />
+    <Content Include="images\icon\doc_shred.png" />
+    <Content Include="images\icon\edit.png" />
+    <Content Include="images\icon\email.gif" />
+    <Content Include="images\icon\file.gif" />
+    <Content Include="images\icon\folder.gif" />
+    <Content Include="images\icon\folder_Close.gif" />
+    <Content Include="images\icon\folder_Open.gif" />
+    <Content Include="images\icon\form.gif" />
+    <Content Include="images\icon\function.gif" />
+    <Content Include="images\icon\gather.gif" />
+    <Content Include="images\icon\group.gif" />
+    <Content Include="images\icon\group.png" />
+    <Content Include="images\icon\help01.gif" />
+    <Content Include="images\icon\home.gif" />
+    <Content Include="images\icon\html.gif" />
+    <Content Include="images\icon\innerlink.gif" />
+    <Content Include="images\icon\input.gif" />
+    <Content Include="images\icon\integration.gif" />
+    <Content Include="images\icon\item.gif" />
+    <Content Include="images\icon\itemContainer.gif" />
+    <Content Include="images\icon\job.gif" />
+    <Content Include="images\icon\lightbulb.png" />
+    <Content Include="images\icon\lightbulb_off.png" />
+    <Content Include="images\icon\log.gif" />
+    <Content Include="images\icon\machine.gif" />
+    <Content Include="images\icon\minus_bottom.gif" />
+    <Content Include="images\icon\minus_center.gif" />
+    <Content Include="images\icon\minus_noLine.gif" />
+    <Content Include="images\icon\minus_root.gif" />
+    <Content Include="images\icon\minus_top.gif" />
+    <Content Include="images\icon\module.gif" />
+    <Content Include="images\icon\money.png" />
+    <Content Include="images\icon\money_yen.png" />
+    <Content Include="images\icon\moveArrow.png" />
+    <Content Include="images\icon\myweb.gif" />
+    <Content Include="images\icon\nodelete.gif" />
+    <Content Include="images\icon\OK.gif" />
+    <Content Include="images\icon\page.gif" />
+    <Content Include="images\icon\page.png" />
+    <Content Include="images\icon\page_get.png" />
+    <Content Include="images\icon\page_lightning.png" />
+    <Content Include="images\icon\page_stack.png" />
+    <Content Include="images\icon\page_world.png" />
+    <Content Include="images\icon\photo.gif" />
+    <Content Include="images\icon\photo.png" />
+    <Content Include="images\icon\plus_bottom.gif" />
+    <Content Include="images\icon\plus_center.gif" />
+    <Content Include="images\icon\plus_noLine.gif" />
+    <Content Include="images\icon\plus_root.gif" />
+    <Content Include="images\icon\plus_top.gif" />
+    <Content Include="images\icon\preview.gif" />
+    <Content Include="images\icon\publish.gif" />
+    <Content Include="images\icon\relatedField.gif" />
+    <Content Include="images\icon\remove.png" />
+    <Content Include="images\icon\restriction.gif" />
+    <Content Include="images\icon\script.png" />
+    <Content Include="images\icon\search01.gif" />
+    <Content Include="images\icon\seo.gif" />
+    <Content Include="images\icon\shading.png" />
+    <Content Include="images\icon\shortcut.gif" />
+    <Content Include="images\icon\site.gif" />
+    <Content Include="images\icon\soft.png" />
+    <Content Include="images\icon\sport_raquet.png" />
+    <Content Include="images\icon\state1.gif" />
+    <Content Include="images\icon\state2.gif" />
+    <Content Include="images\icon\tags.gif" />
+    <Content Include="images\icon\tagStyle.gif" />
+    <Content Include="images\icon\tag_blue.png" />
+    <Content Include="images\icon\task.gif" />
+    <Content Include="images\icon\template.gif" />
+    <Content Include="images\icon\thread.gif" />
+    <Content Include="images\icon\tools.gif" />
+    <Content Include="images\icon\topic.gif" />
+    <Content Include="images\icon\trash.gif" />
+    <Content Include="images\icon\user.gif" />
+    <Content Include="images\icon\utils.gif" />
+    <Content Include="images\icon\vote.gif" />
+    <Content Include="images\icon\warning.gif" />
+    <Content Include="images\icon\word.gif" />
+    <Content Include="images\icon\zoomin.gif" />
+    <Content Include="images\icon\zoomout.gif" />
+    <Content Include="images\loading.gif" />
+    <Content Include="images\loginbg.gif" />
+    <Content Include="images\loginbtn.gif" />
+    <Content Include="images\nopic.png" />
+    <Content Include="images\part-list.gif" />
+    <Content Include="images\place.gif" />
+    <Content Include="images\Rect.gif" />
+    <Content Include="images\refreshfolder.gif" />
+    <Content Include="images\ploading.gif" />
+    <Content Include="images\trigonico.gif" />
+    <Content Include="images\trun.gif" />
+    <Content Include="images\fileup.gif" />
+    <Content Include="images\watermark.gif" />
+    <Content Include="images\ZeroClipboard.swf" />
+    <Content Include="images\zoomin.gif" />
+    <Content Include="images\zoomout.gif" />
+    <Content Include="index.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="js\jquery.js" />
+    <Content Include="js\ZeroClipboard.js" />
+    <Content Include="js\ztree.js" />
+    <Content Include="js\public.js" />
+    <Content Include="js\zlib.js" />
+    <Content Include="js\jsmin.js" />
+    <Content Include="js\blockUI.js" />
+    <Content Include="plugin\scripts\colorpicker\css\colorpicker.css" />
+    <Content Include="plugin\scripts\colorpicker\css\layout.css" />
+    <Content Include="plugin\scripts\colorpicker\images\blank.gif" />
+    <Content Include="plugin\scripts\colorpicker\images\colorpicker_background.png" />
+    <Content Include="plugin\scripts\colorpicker\images\colorpicker_hex.png" />
+    <Content Include="plugin\scripts\colorpicker\images\colorpicker_hsb_b.png" />
+    <Content Include="plugin\scripts\colorpicker\images\colorpicker_hsb_h.png" />
+    <Content Include="plugin\scripts\colorpicker\images\colorpicker_hsb_s.png" />
+    <Content Include="plugin\scripts\colorpicker\images\colorpicker_indic.gif" />
+    <Content Include="plugin\scripts\colorpicker\images\colorpicker_overlay.png" />
+    <Content Include="plugin\scripts\colorpicker\images\colorpicker_rgb_b.png" />
+    <Content Include="plugin\scripts\colorpicker\images\colorpicker_rgb_g.png" />
+    <Content Include="plugin\scripts\colorpicker\images\colorpicker_rgb_r.png" />
+    <Content Include="plugin\scripts\colorpicker\images\colorpicker_select.gif" />
+    <Content Include="plugin\scripts\colorpicker\images\colorpicker_submit.png" />
+    <Content Include="plugin\scripts\colorpicker\images\custom_background.png" />
+    <Content Include="plugin\scripts\colorpicker\images\custom_hex.png" />
+    <Content Include="plugin\scripts\colorpicker\images\custom_hsb_b.png" />
+    <Content Include="plugin\scripts\colorpicker\images\custom_hsb_h.png" />
+    <Content Include="plugin\scripts\colorpicker\images\custom_hsb_s.png" />
+    <Content Include="plugin\scripts\colorpicker\images\custom_indic.gif" />
+    <Content Include="plugin\scripts\colorpicker\images\custom_rgb_b.png" />
+    <Content Include="plugin\scripts\colorpicker\images\custom_rgb_g.png" />
+    <Content Include="plugin\scripts\colorpicker\images\custom_rgb_r.png" />
+    <Content Include="plugin\scripts\colorpicker\images\custom_submit.png" />
+    <Content Include="plugin\scripts\colorpicker\images\select.png" />
+    <Content Include="plugin\scripts\colorpicker\images\select2.png" />
+    <Content Include="plugin\scripts\colorpicker\images\slider.png" />
+    <Content Include="plugin\scripts\colorpicker\js\colorpicker.js" />
+    <Content Include="plugin\scripts\colorpicker\js\eye.js" />
+    <Content Include="plugin\scripts\colorpicker\js\layout.js" />
+    <Content Include="plugin\scripts\colorpicker\js\utils.js" />
+    <Content Include="plugin\scripts\datepicker\calendar.js" />
+    <Content Include="plugin\scripts\datepicker\config.js" />
+    <Content Include="plugin\scripts\datepicker\lang\en.js" />
+    <Content Include="plugin\scripts\datepicker\lang\zh-cn.js" />
+    <Content Include="plugin\scripts\datepicker\lang\zh-tw.js" />
+    <Content Include="plugin\scripts\datepicker\My97DatePicker.htm" />
+    <Content Include="plugin\scripts\datepicker\skin\datePicker.gif" />
+    <Content Include="plugin\scripts\datepicker\skin\default\datepicker.css" />
+    <Content Include="plugin\scripts\datepicker\skin\default\img.gif" />
+    <Content Include="plugin\scripts\datepicker\skin\WdatePicker.css" />
+    <Content Include="plugin\scripts\datepicker\skin\whyGreen\bg.jpg" />
+    <Content Include="plugin\scripts\datepicker\skin\whyGreen\datepicker.css" />
+    <Content Include="plugin\scripts\datepicker\skin\whyGreen\img.gif" />
+    <Content Include="plugin\scripts\datepicker\WdatePicker.js" />
+    <Content Include="plugin\scripts\fancybox\blank.gif" />
+    <Content Include="plugin\scripts\fancybox\fancybox_loading.gif" />
+    <Content Include="plugin\scripts\fancybox\fancybox_sprite.png" />
+    <Content Include="plugin\scripts\fancybox\helpers\fancybox_buttons.png" />
+    <Content Include="plugin\scripts\fancybox\helpers\buttons.css" />
+    <Content Include="plugin\scripts\fancybox\helpers\buttons.js" />
+    <Content Include="plugin\scripts\fancybox\helpers\thumbs.css" />
+    <Content Include="plugin\scripts\fancybox\helpers\thumbs.js" />
+    <Content Include="plugin\scripts\fancybox\fancybox.css" />
+    <Content Include="plugin\scripts\fancybox\fancybox.js" />
+    <Content Include="plugin\scripts\fancybox\mousewheel.js" />
+    <Content Include="plugin\scripts\filestyle.js" />
+    <Content Include="plugin\scripts\poshytip\jquery.poshytip.js" />
+    <Content Include="plugin\scripts\poshytip\poshytip.js" />
+    <Content Include="plugin\scripts\poshytip\tip-darkgray\tip-darkgray.css" />
+    <Content Include="plugin\scripts\poshytip\tip-darkgray\tip-darkgray.png" />
+    <Content Include="plugin\scripts\poshytip\tip-darkgray\tip-darkgray_arrows.png" />
+    <Content Include="plugin\scripts\poshytip\tip-green\tip-green.css" />
+    <Content Include="plugin\scripts\poshytip\tip-green\tip-green_arrows.gif" />
+    <Content Include="plugin\scripts\poshytip\tip-skyblue\tip-skyblue.css" />
+    <Content Include="plugin\scripts\poshytip\tip-skyblue\tip-skyblue.png" />
+    <Content Include="plugin\scripts\poshytip\tip-skyblue\tip-skyblue_arrows.png" />
+    <Content Include="plugin\scripts\poshytip\tip-twitter\tip-twitter.css" />
+    <Content Include="plugin\scripts\poshytip\tip-twitter\tip-twitter_arrows.gif" />
+    <Content Include="plugin\scripts\poshytip\tip-violet\tip-violet.css" />
+    <Content Include="plugin\scripts\poshytip\tip-violet\tip-violet.png" />
+    <Content Include="plugin\scripts\poshytip\tip-violet\tip-violet_arrows.png" />
+    <Content Include="plugin\scripts\poshytip\style.css" />
+    <Content Include="plugin\scripts\poshytip\tip-yellowsimple\tip-yellowsimple.css" />
+    <Content Include="plugin\scripts\poshytip\tip-yellowsimple\tip-yellowsimple_arrows.gif" />
+    <Content Include="plugin\scripts\poshytip\tip-yellow\tip-yellow.css" />
+    <Content Include="plugin\scripts\poshytip\tip-yellow\tip-yellow.png" />
+    <Content Include="plugin\scripts\poshytip\tip-yellow\tip-yellow_arrows.png" />
+    <Content Include="plugin\scripts\jqmodal.css" />
+    <Content Include="plugin\scripts\treetable\images\minus_noLine.gif" />
+    <Content Include="plugin\scripts\treetable\images\plus_noLine.gif" />
+    <Content Include="plugin\scripts\treetable\images\toggle-collapse-dark.png" />
+    <Content Include="plugin\scripts\treetable\images\toggle-collapse-light.png" />
+    <Content Include="plugin\scripts\treetable\images\toggle-expand-dark.png" />
+    <Content Include="plugin\scripts\treetable\images\toggle-expand-light.png" />
+    <Content Include="plugin\scripts\treetable\js\jquery.treeTable.js" />
+    <Content Include="plugin\scripts\treetable\js\jquery.treeTable.min.js" />
+    <Content Include="plugin\scripts\treetable\css\jquery.treeTable.css" />
+    <Content Include="plugin\swfupload\cancelbutton.gif" />
+    <Content Include="plugin\swfupload\default.css" />
+    <Content Include="plugin\swfupload\fileprogress.js" />
+    <Content Include="plugin\swfupload\handlers.js" />
+    <Content Include="plugin\swfupload\SmallSpyGlassWithTransperancy_17x18.png" />
+    <Content Include="plugin\swfupload\swfupload.js" />
+    <Content Include="plugin\swfupload\swfupload.queue.js" />
+    <Content Include="plugin\swfupload\swfupload.swf" />
+    <Content Include="plugin\swfupload\swfuploadbutton.swf" />
+    <Content Include="plugin\swfupload\XPButtonUploadText_61x22.png" />
+    <Content Include="plugin\swfupload\副本 handlers.js" />
+    <Content Include="styles\base.css" />
+    <Content Include="styles\datagrid.css" />
+    <Content Include="styles\plugin.css" />
+    <Content Include="styles\login.css" />
+    <Content Include="themes\black\droptop.gif" />
+    <Content Include="themes\black\droptopscroll.gif" />
+    <Content Include="themes\blue\about.png" />
+    <Content Include="themes\blue\droptop.gif" />
+    <Content Include="themes\blue\droptopscroll.gif" />
+    <Content Include="themes\fashion\about.png" />
+    <Content Include="themes\fashion\droptop.gif" />
+    <Content Include="themes\fashion\droptopscroll.gif" />
+    <Content Include="themes\green\about.png" />
+    <Content Include="themes\green\droptop.gif" />
+    <Content Include="themes\green\droptopscroll.gif" />
+    <Content Include="themes\grey\about.xml" />
+    <Content Include="themes\grey\about.png" />
+    <Content Include="themes\grey\menuin.gif" />
+    <Content Include="themes\grey\menuout.gif" />
+    <Content Include="themes\grey\search.gif" />
+    <Content Include="themes\grey\separator1.gif" />
+    <Content Include="themes\grey\separator2.gif" />
+    <Content Include="themes\grey\style.css" />
+    <Content Include="themes\grey\topbg.gif" />
+    <Content Include="ajax.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="frames\top.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="login.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="themes\blue\about.xml" />
+    <Content Include="themes\blue\menuin.gif" />
+    <Content Include="themes\blue\menuout.gif" />
+    <Content Include="themes\blue\search.gif" />
+    <Content Include="themes\blue\separator1.gif" />
+    <Content Include="themes\blue\separator2.gif" />
+    <Content Include="themes\blue\style.css" />
+    <Content Include="themes\blue\topbg.gif" />
+    <Content Include="themes\green\about.xml" />
+    <Content Include="themes\green\menuin.gif" />
+    <Content Include="themes\green\menuout.gif" />
+    <Content Include="themes\green\search.gif" />
+    <Content Include="themes\green\separator1.gif" />
+    <Content Include="themes\green\separator2.gif" />
+    <Content Include="themes\green\style.css" />
+    <Content Include="themes\green\topbg.gif" />
+    <Content Include="themes\fashion\about.xml" />
+    <Content Include="themes\fashion\menuin.gif" />
+    <Content Include="themes\fashion\menuout.gif" />
+    <Content Include="themes\fashion\search.gif" />
+    <Content Include="themes\fashion\separator1.gif" />
+    <Content Include="themes\fashion\separator2.gif" />
+    <Content Include="themes\fashion\style.css" />
+    <Content Include="themes\fashion\topbg.gif" />
+    <Content Include="themes\red\droptop.gif" />
+    <Content Include="themes\red\droptopscroll.gif" />
+    <Content Include="themes\yellow\about.png" />
+    <Content Include="themes\yellow\about.xml" />
+    <Content Include="themes\yellow\droptop.gif" />
+    <Content Include="themes\yellow\droptopscroll.gif" />
+    <Content Include="themes\yellow\menuin.gif" />
+    <Content Include="themes\yellow\menuout.gif" />
+    <Content Include="themes\yellow\search.gif" />
+    <Content Include="themes\yellow\separator1.gif" />
+    <Content Include="themes\yellow\separator2.gif" />
+    <Content Include="themes\yellow\style.css" />
+    <Content Include="themes\yellow\topbg.gif" />
+    <Content Include="themes\black\about.png" />
+    <Content Include="themes\black\about.xml" />
+    <Content Include="themes\black\menuin.gif" />
+    <Content Include="themes\black\menuout.gif" />
+    <Content Include="themes\black\search.gif" />
+    <Content Include="themes\black\separator1.gif" />
+    <Content Include="themes\black\separator2.gif" />
+    <Content Include="themes\black\style.css" />
+    <Content Include="themes\black\topbg.gif" />
+    <Content Include="themes\red\about.png" />
+    <Content Include="themes\red\about.xml" />
+    <Content Include="themes\red\menuin.gif" />
+    <Content Include="themes\red\menuout.gif" />
+    <Content Include="themes\red\search.gif" />
+    <Content Include="themes\red\separator1.gif" />
+    <Content Include="themes\red\separator2.gif" />
+    <Content Include="themes\red\style.css" />
+    <Content Include="themes\red\topbg.gif" />
+    <Content Include="tools\congroupconselect.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="tools\editorupload.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="tools\filenamerule.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="tools\commonfieldedit.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="tools\createnewfile.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="tools\createtplfile.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="tools\statusprogress.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="tools\sitemapmake.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="tools\usermailselect.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="tools\selectfile.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="tools\multupload.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="tools\selectpath.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="tools\readfilecontent.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="tools\uploadfiles.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="tools\createnewfolder.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="tools\fastcontentedit.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="tools\specgroups.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="tools\createtag.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="tools\runad.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="tools\view.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="tools\voteoptionmuladd.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="tools\collectpre.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="tools\plugindesc.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="tools\playvideo.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="tools\createselect.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="tools\magupload.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="tools\qrcodemake.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="tools\imgcut.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="tools\contdo.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="xml\field.config" />
+    <None Include="packages.config" />
+    <None Include="xml\menu.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="xml\user.config" />
+    <None Include="xml\contem.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="xml\user_1.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="backup\menu\" />
+    <Folder Include="plus\cachefiles\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\STA.Cache\STA.Cache.csproj">
+      <Project>{A3D3FD28-8D20-492C-9B04-6C53D46D1F28}</Project>
+      <Name>STA.Cache</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\STA.Common\STA.Common.csproj">
+      <Project>{28F820EB-ABC2-46DA-A3B9-E5D6E57F0B51}</Project>
+      <Name>STA.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\STA.Config\STA.Config.csproj">
+      <Project>{B4F77E92-F78D-4465-9E02-E3F3B97458DB}</Project>
+      <Name>STA.Config</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\STA.Control\STA.Control.csproj">
+      <Project>{7DA936E3-AEC5-4AE5-9DB2-E36FDBDF9814}</Project>
+      <Name>STA.Control</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\STA.Core\STA.Core.csproj">
+      <Project>{3BB60636-14E1-4CFC-ACA6-B5CA1CBF8542}</Project>
+      <Name>STA.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\STA.Data.SqlServer\STA.Data.SqlServer.csproj">
+      <Project>{855E77A9-EC17-4F6F-BE53-BAA07E108ED9}</Project>
+      <Name>STA.Data.SqlServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\STA.Data\STA.Data.csproj">
+      <Project>{A216E9D1-34FD-4D98-B2C4-0B5F5E748BCE}</Project>
+      <Name>STA.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\STA.Entity\STA.Entity.csproj">
+      <Project>{1DB7F1D2-756E-428A-AF63-E283ECF4F552}</Project>
+      <Name>STA.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\STA.Event\STA.Event.csproj">
+      <Project>{ED04B524-22A9-40CD-A42E-C20E1A2B5DEA}</Project>
+      <Name>STA.Event</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\STA.Payment\STA.Payment.csproj">
+      <Project>{8F2E6235-D047-49EA-9CBB-FC9D91E1B50A}</Project>
+      <Name>STA.Payment</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\STA.Plugin\STA.Plugin.csproj">
+      <Project>{67167E9D-0655-425F-BDDA-F4978DAF8A19}</Project>
+      <Name>STA.Plugin</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

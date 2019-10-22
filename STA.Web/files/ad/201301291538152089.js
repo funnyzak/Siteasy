@@ -1,0 +1,1 @@
+﻿document.writeln("<a href=\"javascript:void(0);\" title=\"\" target=\"_blank\"><img src=\"\/files\/cimg\/IMG_0156_201306062004562968.JPG\" alt=\"\" width=\"980\" height=\"242\"\/><\/a>");

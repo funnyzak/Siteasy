@@ -1,0 +1,35 @@
+﻿<document>
+    <webMaster>{config.Adminmail}</webMaster>
+    <webSite>{weburl}/</webSite>
+    <updatePeri>{request[peri]}</updatePeri>
+    <%set (int){count}=STARequest.GetInt("count",100)%>
+    <%set (int){order}=STARequest.GetInt("order",0)%>
+    <%set (int){cache}=STARequest.GetInt("cache",0)%>
+    <%set (int){chl}=STARequest.GetInt("chl",0)%>
+    <%load_data action=content type=channel id=chl num=count fields=id,title,typeid,savepath,filename,img,seokeywords,seodescription,author,source,addtime,content order=order cache=cache%>
+    <%loop item list%>
+        <%set (int){cid}=TypeParse.StrToInt({item[id]},0)%>	
+        <%set (int){tid}=TypeParse.StrToInt({item[typeid]})%>
+        <%set (string){curl}=Urls.Content(cid,tid,{item[savepath]},{item[filename]})%>
+        <%set (string){html}=Utils.CompressHtml(Utils.RemoveHtml(item["content"].ToString())).Replace("&", "&amp;")%>	
+        <%set (string){keywords}=item["seokeywords"].ToString()==String.Empty? seokeywords:item["seokeywords"].ToString()%>
+        <%set (string){description}=item["seodescription"].ToString()==String.Empty? seodescription:item["seodescription"].ToString()%>
+        <%set (string){img}= item["img"].ToString().Trim().ToLower()%>
+        <%if img!=String.Empty&&!img.StartsWith("http")%>
+            <%set {img}=weburl+img%>
+        <%/if%>
+        <%set (string){author}=item["author"].ToString()==String.Empty?webname:{item[author]}%>
+        <%set (string){source}=item["source"].ToString()==String.Empty?webname:item["source"].ToString()%>
+    <item>
+        <link>{weburl}{curl}</link>
+        <title>{item[title]}</title>
+        <description>{description}</description>
+        <text>{html}</text>
+        <image>{img}</image>
+        <keywords>{keywords}</keywords>
+        <author>{author}</author>
+        <source>{source}</source>
+        <pubDate><%datetostr(Convert.ToDateTime({item[addtime]}), "yyyy-MM-dd HH:mm:ss")%></pubDate>
+    </item>
+    <%/loop%>
+</document>

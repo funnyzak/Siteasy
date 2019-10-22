@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>申请友链 - {webname}</title>
+<meta name="description" content="申请友链,{webname}"/>
+<meta name="keywords" content="申请友链,{webname}"/>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<link rel="shortcut icon" href="{siteurl}/favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" href="{tempurl}/css/stacms.css" type="text/css" />
+<script type="text/javascript" src="{siteurl}/sta/js/jquery.js"></script>
+</head>
+<body>          
+<div class="vt_wrapper">
+	<%include _header%>
+    <div class="votetit">
+    	<div class="left s14 cgrey">申请友情链接</div>
+        <div class="right lh25"><a href="/flink.aspx" class="s13 clightgrey normal">查看链接</a></div>
+    </div>
+    <div class="votecon">
+    <form action="" method="post">
+    <div class="vform">
+        <div class="row clearfix">
+            <div class="field left s13">链接类型：</div>
+            <div class="left radio">
+            <%sqlstring list select id,name from tbprefix_linktypes order by orderid desc%>
+            <select name="typeid">
+                <%loop item list%>
+                    <option value="{item[id]}">{item[name]}</option>
+                <%/loop%>
+            </select>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="field left s13">网站名称：</div>
+            <div class="input left">
+                <input type="text" class="txt" id="name" name="name" value="{request[name]}"/>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="field left s13">网站链接：</div>
+            <div class="input left">
+                <input type="text" class="txt" id="url" name="url" value="{request[url]}"/> <span class="clightgrey">格式如：http://www.stacms.com/ </span>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="field left s13">网站LOGO：</div>
+            <div class="input left">
+                <input type="text" class="txt" id="logo" name="logo" value="{request[logo]}"/> <span class="clightgrey">键入大小88*31的LOGO地址</span>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="field left s13">联系邮件：</div>
+            <div class="input left">
+                <input type="text" class="txt" id="email" name="email" value="{request[email]}"/>
+            </div>
+        </div>
+        <div class="row clearfix" style="height:auto;">
+            <div class="field left s13">网站描述：</div>
+            <div class="input left" style="width:750px;">
+                <textarea class="msg" name="description" id="description">{request[description]}</textarea>
+            </div>
+        </div> 
+        <%if config.Vcodemods.IndexOf("4")>=0%>
+        <div class="row clearfix">
+            <div class="field left s13">验证码：</div>
+            <div class="input left">
+                <input type="text" class="txt" id="vcode" name="vcode" style="width:100px;"/> <span><img src="{siteurl}/sta/vcode/validatecode.aspx?cookiename=staflinkreg&live=0" id="vimg" height="26" style="cursor:pointer;" /></span>
+            </div>
+        </div>
+        <%/if%>
+        <div class="row2">
+            <input type="button" id="btnsub" name="btnsub" class="com" value="提交友链" onclick="$('form').get(0).submit();"/>&nbsp;&nbsp;
+            <input type="button" id="Button1" class="com" value="重置信息" onclick="$('form').get(0).reset();"/>
+        </div>
+    </div>
+            </form>
+    </div>
+    <%include _footer%>
+</div>
+    <script type="text/javascript">
+        $("#vimg,#chgcode").click(function () { $("#vimg").attr("src", "{siteurl}/sta/vcode/validatecode.aspx?cookiename=staflinkreg&live=0&date=" + new Date()); });
+    </script>
+</body>
+</html>

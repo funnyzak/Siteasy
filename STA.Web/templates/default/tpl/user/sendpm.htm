@@ -1,0 +1,57 @@
+﻿<%include _header%>
+    <script type="text/javascript" src="{siteurl}/sta/js/formvalidator/formValidator.js"></script>
+    <script type="text/javascript" src="{siteurl}/sta/js/formvalidator/formValidatorRegex.js"></script>
+    <div class="left right-container">
+        <div class="con-box left col-1">
+            <div class="bartitle clearfix"><div class="bartit-picon left" style="background-position:-141px 0;">&nbsp;</div><h3 class="disblock left pad">撰写短消息</h3></div>
+            <div class="con-info">
+                <form name="zform" action="" method="post" id="zform">
+                <table width="100%" cellspacing="0" class="zform">
+                    <tr>
+                       <th width="10%">收信人：</th>
+                       <td><input name="msgto" type="text" id="msgto" size="30" value="{msgto}"  class="input-text"/> </td>
+                     </tr>
+                     <tr>
+                       <th>标 题：</th>
+                       <td><input name="subject" type="text" id="subject" style="width:60%;" value="{subject}"  class="input-text"/></td>
+                     </tr>  
+                     <tr>
+                       <th>内 容：</th>
+                       <td><textarea name="content"  id="content" style="width:80%;height:150px;" onkeydown="if((event.ctrlKey && event.keyCode == 13) || (event.altKey && event.keyCode == 83)) $('#zform').submit();">{message}</textarea></td>
+                     </tr>
+                     <tr>
+                       <th></th>
+                       <td>
+                       		<input name="savetosentbox" type="checkbox" id="savetosentbox" value="1"/>&nbsp;<label for="savetosentbox">保存到发件箱</label>&nbsp;&nbsp;
+							<input type="checkbox" name="emailnotify" id="emailnotify" value="1"/>&nbsp;<label for="emailnotify">Email通知对方</label>
+                       </td>
+                     </tr>
+                     <tr>
+                       <td></td>
+                       <td style="padding-top:10px;"><label>
+                         <input type="submit" name="gosubmit" id="gosubmit" value="发 送" class="button"/>
+                         </label>
+                         [可按Ctrl+Enter提交]
+                         </td>
+                     </tr>
+                   </table>
+                   </form>
+            </div>
+            <span class="o1"></span><span class="o2"></span><span class="o3"></span><span class="o4"></span>
+        </div>
+		<script type="text/javascript">
+		    $(function () {
+		        $.formValidator.initConfig({ formID: "zform", mode: "AutoTip", onError: function (msg) { } });
+		        $("#msgto").formValidator({ onShow: "请填写收信人用户名", onFocus: "请填写收信人用户名" }).inputValidator({ min: 1, max: 60, onError: "收信人不能为空" }).ajaxValidator({ type: "post", url: webconfig.webdir + "/useraction.aspx?action=sendpm&rtype=validatetouser", dataType: "html", async: "true", success: function (ret) { return ret != "0"; }, buttons: $("#gosubmit"), onError: "不能给非注册用户或自己发送消息! ", onWait: "正在验证收信人.." });
+		        $("#subject").formValidator({ onShow: "请输入标题", onFocus: "请输入60个字符以内的标题" }).inputValidator({ min: 1, max: 60, onError: "标题不能为空" });
+		        $("#content").formValidator({ onShow: "请输入内容", onFocus: "请输入内容" }).inputValidator({ min: 1, max: 999999, onError: "内容不能为空" });
+                <%if IsErr()&&ispost%>
+                $.dialog.alert("{msgtext}");
+                <%else if ispost%>
+                $.dialog.tip("{msgtext}", 1, function(){ location.href = '{siteurl}/user/sendpm.aspx'; });
+                <%/if%>
+		    })
+        </script>
+    </div>
+</div>
+<%include _footer%>

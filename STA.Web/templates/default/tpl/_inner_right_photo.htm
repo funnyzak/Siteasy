@@ -1,0 +1,40 @@
+﻿            <div class="bbar w_235">
+                <div class="tit"><a href="{Urls.Channel(chnid)}" class="cblue bold">人气图集</a></div>
+            </div>
+            <div class="bcont w_235" style="margin:0 0 6px 0;padding-bottom:6px;">
+                <div class="phtlist2">
+                    <%load_data action=content type=channel id=chnid num=5 fields=id,typeid,savepath,filename,title,img,updatetime order=3%>
+                    <%loop item list%>
+                    <%set (int){cid}=TypeParse.StrToInt({item[id]})%>
+                    <%set (int){tid}=TypeParse.StrToInt({item[typeid]})%>
+                    <%set (string){img}= {item[img]}==""?(tempurl+ "/images/random/tb" + (new Random(Guid.NewGuid().GetHashCode())).Next(1,20)  + ".jpg"):{item[img]}%>
+                    <%set (string){curl}=Urls.Content(cid,tid,{item[savepath]},{item[filename]})%>
+                    <%set (string){hutime}=ConUtils.HumanizeTime({item[updatetime]})%>
+                    <div class="phtitem2 clearfix">
+                        <div class="left"><a href="{curl}" title="{item[title]}"><img alt="{item[title]}" src="{img}" onerror="this.src='{tempurl}/images/pub/nopic.png'" width="58" height="50"/></a></div>
+                        <div class="right">
+                            <a href="{curl}" title="{item[title]}" class="cblue s13"><%getsubstring({item[title]},20,"..")%></a><br />
+                            <span class="cgrey">最后更新于 <label class="cdarkgrey">{hutime}</label></span>
+                        </div>
+                    </div>
+                    <%/loop%>  
+                  </div>
+            </div>
+            <div class="bbar w_235">
+                <div class="tit"><a href="{Urls.Channel(chnid)}" class="cblue bold">推荐图集</a></div>
+            </div>
+            <div class="bcont w_235" style="margin:0 0 6px 0;padding-bottom:6px;">
+                <div class="phtlist3">
+                    <%load_data action=content type=channel id=chnid num=2 fields=id,typeid,savepath,filename,title,img,updatetime order=2 property=r%>
+                    <%loop item list%>
+                    <%set (int){cid}=TypeParse.StrToInt({item[id]})%>
+                    <%set (int){tid}=TypeParse.StrToInt({item[typeid]})%>
+                    <%set (string){img}= {item[img]}==""?(tempurl+ "/images/random/tb" + (new Random(Guid.NewGuid().GetHashCode())).Next(1,20)  + ".jpg"):{item[img]}%>
+                    <%set (string){curl}=Urls.Content(cid,tid,{item[savepath]},{item[filename]})%>
+                    <div class="phtitem3">
+                        <div class="img"><a href="{curl}" title="{item[title]}"><img alt="{item[title]}" src="{img}" onerror="this.src='{tempurl}/images/pub/nopic.png'"/></a></div>
+                        <div class="txt"><a href="{curl}" title="{item[title]}" class="cgrey s13"><%getsubstring({item[title]},14,"")%></a></div>
+                    </div>
+                    <%/loop%>         
+                </div>
+            </div>

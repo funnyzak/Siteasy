@@ -1,0 +1,45 @@
+﻿<%include _ifnull%>
+<%csharp%>
+AddLinkRss(siteurl + "/sta/data/rss/" + id + ".xml",webname + info.Name + "RSS订阅");
+<%/csharp%>
+    <%include _header%>    
+    <div class="icontent" style="padding:3px 0 0 0;">
+        <div class="ibleft clearfix">
+            <div class="bbar w_718">
+                <div class="tit cblue location">您现在的位置：{location}</div>
+            </div>
+<%set (int){listcount}=info.Listcount<=0?config.Listinfocount:info.Listcount%>
+<%set (DataTable){datas}=null%>
+<%set (string){pageguide}=Paging(1,"id,savepath,filename,title,addtime,img,channelid,channelname,click,commentcount,content,ext_vipprice,ext_brand,ext_storage","",listcount,10,true,false,out datas)%>
+          <div class="bcont w_718" style="min-height:700px;padding:0 0 15px 0;">
+                <div class="cmlist">
+                    <%loop item datas%>
+                    <%set (int){cid}=TypeParse.StrToInt({item[id]})%>
+                    <%set (int){chid}=TypeParse.StrToInt({item[channelid]})%>
+                    <%set (int){tid}=TypeParse.StrToInt({item[typeid]})%>
+                    <%set (string){img}= {item[img]}==""?(tempurl+ "/images/random/tb" + (new Random(Guid.NewGuid().GetHashCode())).Next(1,20)  + ".jpg"):{item[img]}%>
+                    <%set (string){curl}=Urls.Content(cid,tid,{item[savepath]},{item[filename]})%>
+                    <%set (string){html}=Utils.RemoveLine(Utils.RemoveHtml(item["content"].ToString())).Replace(" ","")%>
+                	<div class="cmitem clearfix">
+                    	<div class="left">
+                        	<a href="{curl}" title="{item[title]}"><img alt="{item[title]}" src="{img}" onerror="this.src='{tempurl}/images/pub/nopic.png'" width="85" height="85" class="pad-bdr-1"/></a>
+                        </div>
+                        <span class="s14 clightgrey">[<a href="{Urls.Channel(chid)}" title="{item[channelname]}" class="s14 cgrey bold">{item[channelname]}</a>]</span> <a href="{curl}" title="{item[title]}" class="s14 cgrey bold"><%getsubstring({item[title]},100,"..")%></a>
+                        <p class="ainfo s13 clightgrey">发布日期：<label class="cgrey"><%datetostr(Convert.ToDateTime({item[addtime]}), "yyyy-MM-dd HH:mm:ss")%></label>&nbsp;&nbsp;价格：<label class="cgrey">{item[ext_vipprice]}</label>元&nbsp;&nbsp;品牌：<label class="cgrey">{item[ext_brand]}</label>&nbsp;&nbsp;人气：<label class="cgrey">{item[click]}</label></p>
+                        <p class="desc cgrey s13"><%getsubstring({html},252,"..")%> <a href="{curl}" title="{item[title]}" class="s13 cblue">查看更多>></a></p>
+                    </div>
+                    <%/loop%>
+                </div>
+                <%if pageguide!=""%>
+                <div class="pages">{pageguide}</div>
+                <%/if%>
+            </div>
+        </div>
+        <div class="sright">
+        <%set (int){chnid}=info.Id%>
+        <%set (string){chnname}=info.Name%>
+        <%include _inner_right_chnlist%> 
+        <%include _inner_right_product%>  
+        </div>
+    </div>
+	<%include _footer%>   

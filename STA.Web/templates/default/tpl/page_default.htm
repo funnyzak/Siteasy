@@ -1,0 +1,49 @@
+﻿<%csharp%>
+AddLinkCss(siteurl + "/sta/js/fancybox/jquery.fancybox.css");
+AddLinkScript(siteurl + "/sta/js/jquery.mousewheel.js");
+AddLinkScript(siteurl + "/sta/js/fancybox/jquery.fancybox.js");
+<%/csharp%>
+    <%include _header%>    
+    <div class="icontent" style="padding:3px 0 0 0;">
+        <div class="ibleft clearfix">
+            <div class="bbar w_718">
+                <%set (string){pageguide}=Paging()%>
+                <div class="tit cblue location">您现在的位置：{location}</div>
+            </div>
+            <div class="bcont w_718">
+				<div class="contit">
+                	<h1 style="text-align:center">{info.Name}</h1>
+                    <div class="summary">
+                    </div>
+                </div>
+                <div class="pcontent">
+                    {info.Content}
+                </div>
+                <%if pageguide!=""%>
+                 <div class="pages">{pageguide}</div>
+                <%/if%>
+	            <script type="text/javascript">
+	                $(".pcontent").find("img").each(function (idx, obj) {
+	                    if ($(this).width() > 680) $(this).width(660);
+	                    if ($(this).parent().attr("tagName") == "A") { return; }
+	                    $(this).removeAttr("onclick").wrap('<a rel="cimggroup" href="' + $(this).attr("src") + '" title="' + $(".contit > h1").html() + '"></a>');
+	                });
+	                $("a[rel=cimggroup]").fancybox({
+	                    helpers: {
+	                        title: {
+	                            type: 'outside'
+	                        },
+	                        overlay: {
+	                            speedIn: 500,
+	                            opacity: 0.95
+	                        }
+	                    }
+	                });
+        	</script>
+            </div>
+        </div>
+        <div class="sright">
+        <%include _inner_right_com%>   
+        </div>
+    </div>
+	<%include _footer%>   

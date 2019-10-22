@@ -1,0 +1,25 @@
+﻿<%csharp%>
+seotitle = "所有标签 | " + seotitle ;
+AddLinkScript(siteurl + "/sta/js/pagination.js");
+<%/csharp%>
+    <%include _header%>    
+    <div class="icontent" style="padding:3px 0 0 0;">
+        <div class="ibleft clearfix">
+            <div class="bbar w_718">
+                <%set {location}=location + " "+ config.Locationseparator +" 所有标签"%>
+                <div class="tit cblue location">您现在的位置：{location}</div>
+            </div>
+          <div class="bcont w_718" style="min-height:700px;padding:0 0 15px 0;">
+            <ul class="taglist">
+                <%load_data action=tag num=10000 fields=id,name,count order=2%>
+                <%loop item list%>
+                    <li><a href="{siteurl}/tags.aspx?id={item[id]}&name={item[name]}" target="_blank" title="{item[name]}" class="s14 cdarkgrey underline">{item[name]}(<span class="cred">{item[count]}</span>)</a></li>
+                <%/loop%>
+             </ul>
+          </div>
+        </div>
+        <div class="sright">
+            <%include _inner_right_com%>
+        </div>
+    </div>
+	<%include _footer%>

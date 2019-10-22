@@ -1,0 +1,134 @@
+﻿<%inherits STA.Page.PageBase%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>高级搜索 - {webname}</title>
+<meta name="description" content="高级搜索,{webname}"/>
+<meta name="keywords" content="高级搜索,{webname}"/>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<link rel="shortcut icon" href="{siteurl}/favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" href="{tempurl}/css/stacms.css" type="text/css" />
+<script type="text/javascript" src="{siteurl}/sta/js/jquery.js"></script>
+</head>
+<body>          
+<div class="vt_wrapper">
+	<%include _header%>
+    <div class="votetit">
+    	自定义高级搜索
+    </div>
+    <div class="votecon">
+    <form method="get" action="{siteurl}/search.aspx">
+    <div class="vform">
+        <div class="row clearfix">
+            <div class="field left s13">网站频道：</div>
+            <div class="left radio">
+                <%set {list}=SubChlList(0)%>
+                <select name="chlid">
+                    <option value="-1">默认</option>
+                    <%loop item list%>
+                    <option value="{item[id]}">{item[name]}</option>
+                    <%set (int){cid}=TypeParse.StrToInt({item[id]})%>
+                    <%set (DataTable){sublist}=SubChlList(cid)%>
+                    <%loop im sublist%>
+                    <option value="{im[id]}">&nbsp;&nbsp;&nbsp;&nbsp;{im[name]}</option>  
+                    <%/loop%>
+                    <%/loop%>
+                </select>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="field left s13">搜索模式：</div>
+            <div class="input left">
+                <input type="radio" name="searchtype" value="1" id="st_1" checked="checked"/><label for="st_1">标题搜索</label>
+                <input type="radio" name="searchtype" value="2" id="st_2"/><label for="st_2">智能搜索</label>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="field left s13">关键字：</div>
+            <div class="input left">
+                <input type="text" class="txt" id="query" name="query" value="{request[query]}" style="width:230px;"/>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="field left s13">内容类型：</div>
+            <div class="left radio">
+                <%set {list}=Caches.GetContypeTable(GeneralConfigs.GetConfig().Cacheinterval * 60)%>
+                <select name="typeid">
+                    <option value="-1">默认</option>
+                    <%loop item list%>
+                    <%if {item[open]}=="1"%>
+                    <option value="{item[id]}">{item[name]}</option>
+                    <%/if%>
+                    <%/loop%>
+                </select>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="field left s13">发布时间：</div>
+            <div class="left radio">
+                <select name="durday">
+                    <option value="0">默认</option>
+                    <option value="7">一周内</option>
+                    <option value="30">一个月内</option>
+                    <option value="90">三个月内</option>
+                    <option value="365">一年内</option>
+                </select>
+            </div>
+        </div> 
+        <div class="row clearfix">
+            <div class="field left s13">排序方式：</div>
+            <div class="left radio">
+                <select name="order">
+                    <option value="0">默认</option>
+                    <option value="0">发布时间</option>
+                    <option value="7">更新时间</option>
+                    <option value="3">浏览量</option>
+                    <option value="6">评论量</option>
+                </select>
+            </div>
+        </div> 
+        <div class="row clearfix">
+            <div class="field left s13">每页显示：</div>
+            <div class="left radio">
+                <select name="persize">
+                    <option value="15">默认&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+                    <option value="10">10条</option>
+                    <option value="15">15条</option>
+                    <option value="20">20条</option>
+                    <option value="30">30条</option>
+                </select>
+            </div>
+        </div> 
+        <div class="row2">
+            <input type="button" id="btnsub" name="btnsub" class="com" value="搜索"/>&nbsp;&nbsp;
+            <input type="button" id="Button1" class="com" value="重置" onclick="$('form').get(0).reset();"/>
+        </div>
+    </div>
+            </form>
+    </div>
+    <%include _footer%>
+</div>
+<script type="text/javascript">
+    var ay = ["键入关键字搜索.."];
+    function searchEvent() {
+        $( "#query").mouseover(function () {
+            $(this).val($(this).val() == ay[0] ? "" : $(this).val()).focus();
+        });
+        var gosearch = function () {
+            var v = $.trim($( "#query").val());
+            if (v.length == 0 || v == ay[0]) {
+                $("#query").select();
+                return false;
+            };
+            $("form").get(0).submit();
+        };
+        $("#btnsub").bind("click", gosearch);
+        $(document).keypress(function (event) {
+            if (event.which == '13') { gosearch(); }
+        });
+    };
+    searchEvent();
+</script>
+</body>
+</html>

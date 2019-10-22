@@ -1,0 +1,43 @@
+﻿<%include _ifnull%>
+<%csharp%>
+AddLinkRss(siteurl + "/sta/data/rss/" + id + ".xml",webname + info.Name + "RSS订阅");
+<%/csharp%>
+    <%include _header%>    
+    <div class="icontent" style="padding:3px 0 0 0;">
+        <div class="ibleft clearfix">
+            <div class="bbar w_718">
+                <div class="tit cblue location">您现在的位置：{location}</div>
+            </div>
+<%set (int){listcount}=info.Listcount<=0?config.Listinfocount:info.Listcount%>
+<%set (DataTable){datas}=null%>
+<%set (string){pageguide}=Paging(1,"id,savepath,filename,title,addtime,updatetime,img","",listcount,10,false,false,out datas)%>
+          <div class="bcont w_718" style="min-height:700px;padding:0 0 15px 0;">
+                <div class="phtlist clearfix">
+                    <%loop item datas%>
+                    <%set (int){cid}=TypeParse.StrToInt({item[id]})%>
+                    <%set (int){tid}=TypeParse.StrToInt({item[typeid]})%>
+                    <%set (string){img}= {item[img]}==""?(tempurl+ "/images/random/tb" + (new Random(Guid.NewGuid().GetHashCode())).Next(1,20)  + ".jpg"):{item[img]}%>
+                    <%set (string){curl}=Urls.Content(cid,tid,{item[savepath]},{item[filename]})%>
+                    <%set (string){hutime}=ConUtils.HumanizeTime({item[updatetime]})%>
+                	<div class="phtitem">
+                    	<div class="img">
+                        	<a href="{curl}" title="{item[title]}"><img alt="{item[title]}" src="{img}" onerror="this.src='{tempurl}/images/pub/nopic.png'" width="152" height="112"/></a>
+                        </div>
+                        <div class="txt"><a href="{curl}" title="{item[title]}" class="s13 cblue bold"><%getsubstring({item[title]},20,"..")%></a></div>
+                        <div class="time cgrey">最后更新于 <span class="cdarkgrey">{hutime}</span></div>
+                    </div>
+                    <%/loop%>
+                </div>
+                <%if pageguide!=""%>
+                <div class="pages">{pageguide}</div>
+                <%/if%>
+            </div>
+        </div>
+        <div class="sright">
+        <%set (int){chnid}=info.Id%>
+        <%set (string){chnname}=info.Name%>
+        <%include _inner_right_chnlist%>  
+        <%include _inner_right_photo%>   
+        </div>
+    </div>
+	<%include _footer%>   

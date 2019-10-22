@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{seotitle}</title>
+<meta name="description" content="{seodescription}"/>
+<meta name="keywords" content="{seokeywords}"/>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<link rel="shortcut icon" href="{siteurl}/favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" href="{tempurl}/css/stacms.css" type="text/css" />
+<script type="text/javascript" src="{siteurl}/sta/js/jquery.js"></script>
+<script type="text/javascript" src="{siteurl}/sta/js/config.js"></script>
+<script type="text/javascript" src="{siteurl}/sta/js/common.js"></script>
+</head>
+<body>
+<div class="topheader_wrap">
+    <div class="topheader2">
+        <div class="left cgrey2">
+          &nbsp;站易CMS - 让每个人都可以轻松建站！
+        </div>
+        <div class="right cblue">
+            <span class="topuserinfo" style="display:none;padding-right:10px;">您好,<script type="text/javascript">document.writeln(stauser.nickname);</script>&nbsp;<a href="{siteurl}/useraction.aspx?action=loginout" class="cgrey">[退出]</a></span><a href="{siteurl}/plus/advancedsearch.aspx" class="cblue" target="_blank">高级搜索</a>&nbsp;|&nbsp;<a href="{Urls.Sitemap()}" class="cblue" target="_blank">网站地图</a>&nbsp;|&nbsp;<a href="{siteurl}/taglist.html" class="cblue" target="_blank">TAG标签</a>&nbsp;<a href="{siteurl}/rss.html" class="cblue" target="_blank">RSS订阅</a>&nbsp;&nbsp;[<a href="javascript:setHomePage('{weburl}');" class="cblue" target="_self">设为首页</a>][<a href="javascript:addFavourite('{webname}', '{weburl}');" class="cblue" target="_self">加入收藏</a>]&nbsp;<a href="{siteurl}" class="cblue">返回首页</a> &nbsp;
+        </div>
+        <script type="text/javascript">$(".topuserinfo").css("display", $.inArray(stauser.userid, ["", "0", "-1"]) < 0 ? "" : "none");</script>
+    </div>
+</div>
+<div class="header2 clearfix">
+    <div class="logo left"><a href="{siteurl}"><img src="{tempurl}/images/logo.png" /></a></div>
+    <div class="searchbox cgrey s13 left">
+        <div class="stype">
+            <input type="radio" name="searchtype" id="searchtype-1" value="1" /> <label for="searchtype-1">标题检索</label>&nbsp;
+            <input type="radio" name="searchtype" id="searchtype-2" value="2" /> <label for="searchtype-2">智能检索</label>
+        </div>
+        <div class="sparms clearfix">
+            <div class="left iptquery"><input type="text" class="query" id="query" name="query" value="{query}" autocomplete="off"/></div>
+            <div class="left iptsch"><input type="button" class="gosearch" id="gosearch" name="gosearch"/></div>
+            <div class="left txtbtn"><a href="{siteurl}/plus/advancedsearch.aspx" class="s12 cblue">高级搜索</a></div>
+        </div>
+        <div class="ad right">
+        
+        </div>
+    </div>
+</div>
+<%set (DataTable){datas}=null%>
+<%set (int){pagecount}=0%>
+<%set (string){orderdesc}="时间"%>
+<%set (int){recordcount}=0%>
+<%set (string){pageguide}=Paging("id,savepath,filename,title,addtime,content,click,channelid,channelname",20,out datas,out pagecount,out recordcount)%>
+<%csharp%>
+switch(order)
+{
+    case 0: orderdesc = "发布时间"; break;
+    case 1: orderdesc = "ID"; break;
+    case 2: orderdesc = "权重"; break;
+    case 3: orderdesc = "点击量"; break;
+    case 4: orderdesc = "顶数"; break;
+    case 5: orderdesc = "踩数"; break;
+    case 6: orderdesc = "评论数"; break;
+    case 7: orderdesc = "更新时间"; break;
+    default: orderdesc = "时间"; break;
+}
+<%/csharp%>
+<div class="searchbar clearfix">
+    <div class="left cgrey s13">&nbsp;搜索“<strong class="cred">{query}</strong>”的网页 根据{orderdesc}排序</div>
+    <div class="right clightgrey s13">共有 <span class="cgrey">{recordcount}</span> 条结果，<span class="cgrey">{pagecount}</span> 页&nbsp;</div>
+</div>
+<div class="searchcon clearfix">
+	<div class="searchleft left">
+
+        <%if datas.Rows.Count>0 %>
+        <div class="searchlist">
+            <%loop item datas%>
+            <%set (int){cid}=TypeParse.StrToInt({item[id]})%>
+            <%set (int){channelid}=TypeParse.StrToInt({item[channelid]})%>
+            <%set (int){tid}=TypeParse.StrToInt({item[typeid]})%>
+            <%set (string){curl}= config.Withweburl==1? Urls.Content(cid,tid,{item[savepath]},{item[filename]}):(weburl+Urls.Content(cid,tid,{item[savepath]},{item[filename]}))%>
+            <%set (string){hname}=Utils.HightLightStr(Utils.GetUnicodeSubString(item["title"].ToString(),150,".."), query, "f00", false, "14")%>
+            <%set (string){html}=Utils.RemoveLine(Utils.RemoveHtml(item["content"].ToString())).Replace(" ","")%>
+            <%set {html} = Utils.GetInputAroundString(html, query.Split(' '), 100,"...")%>
+            <%set {html} = Utils.HightLightStr(html, query, "f00", false, "14")%>
+        	<div class="searchitem">
+            	<div class="tit"><a href="{curl}" target="_blank" title="{item[title]}" class="s14 bold cblue2">{hname}</a></div>
+                <div class="desc sdarkgrey s13">{html}</div>
+                <div class="summay cgrey"><a href="{curl}" target="_blank" title="{item[title]}" class="cblue3 s13"><%getsubstring({curl},46,"..")%></a>&nbsp;&nbsp;频道:<a href="<%if config.Withweburl!=1%>{weburl}<%/if%>{Urls.Channel(channelid)}" target="_blank" title="{item[channelname]}" class="cblue3">{item[channelname]}</a> 浏览量:{item[click]}&nbsp;&nbsp;发布时间:<%datetostr(Convert.ToDateTime({item[addtime]}), "yyyy-MM-dd")%></div>
+            </div>
+            <%/loop%>
+        </div>
+
+        <%else%>
+    	<div class="cdarkgrey s14" style="padding:10px 0;">
+			没有找到关于“<strong class="cred">{query}</strong>”的网页！可以试试用 <a href="http://www.baidu.com/baidu?wd={query}" target="_blank" class="cblue underline" title="百度搜索">Baidu</a> 或  <a href="https://www.google.com.hk/#hl=zh-CN&newwindow=1&safe=strict&site=&source=hp&q={query}" target="_blank" title="谷歌搜索" class="cblue underline">谷歌</a> 找一下
+        </div>
+        <%/if%>
+                
+        <%if pageguide!=""%>
+        <div class="pguide">{pageguide}</div>
+        <%/if%>
+    </div>
+    <div class="searchright right s13 cdarkgrey">
+    	用 <a href="http://www.baidu.com/baidu?wd={query}" target="_blank" class="cblue s13 underline">百度</a> 搜索一下<br/>
+        	<b>按时间筛选</b><br/>
+        	        <a class="cblue underline dd0" href="search.aspx?searchtype={searchtype}&order={order}&ordertype={ordertype}&persize={persize}&durdate=0&typeid={typeid}&chlid={chlid}&query={query}">全部</a>&nbsp;&nbsp;&nbsp;
+                    <a class="cblue underline dd7" href="search.aspx?searchtype={searchtype}&order={order}&ordertype={ordertype}&persize={persize}&durdate=7&typeid={typeid}&chlid={chlid}&query={query}">一周内</a>&nbsp;&nbsp;&nbsp;
+                    <a class="cblue underline dd30" href="search.aspx?searchtype={searchtype}&order={order}&ordertype={ordertype}&persize={persize}&durdate=30&typeid={typeid}&chlid={chlid}&query={query}">一月内</a>&nbsp;&nbsp;&nbsp;
+                    <a class="cblue underline dd90" href="search.aspx?searchtype={searchtype}&order={order}&ordertype={ordertype}&persize={persize}&durdate=90&typeid={typeid}&chlid={chlid}&query={query}">三月内</a>&nbsp;&nbsp;&nbsp;
+                    <a class="cblue underline dd365" href="search.aspx?searchtype={searchtype}&order={order}&ordertype={ordertype}&persize={persize}&durdate=365&typeid={typeid}&chlid={chlid}&query={query}">一年内</a>
+    </div>
+</div>
+<div class="search-footer cgrey">
+	 Copyright &copy; 2007-2011 <a href="http://www.stacms.com" title="站易内容管理系统" target="_blank" class="cdarkgrey">STACMS</a> 中视网维 版权所有
+</div>
+<script language="javascript" type="text/javascript">
+    var ay = ["键入关键字搜索.."];
+    function searchEvent() {
+        $("#query").mouseover(function () {
+            $(this).val($(this).val() == ay[0] ? "" : $(this).val()).focus();
+        });
+        var gosearch = function () {
+            var v = $.trim($("#query").val());
+            if (v.length == 0 || v == ay[0]) {
+                $("#query").select();
+                return false;
+            };
+            location.href = "search.aspx?searchtype=" +$("input[name='searchtype']:checked").val()+ "&persize=15&durdate=0&query=" + escape(v);
+        };
+        $("#gosearch").bind("click", gosearch);
+        $(document).keypress(function (event) {
+            if (event.which == '13') { gosearch(); }
+        });
+    };
+    searchEvent();
+    $("input[name='searchtype'][value='{searchtype}']").attr("checked", true);
+    $(".dd{durday}").addClass("bold");
+</script>
+</body>
+</html>
+<%include _translate%>

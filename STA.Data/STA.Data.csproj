@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A216E9D1-34FD-4D98-B2C4-0B5F5E748BCE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>STA.Data</RootNamespace>
+    <AssemblyName>STA.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataProvider\Actions.cs" />
+    <Compile Include="DataProvider\Connects.cs" />
+    <Compile Include="DataProvider\DataBases.cs" />
+    <Compile Include="DataProvider\Events.cs" />
+    <Compile Include="DataProvider\Mails.cs" />
+    <Compile Include="DataProvider\Tags.cs" />
+    <Compile Include="DataProvider\Contents.cs" />
+    <Compile Include="DataProvider\Users.cs" />
+    <Compile Include="DataProvider\Votes.cs" />
+    <Compile Include="DataProvider\Collects.cs" />
+    <Compile Include="DataProvider\Menus.cs" />
+    <Compile Include="DataProvider\Plugins.cs" />
+    <Compile Include="DataProvider\Selects.cs" />
+    <Compile Include="DataProvider\Plus.cs" />
+    <Compile Include="DataProvider\Shops.cs" />
+    <Compile Include="DataProvider\BanWords..cs" />
+    <Compile Include="DataProvider\PrivateMessages.cs" />
+    <Compile Include="DataProvider\Favorites.cs" />
+    <Compile Include="DbException.cs" />
+    <Compile Include="DbFields.cs" />
+    <Compile Include="DbHelper.cs" />
+    <Compile Include="DatabaseProvider.cs" />
+    <Compile Include="IDataProvider.cs" />
+    <Compile Include="IDbProvider.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\STA.Cache\STA.Cache.csproj">
+      <Project>{A3D3FD28-8D20-492C-9B04-6C53D46D1F28}</Project>
+      <Name>STA.Cache</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\STA.Common\STA.Common.csproj">
+      <Project>{28F820EB-ABC2-46DA-A3B9-E5D6E57F0B51}</Project>
+      <Name>STA.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\STA.Config\STA.Config.csproj">
+      <Project>{B4F77E92-F78D-4465-9E02-E3F3B97458DB}</Project>
+      <Name>STA.Config</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\STA.Entity\STA.Entity.csproj">
+      <Project>{1DB7F1D2-756E-428A-AF63-E283ECF4F552}</Project>
+      <Name>STA.Entity</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

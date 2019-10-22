@@ -1,0 +1,136 @@
+﻿<%include _header%>
+    <script type="text/javascript" src="{siteurl}/sta/js/jquery.tools.js"></script>
+    <script type="text/javascript" src="{siteurl}/sta/js/datepicker/WdatePicker.js"></script>
+    <script type="text/javascript" src="{siteurl}/sta/js/formvalidator/formValidator.js"></script>
+    <script type="text/javascript" src="{siteurl}/sta/js/formvalidator/formValidatorRegex.js"></script>
+    <div class="left right-container">
+        <div class="con-box left col-1">
+            <div class="bartitle clearfix"><div class="bartit-picon left" style="background-position:-47px -47px;">&nbsp;</div><h3 class="disblock left pad">个人信息维护</h3></div>
+            <div class="con-info">
+                <form name="zform" id="zform" action="" method="post">
+                <ul class="f_tab">
+                    <li class="now">基本资料</li>
+                    <li>联系方式</li>
+                </ul>				
+				<table width="100%" cellspacing="0" class="zform fill">
+					<tr>
+						<th width="100">真实姓名</th> 
+						<td><input id="realname" name="realname" value="{userfield.realname}" type="text" class="input-text" size="30" /></td>
+                        <td width="460" style="padding-top:1px;"><div id="realnameTip"></div></td>
+					</tr>
+					<tr>
+						<th>性别</th> 
+						<td>
+                        <span class="gender">
+						    <input type="radio" name="gender" id="male" value="1"<%if user.Gender==1%> checked="checked"<%/if%>/> <label for="male">男</label>&nbsp;&nbsp;
+						    <input type="radio" name="gender" id="female" value="0"<%if user.Gender==0%> checked="checked"<%/if%>/> <label for="female">女</label>
+					    </span>
+                        </td>
+                        <td></td>
+					</tr>
+					<tr>
+						<th>生日</th> 
+                        <%set (string){birthday}=user.Birthday.ToString("yyyy-MM-dd")%>
+						<td><input id="birthday" name="birthday" value="{birthday}" type="text" class="input-text" size="15" /></td>
+                        <td style="padding-top:1px;"><div id="birthdayTip"></div></td>
+					</tr>
+					<tr>
+						<th>昵称</th> 
+						<td><input id="nickname" name="nickname" value="{user.nickname}" type="text" class="input-text" size="30" /></td>
+                        <td style="padding-top:1px;"><div id="nicknameTip"></div></td>
+					</tr>
+					<tr>
+						<th>来自</th> 
+						<td><input id="areaname" name="areaname" value="{userfield.areaname}" type="text" class="input-text" size="30" /></td>
+                        <td style="padding-top:1px;"><div id="areanameTip"></div></td>
+					</tr>
+					<tr>
+						<th>身份证号</th> 
+						<td><input id="idcard" name="idcard" value="{userfield.idcard}" type="text" class="input-text" size="30" /></td>
+                        <td style="padding-top:1px;"><div id="idcardTip"></div></td>
+					</tr>
+					<tr>
+						<th>个性签名</th> 
+						<td><input id="signature" name="signature" value="{userfield.signature}" type="text" class="input-text" size="30" /></td>
+                        <td style="padding-top:1px;"><div id="signatureTip"></div></td>
+					</tr>
+
+					<tr>
+						<th>个人介绍</th> 
+						<td colspan="2"><textarea id="description" name="description" style="width:325px;height:100px;">{userfield.description}</textarea></td>
+					</tr>
+				</table>
+				<table width="100%" cellspacing="0" class="zform fill" style="display:none">
+					<tr>
+						<th width="100">个人网站</th> 
+						<td><input id="website" name="website" value="{userfield.website}" type="text" class="input-text" size="30" /></td>
+                         <td width="460" style="padding-top:1px;"><div id="websiteTip"></div></td>
+					</tr>
+					<tr>
+						<th>移动电话</th> 
+						<td><input id="mobile" name="mobile" value="{userfield.mobile}" type="text" class="input-text" size="30" /></td>
+                        <td style="padding-top:1px;"></td>
+					</tr>
+					<tr>
+						<th>办公电话</th> 
+						<td><input id="worktel" name="worktel" value="{userfield.worktel}" type="text" class="input-text" size="30" /></td>
+                        <td style="padding-top:1px;"></td>
+					</tr>
+					<tr>
+						<th>家庭电话</th> 
+						<td><input id="hometel" name="hometel" value="{userfield.hometel}" type="text" class="input-text" size="30" /></td>
+                        <td style="padding-top:1px;"></td>
+					</tr>
+					<tr>
+						<th>邮政编码</th> 
+						<td><input id="postcode" name="postcode" value="{userfield.postcode}" type="text" class="input-text" size="30" /></td>
+                        <td style="padding-top:1px;"></td>
+					</tr>
+					<tr>
+						<th>联系地址</th> 
+						<td><input id="address" name="address" value="{userfield.address}" type="text" class="input-text" size="30" /></td>
+                        <td style="padding-top:1px;"></td>
+					</tr>
+					<tr>
+						<th>QQ</th> 
+						<td><input id="qq" name="qq" value="{userfield.qq}" type="text" class="input-text" size="30" /></td>
+                        <td style="padding-top:1px;"></td>
+					</tr>
+					<tr>
+						<th>ICQ</th> 
+						<td><input id="icq" name="icq" value="{userfield.icq}" type="text" class="input-text" size="30" /></td>
+                        <td style="padding-top:1px;"></td>
+					</tr>
+					<tr>
+						<th width="100">SKYPE</th> 
+						<td><input id="skype" name="skype" value="{userfield.skype}" type="text" class="input-text" size="30" /></td>
+                        <td style="padding-top:1px;"></td>
+					</tr>
+				</table>
+				<table width="100%" cellspacing="0" class="zform">
+					<tr>
+                    	<th width="100"></th>
+						<td style="padding-top:10px;"><input name="saveprofile" type="submit" id="saveprofile" value="提交" class="button"/></td>
+					</tr>
+				</table>
+                </form>
+            </div>
+            <span class="o1"></span><span class="o2"></span><span class="o3"></span><span class="o4"></span>
+        </div>
+		<script type="text/javascript">
+		    $(function () {
+		        $("#realname").focus();
+		        $(".f_tab").tabs(".fill", { event: 'click', current: 'now' });
+
+		        $.formValidator.initConfig({ formID: "zform", mode: "FixTip", onError: function (msg) { }, onSuccess: function () { saveProfileForm('#zform'); return false; } });
+		        $("#birthday").click(function () { WdatePicker({ isShowWeek: true, dateFmt: 'yyyy-MM-dd', startDate: '1980-01-01', minDate: '1900-01-01', maxDate: '2017-1-1' }) }).formValidator({ onShow: "输入的出生日期", onFocus: "输入的出生日期", onCorrect: "输入的日期合法" }).inputValidator({ min: "1900-01-01", max: "2018-12-31", type: "date", onerror: "日期必须在\"1900-01-01\"和\"2018-12-31\"之间" }); ;
+		        $("#realname").formValidator({ onShow: "输入您的真实姓名", onFocus: "输入您的真实姓名" }).inputValidator({ min: 1, max: 20, onError: "真实姓名不能为空" });
+		        $("#nickname").formValidator({ onShow: "给自己起一个昵称", onFocus: "给自己起一个昵称" }).inputValidator({ min: 1, max: 20, onError: "昵称不能为空" });
+		        $("#areaname").formValidator({ onFocus: "输入地名" }).inputValidator({ min: 1, max: 20, onError: "好想知道你来自哪里" });
+		        $("#signature").formValidator({ onShow: "一句话的个性签名", onFocus: "一句话的个性签名，控制在20个字符以内" }).inputValidator({type:"size", min: 1, max: 30, onError: "请正确设置个性签名" });
+		        $("#website").formValidator({ onShow: "输入个人网站的访问地址", onFocus: "输入个人网站的访问地址" });
+		    });
+        </script>
+    </div>
+</div>
+<%include _footer%>

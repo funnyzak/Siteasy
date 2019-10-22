@@ -1,0 +1,12 @@
+﻿    <div class="header">
+    	<div class="left">
+            <a href="{siteurl}"  title="{webname}" target="_self"><img title="{webname}" src="{tempurl}/images/logo.png" /></a>
+        </div>
+        <div class="right cgrey">
+            <%if userid>0%>
+                您好,<a href="{siteurl}/user/">{oluser.Nickname}</a>&nbsp;&nbsp;<a href="{siteurl}/user/">个人中心</a>&nbsp;|&nbsp;<a href="{siteurl}/user/profile.aspx">我的资料</a>&nbsp;|&nbsp;<a href="{siteurl}/useraction.aspx?action=loginout">退出登录</a>
+            <%else%>
+                欢迎来到{webname}, 您可以&nbsp;<a href="{siteurl}/login.aspx?returnurl=<%urlencode(cururl)%>">登录</a>&nbsp;或&nbsp;<a href="{siteurl}/register.aspx">注册</a>
+            <%/if%>
+        </div>
+    </div>

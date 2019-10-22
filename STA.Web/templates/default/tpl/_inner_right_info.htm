@@ -1,0 +1,30 @@
+﻿            <div class="bbar w_235">
+                <div class="tit"><a href="#" class="cblue bold">热门信息</a></div>
+            </div>
+            <div class="bcont w_235" style="margin:0 0 6px 0;padding-bottom:6px;">
+                <ul class="l235">
+                    <%load_data action=content type=channel ctype=5 ext=info num=10 fields=id,savepath,filename,color,property,title,ext_infotype order=3%>
+                    <%loop item list%>
+                    <%set (int){cid}=TypeParse.StrToInt({item[id]})%>
+                    <%set (int){tid}=TypeParse.StrToInt({item[typeid]})%>
+                    <%set (string){curl}=Urls.Content(cid,tid,{item[savepath]},{item[filename]})%>
+                    <%set (string){title}=TitleFormat({item[title]},{item[property]},(item["color"].ToString().Trim() == "000000"? defcolor: {item[color]}),24,"..")%>	
+                    <li><span class="cblue s13" val="{item[ext_infotype]}"></span><a href="{curl}" tilte="{item[title]}">{title}</a></li>
+                    <%/loop%>  
+                </ul>
+            </div>
+            <div class="bbar w_235">
+                <div class="tit"><a href="#" class="cblue bold">推荐信息</a></div>
+            </div>
+            <div class="bcont w_235" style="margin:0 0 6px 0;padding-bottom:6px;">
+                <ul class="l235">
+                    <%load_data action=content type=channel ctype=5 ext=info num=9 fields=id,savepath,filename,color,property,title,ext_infotype order=2 property=r%>
+                    <%loop item list%>
+                    <%set (int){cid}=TypeParse.StrToInt({item[id]})%>
+                    <%set (int){tid}=TypeParse.StrToInt({item[typeid]})%>
+                    <%set (string){curl}=Urls.Content(cid,tid,{item[savepath]},{item[filename]})%>
+                    <%set (string){title}=TitleFormat({item[title]},{item[property]},(item["color"].ToString().Trim() == "000000"? defcolor: {item[color]}),24,"..")%>	
+                    <li><span class="cblue s13" val="{item[ext_infotype]}"></span><a href="{curl}" tilte="{item[title]}">{title}</a></li>
+                    <%/loop%>         
+                </ul>
+            </div>

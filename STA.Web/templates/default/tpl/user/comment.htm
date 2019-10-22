@@ -1,0 +1,62 @@
+﻿<%include _header%>
+    <div class="left right-container">
+    	<div class="con-box left col-1">
+        	<div class="bartitle clearfix"><div class="bartit-picon left" style="background-position:-141px -0;">&nbsp;</div><h3 class="disblock left pad">我发表的评论</h3></div>
+            <div class="con-info">
+                <%set (int){page}=STARequest.GetQueryInt("page",1)%>
+                <%set (int){pagecount}=0%>
+                <%set (int){recordcount}=0%>
+                <%set (DataTable){clist}=Contents.GetCommentDataPage("id,cid,ctype,contitle,addtime,status,diggcount,stampcount,msg","",page,5, Contents.GetCommentSearchCondition(-1,0,0,username,"","","", "",""),out pagecount,out recordcount)%>
+                <form name="zform" id="zform" action="" method="post">
+                    <%if clist.Rows.Count<=0%>
+                    <div class="zerotable">您还没有发表过任何评论</div>
+                    <%else%>
+                     <table width="100%" cellspacing="0"  class="list">
+                        <thead>
+                            <tr>
+                            <th width="3%"></th>
+                            <th width="40%">回复相关内容</th>
+                            <th width="15%">顶/踩</th>
+                            <th width="15%">评论时间</th>
+                            <th width="5%"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%loop item clist%>
+                            <%set (int){cid}=TypeParse.StrToInt({item[cid]})%>
+                            <tr>
+                                <td width="3%" align="left"><img src="{tempurl}/images/pub/folder_old.gif" alt="{item[contitle]}"/></td>
+                                <td width="40%" align="left"><a href="{siteurl}/comment.aspx?id={cid}" title="{item[contitle]}" target="_blank" class="cblue"><%getsubstring({item[contitle]},54,"..")%></a></td>
+                                <td width="15%" align="center">{item[diggcount]}/{item[stampcount]}</td>
+                                <td width="15%" align="center"><span class="posttime cgrey" title="<%datetostr(Convert.ToDateTime({item[addtime]}), "yyyy-MM-dd HH:mm:ss")%>"></span></td>
+                                <td width="3%" align="center" class="cblue"><a href="javascript:;" onclick="delComment({item[id]},{item[ctype]})" class="cblue">删除</a>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <%set (string){msg}=Utils.StrFormat({item[msg]})%>
+                                <td colspan="5" align="left">
+                                {msg}
+                                </td>
+                            </tr>
+                            <%/loop%>
+                        </tbody>
+                    </table>
+		            <script type="text/javascript">
+		                $(function () {
+		                    $("table.list tr:even").css({ "background-color": "#f8f8f8" });
+		                    $("span.posttime").timeago();
+		                });
+                    </script>
+                    <%/if%>
+                    <%if pagecount>1%>
+                    <%set (string){pagenumbers}=PageNumber(siteurl+"/user/comment.aspx",siteurl+"/user/comment.aspx?page=@page",page,pagecount,recordcount,7, false).ToString()%>
+                    <div class="pages">
+                        {pagenumbers}
+                    </div>
+                    <%/if%>
+                </form> 
+            </div>
+        	<span class="o1"></span><span class="o2"></span><span class="o3"></span><span class="o4"></span>
+        </div>
+    </div>
+</div>
+<%include _footer%>

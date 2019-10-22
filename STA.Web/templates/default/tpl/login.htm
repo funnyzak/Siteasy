@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>用户登录 - {webname}</title>
+<meta name="description" content="{seodescription}"/>
+<meta name="keywords" content="{seokeywords}"/>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<link rel="shortcut icon" href="{siteurl}/favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" href="{tempurl}/css/stacms.css" type="text/css" />{link}
+<script type="text/javascript" src="{siteurl}/sta/js/jquery.js"></script>
+<script type="text/javascript" src="{siteurl}/sta/js/config.js"></script>
+<script type="text/javascript" src="{siteurl}/sta/js/common.js"></script>{script}
+</head>
+<body class="bg_grey">
+<div class="wrapper">
+    <div class="topheader_wrap">
+        <div class="topheader">
+            <div class="left">
+                <div class="fav"><a href="javascript:;" onclick="addFavourite('{webname}','{weburl}/')" class="cgrey">收藏{webname}</a></div>
+            </div>
+            <div class="right">
+                <a href="#" class="cgrey">帮助</a>&nbsp;<a href="{siteurl}/login.aspx" class="cgrey">登录</a>&nbsp;<a href="{siteurl}/register.aspx" class="cgrey">注册</a>&nbsp;<a href="{siteurl}" class="cgrey">网站首页</a>
+            </div>
+        </div>
+    </div>
+    <div class="header">
+        <div class="logo"><a href="{siteurl}"><img src="{tempurl}/images/logo.png" /></a></div>
+    </div>
+	<div class="icont">
+    	<div class="con_bar_1 con_bar_2">
+        	<div class="tit left s14">欢迎登录{webname}网站！</div>
+        </div>
+        <div class="con_body">
+        	<div class="lgn_box clearfix">
+                <div class="lgn_left">
+                    <div class="fwrongtip2 cred" style="display:none;">
+                    </div>
+                    <form action="" method="post">
+                    <div class="row clearfix">
+                        <div class="field left s14">用户名：</div>
+                        <div class="input left">
+                            <input type="text" class="greyipt" id="username" name="username" value="{request[username]}"/>
+                        </div>
+                    </div>
+                    <div class="row clearfix" style="padding-bottom:0;">
+                        <div class="field left s14">密&nbsp;&nbsp;码：</div>
+                        <div class="input left">
+                            <input type="password" class="greyipt" id="password" name="password" value="{request[password]}"/>
+                        </div>
+                        <div class="left" style="padding:4px 0 0 15px;">
+                        	<a href="forgetpassword.aspx" class="s13 cblue2">忘记密码啦?</a>
+                        </div>
+                    </div>
+                    <%if config.Vcodemods.IndexOf("2")>=0%>
+                    <div class="row clearfix" style="padding-bottom:10px;padding-top:27px;">
+                        <div class="field left s14">验证码：</div>
+                        <div class="input left" style="width:90px;">
+                            <input type="text" class="greyipt" style="width:70px;" id="vcode" name="vcode"/>
+                        </div>
+                        <div class="vcode left">
+                            <img src="sta/vcode/vcode.aspx?cookiename=userlogin&num=5&live=0" id="vimg" height="26" style="cursor:pointer;" />
+                        </div>
+                        <div class="changevcode left">
+                        看不清,<a href="javascript:;" id="chgcode" class="cblue2 underline">换一张</a>
+                        </div>
+                    </div>
+                    <script type="text/javascript">
+                        $("#vimg,#chgcode").click(function () { $("#vimg").attr("src", "../sta/vcode/vcode.aspx?cookiename=userlogin&num=5&live=0&date=" + new Date()); });
+                    </script>
+                    <%/if%>
+                    <div class="row2">
+                        <input type="checkbox" checked="checked" name="expires" id="expires" value="999999"/> <label for="expires" title="选择后用户将自动登录">记住我</label>
+                    </div>
+                    <div class="row2">
+						<input type="button" id="btnlogin" name="btnlogin" class="btnlogin" value="" onclick="SubLoginForm()"/>
+                    </div>
+                    </form>
+                </div>
+                <div class="lgn_right">
+                	<div><strong>还不本站用户？</strong><br />
+                    本站的账号都没有？你也太落伍了赶紧去注册一个吧。</div>
+                    <div class="reg">
+                    	<input type="button" value="" class="reg" onclick="location.href='register.aspx';" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+    	<div class="left"> Copyright &copy; 2007-2011 <a href="http://www.stacms.com" title="站易内容管理系统" target="_blank" class="cdarkgrey">STACMS</a> 中视网维 版权所有</div>
+        <div class="right" id="time"></div>
+    </div>
+</div>
+<script language="javascript" type="text/javascript">
+    window.onload = function () {
+        setInterval("document.getElementById('time').innerHTML=new Date().toLocaleString()+' 星期'+'日一二三四五六'.charAt(new Date().getDay());", 1000);
+    };
+
+    function Errtip(msg){
+        $(".fwrongtip2").html(msg).css("display","block");
+        setTimeout("$('.fwrongtip2').css('display','none')",3000);
+    };
+
+    function SubLoginForm() { 
+        var username = $("#username").val(), pwd = $("#password").val();
+        if(username == '' || pwd== ''){
+            Errtip("用户名或密码不能为空！");
+        }else if($("#vcode") && $("#vcode").val() == ''){
+            Errtip("请填写验证码！");
+        }else{
+            $("form").get(0).submit();
+        }
+    };
+
+	$(document).keypress(function (event) {
+        if (event.which == '13') { SubLoginForm(); }
+    });
+
+    <%if IsErr()&&ispost%>
+    Errtip("{msgtext}");
+    <%/if%>
+</script>
+<%if ispost&&!IsErr()%>
+    <%if config.Thirducenter==1%>
+    <%set (string){ucenterlogin}=STA.Core.Api.UCenter.UserSynlogin(STA.Core.Api.UCenter.UserLogin(username, password))%>
+    {ucenterlogin}
+    <%/if%>
+<%/if%>
+<%if userid>0||(ispost&&!IsErr())%>
+<script type="text/javascript">
+    <%set {returnurl}=returnurl!=""?returnurl :"user/"%>
+    setTimeout(function () { location.href = "{returnurl}"; }, 200);
+</script>
+<%/if%>
+</body>
+</html>

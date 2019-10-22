@@ -1,0 +1,162 @@
+﻿<%include _ifnull%>
+<%csharp%>
+AddLinkRss(siteurl + "/sta/data/rss/" + id + ".xml",webname + info.Name + "RSS订阅");
+AddLinkScript(siteurl + "/sta/js/myfocus/myfocus.js");
+<%/csharp%>
+	<%include _header%>    
+    <div class="icontent" style="padding:3px 0 0 0;">
+        <div class="ibleft clearfix">
+    	<div class="itop" style="height:190px;padding:0 0 7px;">
+        	<div class="slide left">
+               <div id="topslide" style="visibility:hidden">
+                  <div class="loading"><span>请稍候...</span></div>
+                  <ul class="pic">
+                    <%load_data action=content type=channel id=id num=7 fields=id,typeid,savepath,filename,title,img order=2 property=f%>
+                    <%loop item list%>
+                    <%set (int){cid}=TypeParse.StrToInt({item[id]})%>
+                    <%set (int){tid}=TypeParse.StrToInt({item[typeid]})%>
+                    <%set (string){img}= {item[img]}==""?(tempurl+ "/images/random/tb" + (new Random(Guid.NewGuid().GetHashCode())).Next(1,20)  + ".jpg"):{item[img]}%>
+                    <%set (string){curl}=Urls.Content(cid,tid,{item[savepath]},{item[filename]})%>
+                     <li><a href="{curl}" target="_blank"><img alt="{item[title]}" text="" width="273" height="188" src="{img}"/></a></li> 
+                    <%/loop%>       
+                  </ul>
+                </div>
+            </div>
+            <script type="text/javascript">
+                $('#topslide').myFocus({ pattern: 'mF_classicHB', time: 5, width: 273, auto: true, height: 188, delay: 0, trigger: "mouseover" });
+            </script>
+            <div class="left">
+                <div class="bbar" style="width:434px;">
+                    <div class="tit"><a href="{Urls.Channel(id)}" class="cblue bold">头条推荐</a></div>
+                    <div class="more"><a href="{Urls.Channel(id)}" class="s12 clightgrey">更多>></a></div>
+                </div>
+                <div class="cntbox" style="height:163px;border-top:0;">
+                    <div class="topcons">
+                         <div class="onecon">   
+                        <%load_data action=content type=channel id=id num=1 fields=id,typeid,savepath,filename,subtitle,title,seodescription order=2 property=h%>
+                        <%loop item list%>
+                        <%set (int){cid}=TypeParse.StrToInt({item[id]})%>
+                        <%set (int){tid}=TypeParse.StrToInt({item[typeid]})%>
+                        <%set (string){curl}=Urls.Content(cid,tid,{item[savepath]},{item[filename]})%>
+                            <h2><a href="{curl}" class="s18 bold cdarkgrey">{item[subtitle]}</a></h2>
+                            <p class="cgrey"><%getsubstring({item[seodescription]},110,"..")%><a class="cblue" href="{curl}" target="_blank">[查看全文]</a></p>
+                        <%/loop%>    
+                         </div>
+                    </div>
+                    <div class="lastest">&nbsp;</div>
+                    <ul class="ulast">
+                        <%load_data action=content type=channel id=id num=4 fields=id,typeid,savepath,filename,color,property,title order=0%>
+                        <%loop item list%>
+                        <%set (int){cid}=TypeParse.StrToInt({item[id]})%>
+                        <%set (int){tid}=TypeParse.StrToInt({item[typeid]})%>
+                        <%set (string){curl}=Urls.Content(cid,tid,{item[savepath]},{item[filename]})%>
+                        <%set (string){title}=TitleFormat({item[title]},{item[property]},(item["color"].ToString().Trim() == "000000"? defcolor: {item[color]}),24,"..")%>	
+                        <li class="middot"><a href="{curl}" tilte="{item[title]}">{title}</a></li>
+                        <%/loop%>  
+                   </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="ibleft clearfix">
+            <div class="iclist-718">
+            	<div class="bbar w_718">
+                	<div class="tit"><a href="{Urls.Channel(id)}" class="cblue bold">图文特荐</a></div>
+                    <div class="more"><a href="{Urls.Channel(id)}" class="s12 clightgrey">更多>></a></div>
+                </div>
+                <div class="bcont w_718" style="height:auto;">
+                 	<div class="pslide">
+                    	<div class="scrollable">
+                        <div class="items">
+                        <div class="pslide-con">
+                        <%load_data action=content type=channel id=id num=28 fields=id,typeid,savepath,filename,color,property,title,img order=2 property=a%>
+                        <%loop item list%>
+                        <%set (int){cid}=TypeParse.StrToInt({item[id]})%>
+                        <%set (int){tid}=TypeParse.StrToInt({item[typeid]})%>
+                        <%set (string){img}= {item[img]}==""?(tempurl+ "/images/random/tb" + (new Random(Guid.NewGuid().GetHashCode())).Next(1,20)  + ".jpg"):{item[img]}%>
+                        <%set (string){curl}=Urls.Content(cid,tid,{item[savepath]},{item[filename]})%>
+                        <%set (string){title}=TitleFormat({item[title]},{item[property]},(item["color"].ToString().Trim() == "000000"? defcolor: {item[color]}),20,"..")%>	
+                        	<ul>
+                            	<li class="m"><a href="{curl}" title="{item[title]}" target="_blank"><img src="{img}" onerror="this.src='{tempurl}/images/pub/nopic.png'" alt="{item[title]}"/></a></li>
+                                <li class="t"><a href="{curl}" title="{item[title]}" target="_blank">{title}</a></li>
+                            </ul>
+                        <%if item__loop__id%4==0&&item__loop__id!=list.Rows.Count%>
+                        </div><div class="pslide-con">
+                        <%/if%>
+                        <%/loop%>
+                        </div>
+                     	</div>
+                        </div>
+                        <div class="lbtn">&nbsp;</div>
+                        <div class="rbtn">&nbsp;</div>
+						<script type="text/javascript">
+						    $(".scrollable").scrollable({ next: ".lbtn", prev: ".rbtn", circular: true, speed: 700 });
+                        </script>
+                    </div>
+                </div>
+            </div>
+            <%load_data action=channel id=info.Id num=30 fields=id,name order=2%>
+            <%loop citem list%>
+            <%set (int){chid}=TypeParse.StrToInt({citem[id]})%>
+            <%if citem__loop__id%2==1%>
+        	<div class="iclist" style="margin-right:6px;">
+            <%else%>
+            <div class="iclist">
+            <%/if%>
+            	<div class="bbar w_356">
+                	<div class="tit"><a href="{Urls.Channel(chid)}" class="cblue bold">{citem[name]}</a></div>
+                    <div class="more"><a href="{Urls.Channel(chid)}" target="_blank" class="s12 clightgrey">更多>></a></div>
+                </div>
+                <div class="bcont w_356" style="height:226px;">
+                	<ul class="l356">
+                        <%load_data action=content type=channel id=chid num=8 fields=id,typeid,savepath,filename,color,property,title,addtime order=0%>
+                        <%loop item list%>
+                        <%set (int){cid}=TypeParse.StrToInt({item[id]})%>
+                        <%set (int){tid}=TypeParse.StrToInt({item[typeid]})%>
+                        <%set (string){curl}=Urls.Content(cid,tid,{item[savepath]},{item[filename]})%>
+                        <%set (string){title}=TitleFormat({item[title]},{item[property]},(item["color"].ToString().Trim() == "000000"? defcolor: {item[color]}),34,"..")%>	
+                        <li class="middot"><span class="left"><a href="{curl}" target="_blank" title="{item[title]}">{title}</a></span><span class="right cgrey"><%datetostr(Convert.ToDateTime({item[addtime]}), "MM-dd")%></span></li>
+                        <%/loop%>  
+                    </ul>
+                </div>
+            </div>
+            <%/loop%>
+        </div>
+        </div>
+        <div class="sright">
+        <%set (int){chnid}=info.Id%>
+        <%set (string){chnname}=info.Name%>
+ 
+            <div class="bbar w_235">
+                <div class="tit"><a href="{Urls.Channel(chnid)}" class="cblue bold">人气排行榜</a></div>
+            </div>
+            <div class="bcont w_235" style="margin:0 0 6px 0;padding-bottom:6px;">
+                <ul class="l235">
+                    <%load_data action=content type=channel id=chnid num=12 fields=id,typeid,savepath,filename,color,property,title order=3%>
+                    <%loop item list%>
+                    <%set (int){cid}=TypeParse.StrToInt({item[id]})%>
+                    <%set (int){tid}=TypeParse.StrToInt({item[typeid]})%>
+                    <%set (string){curl}=Urls.Content(cid,tid,{item[savepath]},{item[filename]})%>
+                    <%set (string){title}=TitleFormat({item[title]},{item[property]},(item["color"].ToString().Trim() == "000000"? defcolor: {item[color]}),30,"..")%>	
+                    <li><a href="{curl}" tilte="{item[title]}">{title}</a></li>
+                    <%/loop%>  
+                </ul>
+            </div>
+            <div class="bbar w_235">
+                <div class="tit"><a href="{Urls.Channel(chnid)}" class="cblue bold">编辑推荐</a></div>
+            </div>
+            <div class="bcont w_235" style="margin:0 0 6px 0;padding-bottom:6px;">
+                <ul class="l235">
+                    <%load_data action=content type=channel id=chnid num=12 fields=id,typeid,savepath,filename,color,property,title order=0 property=r%>
+                    <%loop item list%>
+                    <%set (int){cid}=TypeParse.StrToInt({item[id]})%>
+                    <%set (int){tid}=TypeParse.StrToInt({item[typeid]})%>
+                    <%set (string){curl}=Urls.Content(cid,tid,{item[savepath]},{item[filename]})%>
+                    <%set (string){title}=TitleFormat({item[title]},{item[property]},(item["color"].ToString().Trim() == "000000"? defcolor: {item[color]}),30,"..")%>	
+                    <li><a href="{curl}" tilte="{item[title]}">{title}</a></li>
+                    <%/loop%>  
+                </ul>
+            </div>
+        </div>
+    </div>
+	<%include _footer%>   

@@ -1,0 +1,66 @@
+﻿<%include _header%>
+    <div class="left right-container">
+    	<div class="con-box left col-1">
+        	<div class="bartitle clearfix"><div class="bartit-picon left" style="background-position:-235px -0;">&nbsp;</div><h3 class="disblock left pad">我上传的附件</h3></div>
+            <div class="con-info">
+                <%set (int){page}=STARequest.GetQueryInt("page",1)%>
+                <%set (int){pagecount}=0%>
+                <%set (int){recordcount}=0%>
+                <%set (DataTable){flist}=Contents.GetAttachmentDataPage("id,addtime,filename,description,filetype,fileext,filesize,attachment,downloads", page, 9, Contents.GetAttachSearchCondition("", "", username, "", -1, -1, ""), out pagecount, out recordcount);%>
+                <form name="zform" id="zform" action="" method="post">
+                    <%if flist.Rows.Count<=0%>
+                    <div class="zerotable">您还没有上传任何附件</div>
+                    <%else%>
+                     <table width="100%" cellspacing="0"  class="list">
+                        <thead>
+                            <tr>
+                            <th width="5%"><input type="checkbox" value="" id="check_box" onclick="checkAll(this.form,this.checked);"/></th>
+                            <th width="35%">名称</th>
+                            <th width="13%">类型</th>
+                            <th width="9%">大小</th>
+                            <th width="15%">上传时间</th>
+                            <th width="8%">下载次数</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%loop item flist%>
+                            <tr>
+                                <td width="5%" align="center"><input type="checkbox" name="cbid" value="{item[id]}" onclick="checkedEnabledButton(this.form, 'cbid', 'btndelete')"/></td>
+                                <td width="35%" align="left"><a href="{siteurl}{item[filename]}" title="{item[attachment]}" target="_blank" class="cblue"><%getsubstring({item[attachment]},56,"..")%></a></td>
+                                <td width="7%" align="center" class="filetype" ftype="{item[fileext]}">{item[fileext]}</td>
+                                <td width="7%" align="center" rel="fsize">{item[filesize]}</td>
+                                <td width="15%" align="center"><span class="posttime cgrey" title="<%datetostr(Convert.ToDateTime({item[addtime]}), "yyyy-MM-dd HH:mm:ss")%>"></span></td>
+                                <td width="7%" align="center">{item[downloads]}</td>
+                            </tr>
+                            <%/loop%>
+                        </tbody>
+                    </table>
+                	<div class="btn-manage">
+                    	<input name="btndelete" id="btndelete" type="button" class="button" value="删除选中" onclick="delAtts(getCbCheckedVals(),'{siteurl}/user/attachs.aspx')" disabled="disabled"/>&nbsp;
+                    </div> 
+		            <script type="text/javascript">
+		                $(function () {
+		                    $("table.list tr:even").css({ "background-color": "#f8f8f8" });
+		                    $("span.posttime").timeago();
+		                    $(".filetype").each(function () { $(this).html(getFileExtStr($(this).attr("ftype")) + " [" + $(this).attr("ftype") + "]"); });
+		                    $("td[rel=fsize]").each(function (idx) { $(this).html(convertSize(parseInt($(this).html()))); });
+		                });
+		                function checkAll(form, checked) {
+		                    checkByName(form, 'cbid', checked);
+		                    checkedEnabledButton(form, 'cbid', 'btndelete')
+		                };
+                    </script>
+                    <%/if%>
+                    <%if pagecount>1%>
+                    <%set (string){pagenumbers}=PageNumber(siteurl+"/user/attachs.aspx",siteurl+"/user/attachs.aspx?page=@page",page,pagecount,recordcount,7, false).ToString()%>
+                    <div class="pages">
+                        {pagenumbers}
+                    </div>
+                    <%/if%>
+                </form> 
+            </div>
+        	<span class="o1"></span><span class="o2"></span><span class="o3"></span><span class="o4"></span>
+        </div>
+    </div>
+</div>
+<%include _footer%>

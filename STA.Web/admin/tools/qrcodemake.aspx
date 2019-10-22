@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="qrcodemake.aspx.cs" Inherits="STA.Web.Admin.Tools.qrcodemake" %>

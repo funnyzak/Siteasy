@@ -1,0 +1,62 @@
+﻿/*reset*/
+*{ margin:0;padding:0;word-break: break-all;}
+*html{overflow-x:hidden;}
+body{padding:0;margin:0;text-align:left;background:#fff;}
+html,body{height:100%;background-color:#FFF;;font:"宋体";}
+html,body,div,p,ul,ol,li{font-family:宋体;font-size:12px;line-height:160%;margin:0;padding:0}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,img{margin:0;padding:0}
+table{border-collapse:collapse;border-spacing:0;width:100%;}
+h1,h2,h3,h4,h5,h6,strong{font-weight:700}
+p{text-indent:30px}
+h1{font-size:26px}
+h2{font-size:14px;font-weight:700;text-transform:uppercase}
+h3{font-size:18px;font-weight:400}
+em{font-style:italic}
+th,td{border:0;padding:0}
+th{font-weight:700;text-align:center}
+caption{margin-bottom:.5em;text-align:center}
+p,fieldset,table,pre{margin-bottom:10px}
+p{ text-indent:0;}
+ul,ol{list-style-type:none;}
+select,input,img{vertical-align:middle;}
+a:link,a:visited,a:hover,a:active{text-decoration:none;font-size:12px}
+a:hover{text-decoration:underline}
+sup{vertical-align:text-top}
+sub{vertical-align:text-bottom}
+fieldset,img,a img{border:0}
+table{font-size:12px;font-family:Tahoma;}
+td{padding:5px 0;}
+/*global*/
+.left{float:left;}
+.right{float:right;}
+.darkgrey{color:#333;}
+.lightgrey{color:#666;}
+.margin-top20{margin-top:20px;}
+.bold,a.bold:link,a.bold:visited,a.bold:hover,a.bold:active{font-weight:bold;}
+div.push-left-20{padding-left:20px;}
+div.push-left-23{padding-left:23px;}
+div.push-td-10{padding:10px 0;}
+div.push-td-20{padding:20px 0;}
+div.inner-pad-1{padding:5px 0 0 5px;*padding:5px 0 0 1px;display:block;}
+div.inner-pad-2{padding:5px 0 0 0;}
+div.inner-pad-3{padding:0 5px; text-align:left;}
+.underline,a.underline:link,a.underline:visited,a.underline:hover,a.underline:active{text-decoration:underline;}
+/*color*/
+.red,.red:link,.red:visited,.red:hover,.red:active{color:#ff0000;}
+.grey,.grey:link,.grey:visitd,.grey:hover,.grey:active{color:#ccc;}
+
+/*login*/
+#loginpanel{width:635px;height:356px;background:url(../images/loginbg.gif) no-repeat left top;position: absolute; left:50%; top:50%;margin-top:-178px;margin-left:-324px;text-align:left;}
+#loginpanel #inputpanel{width:420px;height:180px;margin:70px 0 0 130px;}
+#loginpanel .row{height:40px; line-height:36px;padding-left:37px;}
+#loginpanel label{padding:3px 5px 0 0;width:100px; font-size:14px;font-weight:bold;color:#6f6e6e;}
+#loginpanel .row #vimg{margin:0 0 0 17px;}
+#loginpanel #copyright{margin:17px 0 0 100px;border-top:1px solid #e3e3e3;width:430px;padding:5px 0 0 0;text-align:center;font-size:12px;color:#9a9898;}
+#loginpanel input.loginbtn{background:url(../images/loginbtn.gif) no-repeat -15px -13px;border:none;width:95px;height:34px;cursor:pointer;}
+
+#footer{width:99%;padding:0 1% 0 0;text-align:center; padding:60px 0 20px 0;}
+
+/*textbox button*/
+input.txt,input.txt_focus,textarea.txt,textarea.txt_focus{background:#fff;width:270px;border:1px solid #b4b4b4;border-bottom:1px solid #e3e3e3;border-right:1px solid #e3e3e3; padding:2px 2px 3px 2px;height:15px;font-size:12px;vertical-align:middle;}
+input.txt_focus,textarea.txt_focus{background:#edf4f9;}
+.txterror{padding:0 0 0 3px;}

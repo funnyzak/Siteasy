@@ -1,0 +1,92 @@
+﻿<%inherits STA.Page.Plus.InfoSearch%>
+<%csharp%>
+AddLinkScript(siteurl + "/sta/data/select/infotype.js");
+AddLinkScript(siteurl + "/sta/data/select/nativeplace.js");
+AddLinkScript(siteurl + "/sta/js/select.js");
+<%/csharp%>
+<%set {seotitle} = "分类信息检索 - " + webname %>
+<%set {location}=location + " "+ config.Locationseparator +" 分类信息检索"%>
+    <%include _header%>    
+    <div class="icontent" style="padding:3px 0 0 0;">
+        <div class="ibleft clearfix">
+            <div class="bbar w_718">
+                <div class="tit cblue location">您现在的位置：{location}</div>
+            </div>
+<%set (DataTable){datas}=null%>
+<%set (string){pageguide}=Paging("id,savepath,filename,title,addtime,channelid,channelname,property,color,ext_nativeplace,ext_infotype","",30,10,false,out datas)%>
+          <div class="bcont w_718" style="min-height:700px;padding:0 0 15px 0;">
+				<div class="parminfos">
+                   <dl class="choose">
+                   <dt>发布区域:</dt>
+                      <dd>
+                         <%set (SelectInfo){nativeparent} = SelectParentNode("nativeplace",native)%>
+                         <%set (SelectInfo){nativecur} = SelectByVal("nativeplace",native)%>
+                         <%set {list} = SelectSubList("nativeplace",native)%>
+                         <%if list.Rows.Count<=0%>
+                         <%set {list} = SelectSubList("nativeplace",nativeparent.Value)%>
+                         <%/if%>
+                         <a href="infosearch.aspx?native=0&infotype={infotype}&chnid={chnid}&query={query}">不限</a>
+                         <%if nativeparent.Id<=0&&nativecur.Name!=""%>
+                         <a href="infosearch.aspx?native=0&infotype={infotype}&chnid={chnid}&query={query}" class="bold">{nativecur.Name}>></a>
+                        <%else if nativeparent.Id>0%>
+                        <a href="infosearch.aspx?native={nativeparent.Value}&infotype={infotype}&chnid={chnid}&query={query}" class="bold">{nativecur.Name}>></a>
+                        <%/if%>
+                        <%loop item list%>
+                        <%if item["value"].ToString().Trim()==native%>
+                        <a href="infosearch.aspx?native={item[value]}&infotype={infotype}&chnid={chnid}&query={query}" class="on">{item[name]}</a>
+                        <%else%>
+                        <a href="infosearch.aspx?native={item[value]}&infotype={infotype}&chnid={chnid}&query={query}">{item[name]}</a>
+                        <%/if%>
+                        <%/loop%> 
+                      </dd>
+                   <dt>信息类型:</dt>
+                      <dd>
+                         <%set (SelectInfo){infotypeparent} = SelectParentNode("infotype",infotype)%>
+                         <%set (SelectInfo){infotypecur} = SelectByVal("infotype",infotype)%>
+                         <%set {list} = SelectSubList("infotype",infotype)%>
+                         <%if list.Rows.Count<=0%>
+                         <%set {list} = SelectSubList("infotype",infotypeparent.Value)%>
+                         <%/if%>
+                          <a href="infosearch.aspx?native={native}&infotype=0&chnid={chnid}&query={query}">不限</a>
+                         <%if infotypeparent.Id<=0&&infotypecur.Name!=""%>
+                         <a href="infosearch.aspx?native={native}&infotype=0&chnid={chnid}&query={query}" class="bold">{infotypecur.Name}>></a>
+                        <%else if infotypeparent.Id>0%>
+                        <a href="infosearch.aspx?native={native}&infotype={infotypeparent.Value}&chnid={chnid}&query={query}" class="bold">{infotypecur.Name}>></a>
+                        <%/if%>
+
+                        <%loop item list%>
+                         <%if item["value"].ToString().Trim()==infotype%>
+                        <a href="infosearch.aspx?native={native}&infotype={item[value]}&chnid={chnid}&query={query}" class="on">{item[name]}</a>
+                        <%else%>
+                        <a href="infosearch.aspx?native={native}&infotype={item[value]}&chnid={chnid}&query={query}">{item[name]}</a>
+                        <%/if%>
+                        <%/loop%> 
+                      </dd>
+                  </dl>
+                </div>
+                <%if datas.Rows.Count>0%>
+                <ul class="l718">
+                    <%loop item datas%>
+                    <%set (int){cid}=TypeParse.StrToInt({item[id]})%>
+                    <%set (int){tid}=TypeParse.StrToInt({item[typeid]})%>
+                    <%set (string){curl}=Urls.Content(cid,tid,{item[savepath]},{item[filename]})%>
+                    <%set (string){title}=TitleFormat({item[title]},{item[property]},(item["color"].ToString().Trim() == "000000"? defcolor: {item[color]}),82,"..")%>	
+                    <li class="middot"><span class="cblue s14" val="{item[ext_infotype]}"></span><a class="cgrey2" title="{item[title]}" target="_self" href="{curl}">{title}</a>&nbsp;<span class="cgrey"><%datetostr(Convert.ToDateTime({item[addtime]}), "yyyy-MM-dd")%></span></li>
+                    <%/loop%>
+                </ul>
+                <%else%>
+                    <div class="searchdesc" style="border:none;padding:20px 10px;">抱歉，没有找到相关信息，看看最新发布的信息吧. <a href="infosearch.aspx" class="s14 cblue underline">点击这里</a></div>
+                <%/if%>
+                <%if pageguide!=""%>
+                <div class="pages">{pageguide}</div>
+                <%/if%>
+            </div>
+        </div>
+        <div class="sright">
+        <%include _inner_right_info%>   
+        </div>
+    </div>
+    <script type="text/javascript">
+        $("span[val]").each(function () { $(this).html("[" + getSelectTextFromData("infotype", $(this).attr("val")) + "]"); });
+    </script>
+	<%include _footer%>   

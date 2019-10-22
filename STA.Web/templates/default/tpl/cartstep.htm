@@ -1,0 +1,393 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>核对订单信息 - {webname}</title>
+<meta name="description" content="核对订单信息,{webname}">
+<meta name="keywords" content="核对订单信息,{webname}">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<link rel="shortcut icon" href="{siteurl}/favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" href="{tempurl}/css/stacms.css" type="text/css" />
+<script type="text/javascript" src="{siteurl}/sta/js/jquery.js"></script>
+<script type="text/javascript" src="{siteurl}/sta/js/blockUI.js"></script>
+<script type="text/javascript" src="{siteurl}/sta/js/config.js"></script>
+<script type="text/javascript" src="{siteurl}/sta/js/common.js"></script>
+<script type="text/javascript" src="{tempurl}/js/global.js"></script>
+</head>
+<body>          
+<div class="vt_wrapper">
+    <%include _header_user%>
+    <div class="votetit">
+    	核对订单信息
+    </div>
+    <form method="post" action="">
+    <div class="votecon">
+        <input type="hidden" value="" name="adrid" id="adrid"/>
+        <table class="step">
+        	<tr>
+            	<td class="cur">下单购买</td>
+                <td>买家付款</td>
+                <td>确认收货</td>
+                <td>完成交易</td>
+           </tr>
+        </table>
+        <table class="cart olist">
+        	<tr class="caption">
+            	<th>&nbsp;&nbsp;<b>收货人信息</b> <a href="javascript:;" class="s13 editaddress">[修改]</a></th>
+            </tr>
+            <tr>
+            	<td>
+                	<div class="tbl-order deliveryinfo">
+                    	<div class="row clearfix">
+                        	<div class="left">收货人姓名：</div>
+                            <div class="right dusername"></div>
+                        </div>
+                    	<div class="row clearfix">
+                        	<div class="left">称呼：</div>
+                            <div class="right dgender"></div>
+                        </div>
+                    	<div class="row clearfix">
+                        	<div class="left">收货地址：</div>
+                            <div class="right daddress"></div>
+                        </div>
+                    	<div class="row clearfix">
+                        	<div class="left">邮编：</div>
+                            <div class="right dpostcode"></div>
+                        </div>
+                    	<div class="row clearfix">
+                        	<div class="left">联系电话：</div>
+                            <div class="right dphone"></div>
+                        </div>
+                    	<div class="row clearfix">
+                        	<div class="left">电子邮件：</div>
+                            <div class="right demail"></div>
+                        </div>
+                    </div>
+                	<div class="tbl-order deliveryedit" style="display:none;">
+                     	<div class="row clearfix">
+                        	<div class="left">已有地址：</div>
+                            <div class="right">
+                               <div class="addrlist"></div>
+                               <input type="radio" name="addrs" value="0" checked="checked" id="addr_0"/><label for="addr_0" class="cblue">添加新地址</label>
+                            </div>
+                        </div>
+                    	<div class="row clearfix">
+                        	<div class="left"><span class="cred">*</span>收货人姓名：</div>
+                            <div class="right"><input type="text" name="username" id="username" class="ipt-com"/></div>
+                        </div>
+                    	<div class="row clearfix">
+                        	<div class="left">称呼：</div>
+                            <div class="right">
+                              <input type="radio" name="gender" value="1" checked="checked"/>先生&nbsp;
+                              <input type="radio" name="gender" value="0"/>女生
+                            </div>
+                        </div>
+                    	<div class="row clearfix">
+                        	<div class="left">所在省份：</div>
+                            <div class="right">
+								<input type='hidden' id='ext_nativeplace' name='ext_nativeplace' value='2502.11' />
+                                <span id='span_nativeplace'></span> <span id='span_nativeplace_son'></span> <span id='span_nativeplace_sec'></span>
+                                <script language='javascript' type='text/javascript' src='/sta/js/select.js'></script>
+								<script language='javascript' type='text/javascript' src='/sta/data/select/nativeplace.js'></script>
+								<script language='javascript' type='text/javascript'> MakeTopSelect('nativeplace', 0);</script>
+                            </div>
+                        </div>
+                    	<div class="row clearfix">
+                        	<div class="left"><span class="cred">*</span>收货地址：</div>
+                            <div class="right"><input type="text" name="address" id="address" class="ipt-com" style="width:300px;"></div>
+                        </div>
+                    	<div class="row clearfix">
+                        	<div class="left"><span class="cred">*</span>邮编：</div>
+                            <div class="right"><input type="text" name="postcode" id="postcode" class="ipt-com"/></div>
+                        </div>
+                    	<div class="row clearfix">
+                        	<div class="left"><span class="cred">*</span>联系电话：</div>
+                            <div class="right"><input type="text" name="phone" id="phone" class="ipt-com"/> <span class="cgrey">电话和手机请至少填写一个</span></div>
+                        </div>
+                    	<div class="row clearfix">
+                        	<div class="left">电子邮件：</div>
+                            <div class="right"><input type="text" name="email" id="email" class="ipt-com"/> <span class="cgrey">用来接收此订单的最新状态邮件</span></div>
+                        </div>
+                    	<div class="row clearfix">
+                        	<div class="left"></div>
+                            <div class="right"><input type="button" class="com saveaddr" value="保存收货地址"/>
+                            &nbsp;&nbsp;&nbsp;<span class="cred errtip-addr"></span>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <table class="cart olist">
+        	<tr class="caption">
+            	<th colspan="2">&nbsp;&nbsp;<b>配送方式</b></th>
+            </tr>
+            <%loop item delys%>
+             <tr>
+              <td style="width:230px;padding-left:45px;">
+                 <%if item__loop__id==1%>
+                <input type="radio" name="did" value="{item[id]}" checked="checked" cost="{item[cost]}" id="did_{item[id]}"/>
+                <%else%>
+                <input type="radio" name="did" value="{item[id]}" cost="{item[cost]}" id="did_{item[id]}"/>
+                <%/if%>
+                 <label for="did_{item[id]}">{item[name]}</label> <span class="corange">所需运费: {item[cost]} 元</span>
+              </td>
+              <td style="width:645px;" class="cgrey">
+                    {item[description]}
+              </td>
+            </tr>
+            <%/loop%>
+        </table>
+        <table class="cart olist">
+        	<tr class="caption">
+            	<th colspan="2">&nbsp;&nbsp;<b>支付方式</b></th>
+            </tr>
+            <%loop item payms%>
+            <%if {item[isvalid]}=="1"%>
+             <tr>
+              <td style="width:245px;padding-left:45px;">
+                 <%if item__loop__id==1%>
+                <input type="radio" name="pid" value="{item[id]}" checked="checked" id="pid_{item[id]}"/>
+                <%else%>
+                <input type="radio" name="pid" value="{item[id]}" id="pid_{item[id]}"/>
+                <%/if%>
+                 <label for="pid_{item[id]}">{item[name]}</label>
+              </td>
+              <td style="width:630px;" class="cgrey">
+                    {item[description]}
+              </td>
+            </tr>
+            <%/if%>
+            <%/loop%>
+        </table>
+        <table class="cart olist olist-2">
+        	<tr class="caption">
+            	<th style="width:120px;text-align:center;">商品编号</th>
+                <th>商品名称</th>
+                <th style="width:90px;">市场价(元)</th>
+                <th style="width:90px;">会员价(元)</th>
+                <th style="text-align:center;width:90px">商品数量</th>
+            </tr>
+            <%loop item prods%>
+            <%set (int){pid}=TypeParse.StrToInt({item[id]})%>
+            <%set (string){unit}={item[ext_unit]}.Split(' ')[0]%>
+            <tr>
+                <td style="text-align:center">{item[id]}</td>
+                <td>
+                	<div class="left" style="width:58px;"><a href="{Urls.Product(pid)}" target="_blank"><img src="{item[img]}" width="50" height="50" style="border:1px solid #ccc;cursor:pointer;" align="absmiddle"/></a></div>
+                	<div class="left" style="width:420px"><a href="{Urls.Product(pid)}" target="_blank">{item[title]}</a></div></td>
+                <td>{item[ext_price]}</td>
+                <td class="price2">{item[ext_vipprice]}</td>
+                <td style="text-align:center"> 
+                	{item[num]} {unit}
+                </td>
+            </tr>
+            <%/loop%>
+        </table>
+        <table class="cart olist">
+        	<tr class="caption">
+            	<th colspan="2">&nbsp;&nbsp;<b>确认订单信息</b></th>
+            </tr>
+            <%set (decimal){prodtotal}= Pays.TotalProductPrice(prods)%>
+            <%set (string){prodcost}= prodtotal.ToString("0.00")%>
+            <%set (string){invoicecost}= Pays.InvoiceCost(prodtotal).ToString("0.00")%>
+              <tr>
+                <td style="text-align:right;width:110px;">开具发票：</td>
+                <td><input type="radio" name="isinvoice" value="1"/>是&nbsp;
+                  <input type="radio" name="isinvoice" value="0" checked="checked"/>否
+                </td>
+              </tr>
+              <tr style="display:none;" class="tr-invoice">
+                <td style="text-align:right;width:110px;">发票抬头：</td>
+                <td>
+                    <input type="hidden" id="invoicecost" value="{invoicecost}" />
+                	<input type="text" name="invoicehead" class="ipt-com" style="width:100px;"/> 发票费用：<span class="corange">{invoicecost} 元</span>
+                </td>
+              </tr>
+              <tr>
+                <td style="text-align:right;">商品数量：</td>
+                <td>{Pays.TotalProductNum(prods)}</td>
+              </tr>
+              <tr>
+                <td style="text-align:right;">商品重量：</td>
+                <%set (string){weight}= Pays.TotalProductWeight(prods).ToString("0.00")%>
+                <td class="cblue">{weight} KG</td>
+              </tr>
+              <tr>
+                <td style="text-align:right">商品总价：</td>
+                <td class="corange prodcost" cost="{prodcost}">
+                  {prodcost} 元
+                </td>
+              </tr>
+              <tr>
+                <td style="text-align:right">商品运费：</td>
+                <td class="corange dcost"></td>
+              </tr>
+              <tr>
+                <td style="text-align:right">您应该付：</td>
+                <td class="corange totalcost">{prodcost} 元</td>
+              </tr>
+              <tr>
+                <td style="text-align:right;">订单备注：</td>
+                <td>
+                	<textarea class="tarea-1" name="remark"></textarea>
+                    <div class="cgrey">如果有其他特殊要求请在此填写，如“我要一个白色一个蓝色”(300个字以内)</div>
+                </td>
+              </tr>
+              <tr>
+              	<td>&nbsp;</td>
+                <td style="height:70px;vertical-align:middle"><input type="button" class="com subform" value="确认下单"/>
+                    &nbsp;&nbsp;&nbsp;<span class="cred errtip-subform"></span>
+                </td>
+              </tr>
+        </table>
+    </div>
+    </form>
+    <%include _footer_com%>
+    <%set (string){djson} = Utils.DataTableToJSON(addrs).ToString()%>
+    <script type="text/javascript">
+        var addrs = {djson}, curaddr = {};
+        $("table.olist").each(function (idx, obj) {
+            $(this).find("tr:eq(1)").find("td").css("padding-top", "15px");
+            $(this).find("tr:last").find("td").css("padding-bottom", "15px");
+        });
+
+        function selectChangeAddr(val) {
+            $("#span_nativeplace,#span_nativeplace_son,#span_nativeplace_sec").find("select").change(function () {
+                $("#address").val(getNativeplaceText(val || $("#ext_nativeplace").val()));
+            });
+        };
+
+        function getAddrById(id){
+            for(var i = 0;i < addrs.length;i++){
+                if(addrs[i].id == id) return addrs[i];
+            }
+            return {};
+        };
+
+        function regAddrClick(){
+            $("input[name='addrs']").click(function(){
+                var val = curaddr.id =$(this).val();
+                if(val == "0"){
+                    setAddress({});
+                }else{  
+                    setAddress(getAddrById(val));
+                }
+            });
+        };
+
+        function setAddress(ars) {
+            if(ars.parms == undefined) ars.parms = "0,1";
+            $("input[name='gender'][value='" + ars.parms.split(",")[1] + "']").attr("checked", true);
+            $("#username").val(ars.username || "");
+            MakeTopSelect("nativeplace", parseFloat(ars.parms.split(",")[0]));
+            $("#address").val(ars.address || "");
+            $("#postcode").val(ars.postcode || "");
+            $("#phone").val(ars.phone || "");
+            $("#email").val(ars.email || "");
+        };
+
+        function setAddressDisplay(ars){
+            $(".deliveryinfo").show();
+            $(".deliveryedit").hide();
+            $(".dusername").html(ars.username);
+            $(".demail").html(ars.email);
+            $(".daddress").html(ars.address);
+            $(".dpostcode").html(ars.postcode);
+            $(".dphone").html(ars.phone);
+            $(".dgender").html(ars.parms.split(",")[1] == "1"? "先生":"女士");
+            $("#adrid").val(ars.id || 0);
+        };
+
+        function getAddress(){
+           return {
+                id: curaddr.id || 0,
+                uid: {userid},
+                username: $.trim($("#username").val()),
+                title: $.trim($("#username").val()) + "的地址",
+                email: $.trim($("#email").val()),
+                address: $.trim($("#address").val()),
+                postcode: $.trim($("#postcode").val()),
+                phone: $.trim($("#phone").val()),
+                parms: $("#ext_nativeplace").val() + "," + $("input[name='gender']:checked").val()
+           };
+        }
+
+        function editAddress(){
+            loading();
+            ajax("getuseraddress&uid={userid}", function(data){
+                $.unblockUI();
+                addrs = toJson(data);
+                $(".deliveryinfo").hide();
+                $(".deliveryedit").show();
+                $(".addrlist").empty();
+                $.each(addrs,function(idx, obj){
+                    $(".addrlist").append("<input type=\"radio\" name=\"addrs\" value=\"" + obj.id + "\" id=\"addr_" + obj.id + "\"/><label for=\"addr_" + obj.id + "\">" + obj.title +"</label><br/>");
+                });
+                regAddrClick();
+                $("input[name='addrs'][value='" + (curaddr.id || 0) + "']").attr("checked", true).trigger("click");
+            });
+        };
+
+        $(".editaddress").click(editAddress);
+
+        $("input[name='isinvoice']").change(function () {
+            $(".tr-invoice").css("display", $(this).val() == "1" ? "" : "none");
+        }).trigger("change");
+
+        function getNativeplaceText(val) {
+            var o = getSelectFromData("nativeplace", val);
+            return o.top + o.son + o.sec;
+        };
+
+        $(".saveaddr").click(function(){
+            var addr = getAddress();
+            if(addr.username == "" || addr.address == "" || addr.postcode == "" || addr.phone == ""){
+                $(".errtip-addr").html("收货地址填写不完整").show().fadeOut(1000);
+                return;
+            }
+            loading("请稍等,正在保存地址..");
+            var addr = getAddress(), data = "";
+            data = "id="+addr.id+"&uid={userid}&username="+escape(addr.username)+"&title="+escape(addr.title)+"&email="+escape(addr.email)+"&address="+escape(addr.address)+"&postcode="+escape(addr.postcode)+"&phone="+escape(addr.phone)+"&parms="+addr.parms;
+            ajax("edituseraddress&" + data, function(ret){
+                $.unblockUI();
+                if(addr.id == "0"){
+                    addr.id = ret;
+                }
+                setAddressDisplay(addr);
+            });
+        });
+
+        $(".subform").click(function(){
+            if($(".deliveryinfo").css("display") == "none"){
+                $(".errtip-subform").html("请先保存“收货人信息”").show().fadeOut(1000);
+                return;
+            }
+            loading("正在生成订单..");
+            $("form").get(0).submit();
+        });
+
+        $("input[name='did'],input[name='isinvoice']").click(resetData);
+
+        function resetData(){
+            var prodcost = parseFloat($(".prodcost").attr("cost")), dcost = parseFloat($("input[name='did']:checked").attr("cost"));
+            var invoicecost = parseFloat($("#invoicecost").val());
+            $(".totalcost").html((prodcost + dcost + ($("input[name='isinvoice']:checked").val() == "1"? invoicecost : 0 )).toFixed(2) + " 元");
+            $(".dcost").html(dcost.toFixed(2) + " 元");
+        };
+
+        $(function () {
+            setInterval(selectChangeAddr, 1000);
+            if(addrs.length>0){
+                curaddr = addrs[0];
+                setAddressDisplay(curaddr);
+            }else{
+                editAddress();
+            }
+            $("#adrid").val(curaddr.id || "0");
+            resetData();
+        });
+	</script>
+</div>
+</body>
+</html>

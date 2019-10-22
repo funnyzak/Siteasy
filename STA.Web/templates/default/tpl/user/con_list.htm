@@ -1,0 +1,82 @@
+﻿<%inherits STA.Page.User.ContentList%>
+<%include _header%>
+    <div class="left right-container">
+        <div class="con-box left col-1">
+            <div class="bartitle clearfix">
+            	<div class="bartit-picon left" style="background-position:-47px -47px;">&nbsp;</div><h3 class="disblock left pad">已发布的稿件</h3>
+            </div>
+            <div class="con-info">
+                <%set (int){page}=STARequest.GetQueryInt("page",1)%>
+                <%set (int){pagecount}=0%>
+                <%set (int){recordcount}=0%>
+                <%set (DataTable){clist}=Contents.GetContentDataPage("id,savepath,filename,title,status,addtime,updatetime,channelid,channelname","",page,9, Contents.GetContentSearchCondition(typeid,username,0,0, -1, "", "", "",""),"updatetime desc",out pagecount, out recordcount)%>
+                <form name="zform" id="zform" action="" method="post">
+                    <%if clist.Rows.Count<=0%>
+                    <div class="zerotable">您还没有投过稿,现在就去<a href="{siteurl}/user/con_add.aspx" class="cblue s13">投稿</a></div>
+                    <%else%>
+                     <table width="100%" cellspacing="0"  class="list">
+                        <thead>
+                            <tr>
+                            <th width="5%"><input type="checkbox" value="" id="check_box" onclick="checkAll(this.form,this.checked);"/></th>
+                            <th width="3%"></th>
+                            <th width="40%">标 题</th>
+                            <th width="15%">所属频道</th>
+                            <th width="15%">更新时间</th>
+                            <th width="10%">状态</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%loop item clist%>
+                            <%set (int){cid}=TypeParse.StrToInt({item[id]})%>
+                            <%set (int){chid}=TypeParse.StrToInt({item[channelid]})%>
+                            <%set (int){tid}=TypeParse.StrToInt({item[typeid]})%>
+                            <%set (string){curl}=Urls.Content(cid,tid,{item[savepath]},{item[filename]})%>
+                            <tr>
+                                <td width="5%" align="center"><input type="checkbox" name="cbid" value="{item[id]}" onclick="checkedEnabledButton(this.form, 'cbid', 'btndelete' , 'btnedit', 'btnviewcomment')"/></td>
+                                <td width="3%" align="center"><img src="{tempurl}/images/pub/folder_old.gif" alt="{item[title]}"/></td>
+                                <td width="40%" align="left"><a href="{curl}" title="{item[title]}" target="_blank" class="cblue"><%getsubstring({item[title]},56,"..")%></a></td>
+                                <td width="15%" align="center"><a href="{Urls.Channel(chid)}" title="{item[channelname]}" class="cgrey" target="_blank">{item[channelname]}</a></td>
+                                <td width="15%" align="center"><span class="posttime cgrey" title="<%datetostr(Convert.ToDateTime({item[updatetime]}), "yyyy-MM-dd HH:mm:ss")%>"></span></td>
+                                <%set (string){status} = ((ConStatus)TypeParse.StrToInt(item["status"])).ToString()%>
+                                <td width="10%" align="center"<%if status!="通过"%> class="cred"<%/if%>>{status}</td>
+                            </tr>
+                            <%/loop%>
+                        </tbody>
+                    </table>
+                	<div class="btn-manage">
+                    	<input name="btndelete" id="btndelete" type="button" class="button" value="删除选中" onclick="delCons(getCbCheckedVals(),'{siteurl}/user/con_list.aspx')" disabled="disabled"/>&nbsp;
+                        <input name="btnedit" id="btnedit" type="button" class="button" value="编辑" disabled="disabled"/>&nbsp;
+                        <input name="btnviewcomment" id="btnviewcomment" type="button" class="button" value="查看评论" disabled="disabled"/>&nbsp;
+                        <input name="btn3" onclick="location.href='{siteurl}/{ctinfo.addmod}?type={typeid}'" type="button" class="button" value="投稿"/>&nbsp;
+                    </div> 
+                        <%if pagecount>1%>
+                        <%set (string){pagenumbers}=PageNumber(siteurl+"/user/con_list.aspx",siteurl+"/user/con_list.aspx?typeid="+typeid+"&page=@page",page,pagecount,recordcount,7, false).ToString()%>
+                            <div class="pages">
+                                {pagenumbers}
+                            </div>
+                        <%/if%>
+                    
+		                <script type="text/javascript">
+		                    $(function () {
+		                        $("table.list tr:even").css({ "background-color": "#f8f8f8" });
+		                        $("#btnviewcomment").click(function () {
+		                            if (checkForOne()) { window.open("{siteurl}/comment.aspx?id=" + getCbCheckedVals()); }
+		                        });
+		                        $("#btnedit").click(function () {
+		                            if (checkForOne()) { location.href = "{siteurl}/{ctinfo.addmod}?type={typeid}&action=edit&id=" + getCbCheckedVals(); }
+		                        });
+		                        $("span.posttime").timeago();
+		                    });
+		                    function checkAll(form, checked) {
+		                        checkByName(form, 'cbid', checked);
+		                        checkedEnabledButton(form, 'cbid', 'btndelete', 'btnedit', 'btnviewcomment')
+		                    };
+                        </script>
+                    <%/if%>
+                </form>   
+            </div>
+            <span class="o1"></span><span class="o2"></span><span class="o3"></span><span class="o4"></span>
+        </div>
+    </div>
+</div>
+<%include _footer%>

@@ -1,0 +1,11 @@
+#
+# contanct:silenceace@gmail.com 
+# http://www.stacms.com
+# robots.txt for Siteasy
+# Version 1.0
+#
+
+User-agent: *
+
+Disallow: /sta/
+Disallow: /templates/

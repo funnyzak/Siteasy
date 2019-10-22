@@ -1,0 +1,84 @@
+﻿<%if config.Opencomment==1&&info.Iscomment==1%>
+            <link rel="stylesheet" href="{siteurl}/sta/js/artdialog/artdialog.css" type="text/css" />
+            <script type="text/javascript" src="{siteurl}/sta/js/pagination.js"></script>
+            <script type="text/javascript" src="{siteurl}/sta/js/blockUI.js"></script>
+            <script type="text/javascript" src="{siteurl}/sta/js/artdialog/jquery.artDialog.min.js?skin=opera"></script>
+            <script type="text/javascript" src="{siteurl}/sta/js/artdialog/artDialog.plugins.js"></script>
+            <script type="text/javascript" src="{siteurl}/sta/js/comment.js"></script>
+            <div class="replaytpl" style="display:none;">
+                <div class="replay-#id" style="padding-top:10px;">
+                    <textarea class="comment msg#id" style="width:620px;"></textarea>
+                    <div class="comment-sub clearfix">
+                            <input type="hidden" value="#replayid" class="replay#id"/>
+                            <div class="left cmtcuruser" style="padding:3px 15px 0 0;display:none;"></div>
+                        <div class="left vcodebox" style="padding-top:3px;">验证码：</div>
+                        <div class="left vcodebox"><input type="text" class="ipt-comment-code vcode#id" name="vcode">&nbsp;#vcode</div>
+                        <div class="left" style="margin-left:15px;"><input type="button" class="btn-comment btn-comment" name="btnsub" onclick="commentSubmit('#id');" value="提交评论"/></div>
+                    </div>
+                </div>
+            </div>
+            <div class="comtpl" style="display:none;">
+        	    <div class="comment comt-#id">
+            	    <div class="clearfix">
+                        <div class="comment-face left">
+                            <a href="#uurl">#face</a>
+                        </div>
+                        <div class="comment-cont left com-#tempid">
+                    	    <div class="tit clearfix">
+                        	    <span class="left cgrey"><a href="#uurl" class="cblue s13">#username</a> [{webname}#city网友]：</span>
+                                <span class="right cgrey tright">#time 发表</span>
+                            </div>
+                            #quote
+                            <div class="comt">#msg</div>
+                        </div>
+                    </div>
+                    <div class="comment-summary">
+                	    <a href="javascript:;" onclick="cmtreplay(cmtid,'#tempid')" class="cblue">回复</a><a href="javascript:;" onclick="cmtdigg(this, cmtid, 'digg')" class="cblue">顶[#digg]</a><a href="javascript:;" onclick="cmtdigg(this, cmtid, 'stamp')" class="cblue">踩[#stamp]</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bbar w_718 cmtlistbox" style="margin-top:8px;">
+                <div class="tit cblue">最新评论</div>
+                <div class="more"><a href="{siteurl}/comment.aspx?id={id}" target="_blank" class="s12 cgrey">目前有<span class="cmtcount cred"></span>人发表了评论</a></div>
+            </div>
+            <div class="bcont w_718 cmtlistbox">
+                <div class="comcon">
+                    <div class="commentload cmtload">正在加载评论,请稍等...</div>
+                    <div class="commentload cmtsofa" style="background:0;display:none;">目前还没有人发表评论,还不快抢沙发...</div>
+                    <div class="cmtlist"></div>
+                    <div class="pagination cmtpage"></div>
+                </div>
+            </div>
+
+            <div class="bbar w_718 cmtpublish" style="margin-top:8px;">
+                <div class="tit cblue">发表评论</div>
+                <div class="more"><a href="{siteurl}/comment.aspx?id={id}" target="_blank" class="s12 cgrey">目前有<span class="cmtcount cred"></span>人发表了评论</a></div>
+            </div>
+            <div class="bcont w_718 cmtpublish" style="padding:15px 0;">
+                <textarea class="comment msg" style="width:650px;"></textarea>
+                <div class="comment-sub clearfix" style="padding-left:33px;">
+                <input type="hidden" value="0" class="replay"/>
+               <div class="left cmtcuruser" style="padding:3px 15px 0 0;display:none;"></div>
+                <div class="left  vcodebox" style="padding-top:3px;">验证码：</div>
+                <div class="left  vcodebox"><input type="text" class="ipt-comment-code vcode" name="vcode" id="vcode">&nbsp;<img src="{siteurl}/sta/vcode/validatecode.aspx?cookiename=stausercommentsubmit&live=0" onclick="this.src='{siteurl}/sta/vcode/validatecode.aspx?cookiename=stausercommentsubmit&live=0&date='+ new Date();" id="vimg" height="23" width="70" style="cursor:pointer;" class="img-vcode" title="刷新验证码"/></div>
+                <div class="left" style="margin-left:15px;"><input type="button" class="btn-comment btn-comment" name="btnsub" id="btn-sub" onclick="commentSubmit('');" value="提交评论"/></div>
+                 </div>
+            </div>
+            <script type="text/javascript">
+            function commentSubmit(id){ 
+                subcomment(id, {id}, "{info.Title}", "{info.Title}", function(){ $(".cmtcount").html(cmtrcount); });
+            };
+            $(function(){
+                $(".cmtpublish").click(cmtmustlogin);
+                cmtperpage = 3, cmtopen = {info.Iscomment};
+                if(webconfig.opencomment == 0 || cmtopen == 0){
+                    $(".cmtpublish,.cmtlistbox,.commentcount").remove();
+                    return;
+                }
+                if(webconfig.vcodemods.indexOf("3") < 0) $(".vcodebox").remove();
+                if($.inArray(stauser.userid,["","0","-1"]) < 0) $(".cmtcuruser").css("display","").html("你好," + stauser.nickname);
+                cmtdataload({id}, 1, function(){ $(".cmtcount").html(cmtrcount); });
+            });
+            </script>
+<%/if%>

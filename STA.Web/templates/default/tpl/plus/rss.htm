@@ -1,0 +1,79 @@
+﻿<%inherits STA.Page.PageBase%>
+<%set {iscompress}=false%>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>RSS订阅中心 - {webname}</title>
+<meta name="description" content="RSS订阅,{seodescription}"/>
+<meta name="keywords" content="RSS订阅,{seokeywords}"/>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<link rel="shortcut icon" href="{siteurl}/favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" href="{tempurl}/css/stacms.css" type="text/css" />
+</head>
+<body class="sitemapwp">
+    <div class="sm_header">
+        <div class="left header_logo"><a href="{siteurl}" title="{webname}" target="_self"><img title="{webname}" src="{tempurl}/images/logo.png" /></a></div>
+        <div class="right header_summary"><a href="{siteurl}" title="{webname}" class="cblue s14">返回首页</a>&nbsp;&nbsp;<a href="{siteurl}" class="cblue s14">帮助</a></div>
+    </div>
+	<div class="icont">
+    	<div class="con_bar_1">
+        	<div class="tit left s14">从RSS订阅中心订阅您感兴趣内容！</div>
+        </div>
+        <div class="con_body">
+        
+            <div style="width:870px;margin:0 auto;text-align:left;line-height:30px;padding:10px 0;" class="cdarkgrey c14">
+            <b class="s14">什么是RSS</b><br />
+RSS是站点用来和其他站点之间共享内容的一种简易方式（也叫聚合内容），网络用户可以在客户端借助于支持RSS的新闻聚合工具软件，在不打开网站内容页面的情况下阅读支持RSS输出的网站内容。网站提供RSS输出，有利于让用户发现网站内容的更新。通过订阅此“真正简单的联合发布系统”（RSS），您可以在任何 RSS 阅读器或聚合器预览对此空间所作的更新。RSS 允许您从几处来源的订阅项目，并自动将信息组合到一个列表中。 您可以快速浏览列表，而不用访问每个网站，就可以搜索您感兴趣的最新信息。<br />
+ <b class="s14">如何使用RSS</b><br />
+您一般需要下载和安装一个RSS新闻阅读器，然后从网站提供的聚合新闻目录列表中订阅您感兴趣的新闻栏目的内容。订阅后，您将会及时获得所订阅新闻频道的最新内容。
+
+            </div>
+            <%set (DataTable){chls}=SubChlList(0)%>
+            <%loop item chls%>
+           <%if item["ishidden"].ToString()!="1"%>
+                <%set (int){cid}=TypeParse.StrToInt({item[id]},0)%>	
+                <%set (string){rurl} = siteurl + "/sta/data/rss/" + {item[id]} + ".xml"%>
+        	<div class="forsm">
+            	<div class="tit clearfix">
+                    <div class="left" style="width:169px;">
+                            <a href="{Urls.Channel(cid)}" title="{item[name]}" class="s14 bold cblue2"><%getsubstring({item[name]},18,"..")%></a>
+                    </div>
+                    <div class="left" style="width:310px">
+                            <a href="{rurl}" title="{item[name]}订阅" class="cblue" target="_blank">{rurl}</a>
+                    </div>
+                    <div class="left" style="width:370px;">
+                        <a href="{rurl}" title="{item[name]}订阅" target="_blank"><img src="{tempurl}/images/pub/rss/rsspic2.gif" alt="{item[name]}订阅"/></a>&nbsp;&nbsp;&nbsp;<a href="http://www.google.com/ig/add?feedurl={rurl}" title="{item[name]}订阅" target="_blank"><img src="{tempurl}/images/pub/rss/21.gif" alt="{item[name]}订阅"/></a><a href="http://add.my.yahoo.com/rss?url={rurl}" title="{item[name]}订阅" target="_blank"><img src="{tempurl}/images/pub/rss/22.gif" alt="{item[name]}订阅"/></a><a href="http://my.msn.com/addtomymsn.armx?id=rss&ut={rurl}" title="{item[name]}订阅" target="_blank"><img src="{tempurl}/images/pub/rss/26.gif" alt="{item[name]}订阅"/></a><a href="http://www.live.com/?add={rurl}" title="{item[name]}订阅" target="_blank"><img src="{tempurl}/images/pub/rss/29.gif" alt="{item[name]}订阅"/></a>
+                    </div>
+                </div>
+                <%set (DataTable){lls}=SubChlList(cid)%>
+                <%if lls.Rows.Count>0%>
+                <div class="sub">
+                	<ul class="clearfix">
+                        <%loop i lls%>
+                        <%set (int){iid}=TypeParse.StrToInt({i[id]},0)%>	
+                        <%if i["ishidden"].ToString()!="1"%>
+                        <%set {rurl} = siteurl + "/sta/data/rss/" + {i[id]} + ".xml"%>
+                        <li class="line">
+                            <div class="left" style="width:160px;">
+                                 <a href="{Urls.Channel(iid)}" title="{i[name]}" class="cblue"><%getsubstring({i[name]},18,"..")%></a>
+                            </div>
+                            <div class="left" style="width:310px">
+                                 <a href="{rurl}" title="{i[name]}订阅" class="cblue" target="_blank">{rurl}</a>
+                            </div>
+                            <div class="left" style="width:370px;">
+                                <a href="{rurl}" title="{i[name]}订阅" target="_blank"><img src="{tempurl}/images/pub/rss/rsspic2.gif" alt="{i[name]}订阅"/></a>&nbsp;&nbsp;&nbsp;<a href="http://www.google.com/ig/add?feedurl={rurl}" title="{i[name]}订阅" target="_blank"><img src="{tempurl}/images/pub/rss/21.gif" alt="{i[name]}订阅"/></a><a href="http://add.my.yahoo.com/rss?url={rurl}" title="{i[name]}订阅" target="_blank"><img src="{tempurl}/images/pub/rss/22.gif" alt="{i[name]}订阅"/></a><a href="http://my.msn.com/addtomymsn.armx?id=rss&ut={rurl}" title="{i[name]}订阅" target="_blank"><img src="{tempurl}/images/pub/rss/26.gif" alt="{i[name]}订阅"/></a><a href="http://www.live.com/?add={rurl}" title="{i[name]}订阅" target="_blank"><img src="{tempurl}/images/pub/rss/29.gif" alt="{i[name]}订阅"/></a>
+                            </div>
+                        </li>
+                        <%/if%>
+                        <%/loop%>
+                    </ul>
+                </div>
+                <%/if%>
+            </div>
+            <%/if%>
+            <%/loop%>
+        </div>
+    </div>
+   <%include _footer%>
+</body>
+</html>

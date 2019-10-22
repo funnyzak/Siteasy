@@ -1,0 +1,51 @@
+﻿<!doctype html public "-//w3c//dtd xhtml 1.0 transitional//en" "http://www.w3.org/tr/xhtml1/dtd/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<title>杂志书柜 - {webname}</title>
+<link href="{siteurl}/favicon.ico" type="image/x-icon" rel="icon">
+<meta name="keywords" content="杂志,在线阅读下载">
+<meta name="description" content="在线阅读下载">
+<link href="{tempurl}/css/mag/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="{siteurl}/sta/js/jquery.js"></script>
+<script type="text/javascript" src="{siteurl}/sta/js/config.js"></script>
+<script type="text/javascript" src="{siteurl}/sta/js/common.js"></script>
+</head>
+<body>
+	<div style="position:absolute;top:0;left:0;z-index:0;width:100%;height:100%"><img src="{tempurl}/css/mag/images/01.jpg" class="zbg" width="100%" height="100%"/></div>
+    <table cellpadding="0" cellspacing="0" width="100%" class="maglisttitle" style="position:absolute;top:0;left:0;z-index:1">
+        <tbody><tr>
+            <td class="bookcaseico" style="width: 140px">
+            <a href="{siteurl}" class="g3booklink"></a>
+            </td>
+            <td id="magcasename" class="bookcasename">{weburl.substring(7)}</td>
+
+            <td class="bookcaseright">
+                <a href="{siteurl}" class="g3link" target="_blank">&lt;&lt;返回首页</a>
+            </td>
+        </tr>
+    </tbody></table>
+    <table cellpadding="0" cellspacing="0" width="100%" class="books" style="position:absolute;top:50px;left:0;z-index:1">
+        <tbody><tr>
+            <td class="maglist_l">
+            </td>
+            <td id="magcontent" class="maglist_m">  
+                <%set (string){likeid}= STARequest.GetString("likeid") %>
+                <%if likeid!=""%>
+                <%sqlstring list select id,name,cover from tbprefix_magazines where status = 1 and likeid = 'variable_likeid' order by orderid desc,id desc%>
+                <%else%>
+                <%sqlstring list select id,name,cover from tbprefix_magazines where status = 1 order by orderid desc,id desc%>
+                <%/if%>
+                <%loop item list%>
+                <div class="magdt">
+                	<div class="magname">
+                    	<a target="_blank" href="magview.aspx?id={item[id]}" title="{item[name]}"><%getsubstring({item[name]},14,"")%></a></div><div class="magimg"><a target="_blank" href="magview.aspx?id={item[id]}" title="{item[name]}"><img alt="{item[name]}" src="{item[cover]}"></a>
+                    </div>
+                </div>
+                <%/loop%> 
+			</td>
+            <td class="maglist_r">
+            </td>
+        </tr>
+    </tbody></table>
+</body>
+</html>

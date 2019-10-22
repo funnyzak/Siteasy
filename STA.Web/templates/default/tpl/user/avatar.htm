@@ -1,0 +1,59 @@
+﻿<%include _header%>
+    <div class="left right-container">
+        <div class="con-box left col-1">
+            <div class="bartitle clearfix"><div class="bartit-picon left" style="background-position:-47px -47px;">&nbsp;</div><h3 class="disblock left pad">修改头像</h3></div>
+            <div class="con-info">
+				<script type="text/javascript" src="{siteurl}/sta/js/jcrop/js/jquery.Jcrop.js"></script>
+                <link rel="stylesheet" href="{siteurl}/sta/js/jcrop/css/jquery.Jcrop.min.css" type="text/css" />
+                <script type="text/javascript" src="{siteurl}/sta/js/avatar.js"></script>
+                <form name="zform" id="zform" action="" method="post" enctype="multipart/form-data">
+                <div class="left col-avatar">
+                	<input name="btnsave" type="button" class="button" value="上 传 头 像"/>
+                    <span class="locup-span"><input name="useravatar" type="file" size="1" class='locup-input-file'/></span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(支持{config.Attachimgtype}格式的图片，最大{config.attachimgmaxsize}M)
+                    <%set (string){avatarurl}=Avatars.GetAvatarUrl(userid,AvatarSize.Original).Replace(Utils.GetRootUrl(""),"")%>
+                    <%set (string){avatarurl_medium}=Avatars.GetAvatarUrl(userid,AvatarSize.Medium)%>
+                    <%set (string){avatarurl_small}=Avatars.GetAvatarUrl(userid,AvatarSize.Small)%>
+                    <%set (string){avatarurl_large}=Avatars.GetAvatarUrl(userid,AvatarSize.Large)%>
+                	<div class="panel">
+						<img src="{avatarurl}" id="target" onerror="this.src='{siteurl}/sta/pics/avator/noavatar.jpg'">
+                        <input type="hidden" value="" id="hiduseravator" name="hiduseravatar" />
+                        <input type="hidden" value="" id="hidcoords" name="hidcoords" />
+					</div>
+                    <input name="avatarsave" id="avatarsave" type="button" class="button" disabled="disabled" value="保 存 头 像"/>
+                </div>
+                <ul class="left avatarlist">
+                    <li>
+                        <div style="width:150px;height:150px;overflow:hidden;border:1px solid #c5c5c5;">
+                            <img src="{avatarurl_large}" height="150" width="150" onerror="this.src='{siteurl}/sta/pics/avator/noavatar_large.gif'" id="preview_l"/>
+                        </div>
+                    	大头像150 x 150
+                    </li>
+                    <li>
+                        <div style="width:90px;height:90px;overflow:hidden;border:1px solid #c5c5c5;">
+                            <img src="{avatarurl_medium}" height="90" width="90" onerror="this.src='{siteurl}/sta/pics/avator/noavatar_medium.gif'" id="preview_m"/>
+                        </div>
+                    	中头像80 x 80					
+                    </li>
+                    <li>
+                        <div style="width:50px;height:50px;overflow:hidden;border:1px solid #c5c5c5;">
+                            <img src="{avatarurl_small}" height="50" width="50" onerror="this.src='{siteurl}/sta/pics/avator/noavatar_small.gif'" id="preview_s"/>
+                        </div>
+                        小头像50 x 50					
+                    </li>
+                </ul>
+                <div class="aside left">
+                    <h3>给你自己扮酷!</h3>
+                    照片尺寸建议至少在300x300像素
+                    <br><br>
+                    定制专属于你的个性头像，让自己成为大家眼中闪亮的焦点，随意拖拽或调整大图中的虚线方格，右边预览的小图即为保存后的头像图标。
+                    <br><br>
+                    建议上传近距离的照片（比如大头照、特写），这样经过编辑后的头像会很清楚。
+                </div>
+                </form>
+            </div>
+            <span class="o1"></span><span class="o2"></span><span class="o3"></span><span class="o4"></span>
+        </div>
+    </div>
+</div>
+<%include _footer%>

@@ -1,0 +1,131 @@
+﻿    <%include _ifnull%>
+    <%include _header%>    
+    <div class="icontent" style="padding:3px 0 0 0;">
+        <div class="ibleft clearfix">
+            <div class="bbar w_718">
+            	<%set {location}=location + " "+ config.Locationseparator +" "+info.Title%>
+                <div class="tit cblue location">您现在的位置：{location}</div>
+            </div>
+            <div class="bcont w_718">
+				<div class="contit">
+                	<h1 style="text-align:center">{info.Title}</h1>
+                </div>
+                <div class="softinfo clearfix">
+                    <div class="softsummarypic" style="padding:0 0 0 20px;float:left">
+              	<!--#preview Start-->
+                	<div id="preview">
+                    <%set {list}=PhotoList(info.Ext["ext_imgs"].ToString())%>
+                        <div class="jqzoom" id="spec-n1">
+                            <%loop item list%>
+                            <%csharp%>
+                            if(item__loop__id==2)
+                            {
+                            	break;
+                            }
+                            <%/csharp%>
+                            <img src="{item[url]}" jqimg="{item[url]}" width="304" height="297">
+                            <%/loop%>
+                        </div>
+                        <div id="spec-n5">
+                            <div class="control" id="spec-left">
+                                <img src="{tempurl}/images/def/control-left.gif" />
+                            </div>
+                            <div id="spec-list">
+                                <ul class="list-h">
+                                    <%loop item list%>
+                                    <%set (int){cid}=TypeParse.StrToInt({item[id]},0)%>	
+                                    <li><img src="{item[url]}" id="{item[id]}" alt="{item[name]}"/></li>
+                                    <%/loop%>
+                                </ul>
+                            </div>
+                            <div class="control" id="spec-right">
+                                <img src="{tempurl}/images/def/control-right.gif" />
+                            </div>
+                        </div>
+                        </div>
+                    	<!--#preview End-->
+                    </div>
+                    <div class="softsummary">
+                        <label>商品编号：</label><span>{info.Ext[ext_code]}</span>
+                        <label>市场价：</label><span>{info.Ext[ext_price]}元</span>
+                        <label>会员价：</label><span class="cred">{info.Ext[ext_vipprice]}元</span>
+                        <label>所属品牌：</label><span>{info.Ext[ext_brand]}</span>
+                        <label>上架时间：</label><span><%datetostr(Convert.ToDateTime({info.Ext[ext_ontime]}), "yyyy-MM-dd")%></span>
+                        <label>商品人气：</label><span class="conclick">{info.Click}</span>
+                        <label>库存量：</label><span class="prodstorage">{info.Ext[ext_storage]}</span>
+                        <label>商品重量：</label><span>{info.Ext[ext_weight]}KG</span>
+                        <label>购物车：</label><span><a href="{siteurl}/cart.aspx" class="cblue" target="_cart">查看购物车</a></span>
+                        <%if TypeParse.StrToInt(info.Ext["ext_storage"])>0%>
+                        <label class="buythis">购买：</label><span style="cursor:pointer;" onclick="shopCart.setProduct({ id: '{info.Id}', num: 0, price: {info.Ext[ext_vipprice]} });alert('成功加入购物车！');" class="buythis cblue">加入购物车</span>
+                        <%/if%>
+                    </div>
+				</div>
+                <%if info.Ext["ext_vfile"].ToString().Trim()!=""%>
+                <%set (string){vstr}=UBB.ParseMedia("flv", 680, 450, true, {info.Ext[ext_vfile]})%>
+				<div class="info-intro fyahei s16 bold">视频介绍</div>
+                <div class="pcontent" style="width:670px;padding-left:10px;">
+                     {vstr}
+                </div>
+                <%/if%>
+				<div class="info-intro fyahei s16 bold">商品介绍</div>
+                <div class="pcontent" style="width:670px;padding-left:10px;">
+                     {info.Content}
+                </div>
+                <%include _inner_left_summary%> 
+            </div>
+             <%include _inner_comment%> 
+			<script type="text/javascript">
+            setContentClick({info.Id},"yes",function(c){ $(".conclick").html(c); });
+            getExtfieldval({info.Id},"product","storage",function(c){ $(".prodstorage").html(c); if(parseInt(c)<=0){ $(".buythis").remove();} });
+            </script>
+        </div>
+        <div class="sright">
+        <%set (int){chnid}=info.Channelid%>
+        <%set (string){chnname}=info.Channelname%>
+        <%include _inner_right_product%>    
+        </div>
+    </div>
+	<script src="{tempurl}/js/zoom/zoom.lib.js" type="text/javascript"></script>
+    <script src="{tempurl}/js/zoom/zoom-css.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".jqzoom").jqueryzoom({
+                xzoom: 377,
+                yzoom: 370,
+                position: "right",
+                preload: 1,
+                lens: 1
+            });
+            $("#spec-list").jdMarquee({
+                deriction: "left",
+                width: 270,
+                height: 62,
+                step: 2,
+                speed: 4,
+                delay: 10,
+                control: true,
+                _front: "#spec-right",
+                _back: "#spec-left"
+            });
+            $("#spec-list img").each(function (idx, obj) {
+                $(obj).click(function () {
+                    $("<img/>").load(function () {
+                        var img = resizeImg($(obj), 304, 297);
+                        $("#spec-n1 img").eq(0).attr({
+                            src: $(obj).attr("src"),
+                            jqimg: $(obj).attr("src"),
+                            width: img.width,
+                            height: img.height
+                        })
+                    }).attr("src", $(this).attr("src"));
+                    $("#spec-list img").css("border", "1px solid #d5d4d4");
+                    $(this).css({
+                        "border": "1px solid #999",
+                        "padding": "0px"
+                    });
+                });
+            });
+            $("#spec-list img:eq(0)").trigger("click");
+        });
+    </script>
+	<%include _footer%>   
