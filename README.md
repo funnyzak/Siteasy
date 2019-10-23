@@ -10,7 +10,7 @@
 
 
 ## Template Lan Intro:
-
+<pre>
 全局变量：
 
 字符串变量
@@ -510,3 +510,5 @@ display html,其他
 plus
 生成条码
 sta/plus/barimg.aspx?width=100&height=100&format=QR_CODE&txt=内容
+
+</pre>
