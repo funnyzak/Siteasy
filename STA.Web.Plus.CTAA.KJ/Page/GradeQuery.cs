@@ -23,14 +23,7 @@ namespace STA.Web.Plus.CTAA.KJ.Page
 
         protected override void PageShow()
         {
-            if (ConUtils.IsCrossSitePost() || !STARequest.IsPost()) return;
-
-            if (vcode == "" ||
-                vcode.ToLower() != Utils.GetCookie(action + "_query").ToLower())
-            {
-                AddErrLine("验证码输入有误");
-                return;
-            }
+            if (STARequest.IsPost() && ConUtils.IsCrossSitePost()) return;
 
             switch (action)
             {
@@ -45,7 +38,6 @@ namespace STA.Web.Plus.CTAA.KJ.Page
         {
             if (Utils.StrIsNullOrEmpty(realName) || Utils.StrIsNullOrEmpty(num))
             {
-                AddErrLine("查询信息填写不完整");
                 return;
             }
 
@@ -65,7 +57,6 @@ namespace STA.Web.Plus.CTAA.KJ.Page
 
             if (Utils.StrIsNullOrEmpty(result))
             {
-                AddErrLine("查询失败，请稍后重试");
                 return;
             }
             resultOuput<Examinee>(result);
@@ -75,7 +66,12 @@ namespace STA.Web.Plus.CTAA.KJ.Page
         {
             if (Utils.StrIsNullOrEmpty(realName) || Utils.StrIsNullOrEmpty(num) || Utils.StrIsNullOrEmpty(idCard))
             {
-                AddErrLine("查询信息填写不完整");
+                return;
+            }
+
+            if (vcode == "" || vcode.ToLower() != Utils.GetCookie(action + "_query").ToLower())
+            {
+                AddErrLine("验证码输入有误");
                 return;
             }
 
@@ -97,7 +93,6 @@ namespace STA.Web.Plus.CTAA.KJ.Page
         {
             if (Utils.StrIsNullOrEmpty(realName) || Utils.StrIsNullOrEmpty(num))
             {
-                AddErrLine("查询信息填写不完整");
                 return;
             }
 

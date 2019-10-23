@@ -18,7 +18,7 @@ namespace STA.Web.Plus.CTAA.KJ.Page
         public Examiner info;
         protected override void PageShow()
         {
-            if (ConUtils.IsCrossSitePost() || !STARequest.IsPost()) return;
+            if (ConUtils.IsCrossSitePost() && STARequest.IsPost()) return;
 
             if (vcode == "" ||
              vcode.ToLower() != Utils.GetCookie(action + "_query").ToLower())
