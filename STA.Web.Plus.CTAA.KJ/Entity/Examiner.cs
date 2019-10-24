@@ -8,10 +8,6 @@ namespace STA.Web.Plus.CTAA.KJ.Entity
     public class Examiner
     {
         /// <summary>
-        /// Id
-        /// </summary>
-        public int id { get; set; }
-        /// <summary>
         /// AddTime
         /// </summary>
         public int addTime { get; set; }
