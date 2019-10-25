@@ -48,8 +48,8 @@ namespace STA.Web.Plus.CTAA.KJ.Core
                 case ApiMethod.EXAMINEE_QUERY: return "/open/grade/examinee/query";
                 case ApiMethod.EXAMINER_PAPER_QUERY: return "/open/grade/examiner/paper/query";
                 case ApiMethod.EXAMINER_QUERY: return "/open/grade/examiner/query";
-                case ApiMethod.EXAMINER_APPLY: return "/open/grade/examiner/paper/query";
-                case ApiMethod.EXAMINER_EDIT: return "/open/grade/examiner/paper/query";
+                case ApiMethod.EXAMINER_APPLY: return "/open/grade/examiner/apply/new";
+                case ApiMethod.EXAMINER_EDIT: return "/open/grade/examiner/apply/edit";
             }
             return "";
         }
@@ -58,7 +58,7 @@ namespace STA.Web.Plus.CTAA.KJ.Core
         public static string Post(ApiMethod method, string jsonContent)
         {
             string result = "";
-            String ts = PlusUtils.GetTimeStamp(DateTime.Now);
+            String ts = DateTimeUtil.GetTimeStamp(DateTime.Now);
 
             try
             {

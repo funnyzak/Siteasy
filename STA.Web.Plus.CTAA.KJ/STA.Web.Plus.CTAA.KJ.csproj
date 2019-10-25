@@ -67,6 +67,7 @@
     <Compile Include="Entity\Examinee.cs" />
     <Compile Include="Entity\Examiner.cs" />
     <Compile Include="Entity\ExaminerPaper.cs" />
+    <Compile Include="Entity\HttpPostResponse.cs" />
     <Compile Include="Page\ExaminerEdit.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>

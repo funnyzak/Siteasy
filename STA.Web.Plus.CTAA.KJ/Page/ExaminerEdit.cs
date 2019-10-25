@@ -7,25 +7,21 @@ using STA.Web.Plus.CTAA.KJ.Core;
 using STA.Web.Plus.CTAA.KJ.Entity;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using System.Web;
 
 namespace STA.Web.Plus.CTAA.KJ.Page
 {
     public class ExaminerEdit : PageBase
     {
         public string action = STARequest.GetString("action");
-        public string vcode = STARequest.GetString("vcode");
 
-        public Examiner info;
         protected override void PageShow()
         {
-            if (ConUtils.IsCrossSitePost() && STARequest.IsPost()) return;
-
-            if (vcode == "" ||
-             vcode.ToLower() != Utils.GetCookie(action + "_query").ToLower())
-            {
-                ResponseText(PlusUtils.responseData("验证码输入有误"));
-                return;
-            }
+            //if (ConUtils.IsCrossSitePost())
+            //{
+            //    HttpContext.Current.Response.StatusCode = 404;
+            //    return;
+            //}
 
             Examiner examiner = requestForm();
 
@@ -60,7 +56,7 @@ namespace STA.Web.Plus.CTAA.KJ.Page
 
             if (errorMsg.Length > 0)
             {
-                ResponseText(PlusUtils.responseData(errorMsg));
+                ResponseText(Result<String>(null, -1, errorMsg));
                 return;
             }
             #endregion
@@ -75,18 +71,29 @@ namespace STA.Web.Plus.CTAA.KJ.Page
         {
             if (Utils.StrIsNullOrEmpty(result))
             {
-                AddErrLine("失败，请稍后重试");
+                ResponseText(Result<String>(null, -1, "失败，请稍后重试"));
                 return;
             }
 
-            JObject resultObject = JObject.Parse(result);
-            if (!TypeParse.StrToBool(resultObject["success"], false))
+            HttpPostResponse hpr = JsonConvert.DeserializeObject<HttpPostResponse>(result);
+
+            LogProvider.Logger.InfoFormat("result:{0}, entity: {1}", result, hpr.ToString());
+            try
             {
-                AddErrLine(resultObject["errors]"][0].ToString());
-                return;
+                if (!hpr.success)
+                {
+                    ResponseText(Result<String>(null, -1, hpr.errors[0]));
+                    return;
+                }
+
+                Examiner info = JsonConvert.DeserializeObject<Examiner>(hpr.data["info"].ToString());
+                ResponseText(Result<Examiner>(info));
+            }
+            catch (Exception ex)
+            {
+                LogProvider.Logger.ErrorFormat("考官申请信息更改出错，信息：{0}", ex.ToString());
             }
 
-            info = JsonConvert.DeserializeObject<Examiner>(resultObject["data"]["info"].ToString());
         }
 
 

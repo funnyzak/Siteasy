@@ -114,17 +114,17 @@ namespace STA.Web.Plus.CTAA.KJ.Page
             }
 
 
-            JObject resultObject = JObject.Parse(result);
+            HttpPostResponse hpr = JsonConvert.DeserializeObject<HttpPostResponse>(result);
 
             try
             {
-                if (!TypeParse.StrToBool(resultObject["success"], false))
+                if (!hpr.success)
                 {
-                    AddErrLine(resultObject["errors"][0].ToString());
+                    AddErrLine(hpr.errors[0]);
                     return;
                 }
 
-                info = JsonConvert.DeserializeObject<T>(resultObject["data"]["info"].ToString());
+                info = JsonConvert.DeserializeObject<T>(hpr.data["info"].ToString());
             }
             catch (Exception ex)
             {
