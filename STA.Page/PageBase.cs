@@ -10,6 +10,7 @@ using STA.Config;
 using STA.Entity;
 using System.Collections;
 using System.Web;
+using STA.Entity.Common;
 
 namespace STA.Page
 {
@@ -693,6 +694,25 @@ namespace STA.Page
             errors++;
         }
 
+
+        /// <summary>
+        /// 返回JSON数据格式
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="data"></param>
+        /// <param name="code"></param>
+        /// <param name="emsg"></param>
+        /// <returns></returns>
+        protected internal string Result<T>(T data, int code = 0, string emsg = "")
+        {
+            JsonResult<T> jsonResult = new JsonResult<T>(code, emsg) { Result = data };
+            string result = JsonHelper.JsonSerializer<JsonResult<T>>(jsonResult, true);
+
+            LogProvider.Logger.InfoFormat("{0}{1}\r\n\r\nAPI Response:{2}\r\n\r\n\r\n\r\n", STARequest.PrintRequestData(), STARequest.GetRequestHeader(), result);
+
+            return result;
+        }
+
         /// <summary>
         /// 增加提示信息
         /// </summary>
@@ -704,7 +724,7 @@ namespace STA.Page
 
         protected internal void PageInfo(string msg, string url, int second)
         {
-            if (url == "" && STARequest.GetUrlReferrer() != "" && STARequest.GetUrlReferrer().IndexOf(weburl) == 0)
+            if (!ConUtils.IsCrossSitePost())
                 url = STARequest.GetUrlReferrer();
             if (url == "")
                 url = weburl;
