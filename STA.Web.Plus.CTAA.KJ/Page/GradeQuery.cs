@@ -75,6 +75,8 @@ namespace STA.Web.Plus.CTAA.KJ.Page
                 return;
             }
 
+            Utils.ClearCookie(action + "_query");
+
             JObject jsonObject = new JObject();
             jsonObject["num"] = num;
             jsonObject["realName"] = realName;
