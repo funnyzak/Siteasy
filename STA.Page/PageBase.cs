@@ -556,6 +556,17 @@ namespace STA.Page
             HttpContext.Current.Response.Write(text);
             HttpContext.Current.Response.End();
         }
+
+        protected void ResponseJSON(string text)
+        {
+            HttpContext.Current.Response.ExpiresAbsolute = DateTime.Now.AddSeconds(-1);
+            HttpContext.Current.Response.Expires = -1;
+            HttpContext.Current.Response.Clear();
+            HttpContext.Current.Response.Write(text);
+            HttpContext.Current.Response.AddHeader("Content-Type", "application/json;charset=UTF-8");
+            HttpContext.Current.Response.End();
+        }
+
         /// <summary>
         /// 设置页面定时转向
         /// </summary>

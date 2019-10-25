@@ -4,6 +4,7 @@ using System.Linq;
 
 namespace STA.Web.Plus.CTAA.KJ.Entity
 {
+    [Serializable]
     public class ExaminerPaper
     {
         /// <summary>

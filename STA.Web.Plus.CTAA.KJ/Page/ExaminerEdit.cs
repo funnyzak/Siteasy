@@ -17,11 +17,11 @@ namespace STA.Web.Plus.CTAA.KJ.Page
 
         protected override void PageShow()
         {
-            //if (ConUtils.IsCrossSitePost())
-            //{
-            //    HttpContext.Current.Response.StatusCode = 404;
-            //    return;
-            //}
+            if (ConUtils.IsCrossSitePost())
+            {
+                HttpContext.Current.Response.StatusCode = 404;
+                return;
+            }
 
             Examiner examiner = requestForm();
 
@@ -56,7 +56,7 @@ namespace STA.Web.Plus.CTAA.KJ.Page
 
             if (errorMsg.Length > 0)
             {
-                ResponseText(Result<String>(null, -1, errorMsg));
+                ResponseJSON(Result<String>(null, -1, errorMsg));
                 return;
             }
             #endregion
@@ -71,7 +71,7 @@ namespace STA.Web.Plus.CTAA.KJ.Page
         {
             if (Utils.StrIsNullOrEmpty(result))
             {
-                ResponseText(Result<String>(null, -1, "失败，请稍后重试"));
+                ResponseJSON(PlusUtils.Result<String>(null, -1, "失败，请稍后重试"));
                 return;
             }
 
@@ -82,16 +82,18 @@ namespace STA.Web.Plus.CTAA.KJ.Page
             {
                 if (!hpr.success)
                 {
-                    ResponseText(Result<String>(null, -1, hpr.errors[0]));
+                    ResponseJSON(PlusUtils.Result<String>(null, -1, hpr.errors[0]));
                     return;
                 }
 
                 Examiner info = JsonConvert.DeserializeObject<Examiner>(hpr.data["info"].ToString());
-                ResponseText(Result<Examiner>(info));
+                ResponseJSON(PlusUtils.Result<Examiner>(info));
             }
             catch (Exception ex)
             {
                 LogProvider.Logger.ErrorFormat("考官申请信息更改出错，信息：{0}", ex.ToString());
+
+                ResponseJSON(PlusUtils.Result<String>(null, -1, "失败，请稍后重试"));
             }
 
         }

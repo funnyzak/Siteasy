@@ -3032,10 +3032,6 @@
       <Project>{67167E9D-0655-425F-BDDA-F4978DAF8A19}</Project>
       <Name>STA.Plugin</Name>
     </ProjectReference>
-    <ProjectReference Include="..\STA.Web.Plus.CTAA.KJ\STA.Web.Plus.CTAA.KJ.csproj">
-      <Project>{c46fbde8-d767-4185-9564-29dac9439847}</Project>
-      <Name>STA.Web.Plus.CTAA.KJ</Name>
-    </ProjectReference>
     <ProjectReference Include="admin\STA.Web.Admin.csproj">
       <Project>{C174189F-ADDD-4FFC-80F4-928DAC4A9E42}</Project>
       <Name>STA.Web.Admin</Name>

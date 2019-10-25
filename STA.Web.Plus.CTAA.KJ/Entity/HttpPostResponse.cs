@@ -6,6 +6,7 @@ using System.Web;
 
 namespace STA.Web.Plus.CTAA.KJ.Entity
 {
+    [Serializable]
     public class HttpPostResponse
     {
         /// <summary>
