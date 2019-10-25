@@ -62,10 +62,6 @@
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -2830,6 +2826,7 @@
     <Content Include="templates\default\tpl\api\oauth\taobao\returnurl.htm" />
     <Content Include="templates\default\tpl\api\ucenter.htm" />
     <Content Include="templates\default\tpl\content_gallery.htm" />
+    <Content Include="templates\default\tpl\dev\examineredit.htm" />
     <Content Include="templates\default\tpl\page_default.htm" />
     <Content Include="templates\default\tpl\channelindex_default.htm" />
     <Content Include="templates\default\tpl\channellist_default.htm" />
@@ -3034,6 +3031,10 @@
     <ProjectReference Include="..\STA.Plugin\STA.Plugin.csproj">
       <Project>{67167E9D-0655-425F-BDDA-F4978DAF8A19}</Project>
       <Name>STA.Plugin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\STA.Web.Plus.CTAA.KJ\STA.Web.Plus.CTAA.KJ.csproj">
+      <Project>{c46fbde8-d767-4185-9564-29dac9439847}</Project>
+      <Name>STA.Web.Plus.CTAA.KJ</Name>
     </ProjectReference>
     <ProjectReference Include="admin\STA.Web.Admin.csproj">
       <Project>{C174189F-ADDD-4FFC-80F4-928DAC4A9E42}</Project>
