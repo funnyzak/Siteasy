@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Specialized;
 using System.Web;
 
 namespace STA.Common
@@ -422,6 +423,55 @@ namespace STA.Common
                     return true;
             }
             return false;
+        }
+
+        /// <summary>
+        /// 获取HTTP POST信息，以&拼接字符串
+        /// </summary>
+        /// <returns></returns>
+        public static string GetRequestPostString()
+        {
+            NameValueCollection coll = System.Web.HttpContext.Current.Request.Form;
+            String[] requestItem = coll.AllKeys;
+
+            string requestString = "";
+            for (int i = 0; i < requestItem.Length; i++)
+            {
+                requestString += string.Format("{0}={1}&", requestItem[i], System.Web.HttpContext.Current.Request.Form[requestItem[i]]);
+            }
+            return requestString.TrimEnd('&');
+        }
+
+        /// <summary>
+        /// 获取HTTP 请求头信息
+        /// </summary>
+        /// <returns></returns>
+        public static string GetRequestHeader()
+        {
+            string[] coll = System.Web.HttpContext.Current.Request.Headers.AllKeys;
+            string rlt = "";
+            for (int i = 0; i < coll.Length; i++)
+            {
+                rlt += string.Format("\r\n{0}:{1}", coll[i], System.Web.HttpContext.Current.Request.Headers.Get(coll[i]));
+            }
+            return rlt;
+        }
+
+        /// <summary>
+        /// 打印HTTP POST信息
+        /// </summary>
+        /// <returns></returns>
+        public static string PrintRequestData()
+        {
+            string postdata = GetRequestPostString();
+            return string.Format("IP:{0}    RawUrl:{1}    Method:{2}    \r\n\r\n{3}\r\n\r\n", STARequest.GetIP(), System.Web.HttpContext.Current.Request.RawUrl, System.Web.HttpContext.Current.Request.HttpMethod, postdata == "" ? "" : ("Data:" + postdata));
+        }
+
+
+        private const double EARTH_RADIUS = 6378.137;//地球半徑
+        private static double rad(double d)
+        {
+            return d * Math.PI / 180.0;
         }
 
     }
