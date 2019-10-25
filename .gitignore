@@ -23,6 +23,8 @@ bld/
 [Bb]in/
 [Oo]bj/
 STA.Web/sta/logs/
+STA.Web/sta/aspx/
+STA.Web/templates/default/tpl/dev/
 
 # Visual Studio 2015 cache/options directory
 .vs/
