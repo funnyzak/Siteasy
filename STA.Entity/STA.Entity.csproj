@@ -36,6 +36,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -48,6 +49,7 @@
     <Compile Include="AttachmentInfo.cs" />
     <Compile Include="ChannelInfo.cs" />
     <Compile Include="CommentInfo.cs" />
+    <Compile Include="common\JsonResult.cs" />
     <Compile Include="CongroupInfo.cs" />
     <Compile Include="connect\AppconnectInfo.cs" />
     <Compile Include="connect\UserconnectInfo.cs" />
