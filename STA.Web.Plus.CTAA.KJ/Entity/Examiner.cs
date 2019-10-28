@@ -7,6 +7,9 @@ namespace STA.Web.Plus.CTAA.KJ.Entity
     [Serializable]
     public class Examiner
     {
+
+        public int branchId { get; set; }
+
         /// <summary>
         /// AddTime
         /// </summary>

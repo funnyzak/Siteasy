@@ -69,14 +69,13 @@ namespace STA.Web.Plus.CTAA.KJ.Page
                 return;
             }
 
-            if (vcode == "" || vcode.ToLower() != Utils.GetCookie(action + "_query").ToLower())
-            {
-                AddErrLine("验证码输入有误");
-                return;
-            }
+            //if (vcode == "" || vcode.ToLower() != Utils.GetCookie(action + "_query").ToLower())
+            //{
+            //    AddErrLine("验证码输入有误");
+            //    return;
+            //}
 
-            Utils.ClearCookie(action + "_query");
-
+            //Utils.ClearCookie(action + "_query");
             JObject jsonObject = new JObject();
             jsonObject["num"] = num;
             jsonObject["realName"] = realName;

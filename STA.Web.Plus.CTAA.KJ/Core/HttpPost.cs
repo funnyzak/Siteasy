@@ -19,7 +19,7 @@ namespace STA.Web.Plus.CTAA.KJ.Core
         {
             try
             {
-                String configValue = Caches.GetVariable("ctaa_connector_config", 300);
+                String configValue = Caches.GetVariable("ctaa_grade_connector_config", 300);
                 config = JsonConvert.DeserializeObject<ConnectorConfig>(Utils.HtmlDecode(configValue));
             }
             catch (Exception ex)
