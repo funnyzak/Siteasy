@@ -11,7 +11,7 @@ using System.Web;
 
 namespace STA.Web.Plus.CTAA.KJ.Page
 {
-    public class ExaminerEdit : PageBase
+    public class ExaminerEdit : GradeBase
     {
         public string action = STARequest.GetString("action");
 
@@ -63,39 +63,7 @@ namespace STA.Web.Plus.CTAA.KJ.Page
 
             String result = HttpPost.Post(action == "edit" ? ApiMethod.EXAMINER_EDIT : ApiMethod.EXAMINER_APPLY, JsonConvert.SerializeObject(examiner));
 
-            resultOuput(result);
-        }
-
-
-        public void resultOuput(String result)
-        {
-            if (Utils.StrIsNullOrEmpty(result))
-            {
-                ResponseJSON(PlusUtils.Result<String>(null, -1, "失败，请稍后重试"));
-                return;
-            }
-
-            HttpPostResponse hpr = JsonConvert.DeserializeObject<HttpPostResponse>(result);
-
-            LogProvider.Logger.InfoFormat("result:{0}, entity: {1}", result, hpr.ToString());
-            try
-            {
-                if (!hpr.success)
-                {
-                    ResponseJSON(PlusUtils.Result<String>(null, -1, hpr.errors[0]));
-                    return;
-                }
-
-                Examiner info = JsonConvert.DeserializeObject<Examiner>(hpr.data["info"].ToString());
-                ResponseJSON(PlusUtils.Result<Examiner>(info));
-            }
-            catch (Exception ex)
-            {
-                LogProvider.Logger.ErrorFormat("考官申请信息更改出错，信息：{0}", ex.ToString());
-
-                ResponseJSON(PlusUtils.Result<String>(null, -1, "失败，请稍后重试"));
-            }
-
+            resultOuput<Examiner>(result);
         }
 
 
@@ -104,6 +72,7 @@ namespace STA.Web.Plus.CTAA.KJ.Page
             return new Examiner()
             {
                 num = Utils.RemoveUnsafeStr(STARequest.GetFormString("num")),
+                branchId = STARequest.GetFormInt("branchId", 0),
                 gender = Utils.RemoveUnsafeStr(STARequest.GetFormString("gender")),
                 photo = Utils.RemoveUnsafeStr(STARequest.GetFormString("photo")),
                 realName = Utils.RemoveUnsafeStr(STARequest.GetFormString("realName")),

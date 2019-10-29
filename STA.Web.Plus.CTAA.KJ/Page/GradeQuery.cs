@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 
 namespace STA.Web.Plus.CTAA.KJ.Page
 {
-    public class GradeQuery : PageBase
+    public class GradeQuery : GradeBase
     {
         public string action = STARequest.GetString("action");
         public string vcode = STARequest.GetString("vcode");
@@ -101,12 +101,12 @@ namespace STA.Web.Plus.CTAA.KJ.Page
             jsonObject["certNum"] = num;
             jsonObject["realName"] = realName;
 
-
+        
             String result = HttpPost.Post(ApiMethod.EXAMINER_PAPER_QUERY, jsonObject.ToString());
             resultOuput<ExaminerPaper>(result);
         }
 
-        public void resultOuput<T>(String result)
+        public override void resultOuput<T>(String result)
         {
             if (Utils.StrIsNullOrEmpty(result))
             {

@@ -50,6 +50,7 @@ namespace STA.Web.Plus.CTAA.KJ.Core
                 case ApiMethod.EXAMINER_QUERY: return "/open/grade/examiner/query";
                 case ApiMethod.EXAMINER_APPLY: return "/open/grade/examiner/apply/new";
                 case ApiMethod.EXAMINER_EDIT: return "/open/grade/examiner/apply/edit";
+                case ApiMethod.IMAGE_DOWNLOAD: return "/open/app/image/download";
             }
             return "";
         }

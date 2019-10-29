@@ -70,10 +70,17 @@
     <Compile Include="Entity\ExaminerPaper.cs" />
     <Compile Include="Entity\HttpPostResponse.cs" />
     <Compile Include="Entity\Result.cs" />
+    <Compile Include="Entity\UploadFile.cs" />
     <Compile Include="Page\ExaminerEdit.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Page\GradeBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Page\GradeQuery.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\PhotoUpload.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -82,12 +89,18 @@
     <Content Include="about.xml" />
     <Content Include="install.sql" />
     <Content Include="readme.txt" />
+    <Content Include="templates\default\tpl\plus\grade.examiner.edit.htm" />
+    <Content Include="templates\default\tpl\plus\grade.photo.upload.htm" />
     <Content Include="uninstall.sql" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\STA.Common\STA.Common.csproj">
       <Project>{28f820eb-abc2-46da-a3b9-e5d6e57f0b51}</Project>
       <Name>STA.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\STA.Config\STA.Config.csproj">
+      <Project>{B4F77E92-F78D-4465-9E02-E3F3B97458DB}</Project>
+      <Name>STA.Config</Name>
     </ProjectReference>
     <ProjectReference Include="..\STA.Core\STA.Core.csproj">
       <Project>{3bb60636-14e1-4cfc-aca6-b5ca1cbf8542}</Project>
@@ -101,6 +114,10 @@
       <Project>{a216e9d1-34fd-4d98-b2c4-0b5f5e748bce}</Project>
       <Name>STA.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\STA.Entity\STA.Entity.csproj">
+      <Project>{1db7f1d2-756e-428a-af63-e283ecf4f552}</Project>
+      <Name>STA.Entity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\STA.Page\STA.Page.csproj">
       <Project>{176da8cf-b03f-4bad-a7d3-1d1459d60e42}</Project>
       <Name>STA.Page</Name>
@@ -110,6 +127,7 @@
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\dist.pubxml" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v14.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>

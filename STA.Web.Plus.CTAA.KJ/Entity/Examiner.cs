@@ -114,14 +114,6 @@ namespace STA.Web.Plus.CTAA.KJ.Entity
         public string majorResume { get; set; }
 
         public string workResume { get; set; }
-        /// <summary>
-        /// 127.0.0.1
-        /// </summary>
-        public string ip { get; set; }
-        /// <summary>
-        /// WEB
-        /// </summary>
-        public string source { get; set; }
     }
 
 }

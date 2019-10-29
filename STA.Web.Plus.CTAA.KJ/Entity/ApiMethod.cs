@@ -22,7 +22,13 @@ namespace STA.Web.Plus.CTAA.KJ.Entity
         /// 考官申请增加
         /// </summary>
         EXAMINER_APPLY,
-
-        EXAMINER_EDIT
+        /// <summary>
+        /// 考官编辑
+        /// </summary>
+        EXAMINER_EDIT,
+        /// <summary>
+        /// 图片下载
+        /// </summary>
+        IMAGE_DOWNLOAD
     }
 }
