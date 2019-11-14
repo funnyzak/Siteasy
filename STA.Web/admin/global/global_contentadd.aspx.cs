@@ -214,7 +214,7 @@ namespace STA.Web.Admin
             {
                 info.Adduser = userid;
                 info.Addusername = username;
-                info.Typeid = short.Parse(STARequest.GetInt("type", 1).ToString());
+                info.Typeid = ctinfo.Id;
             }
 
             ContypeInfo tyInfo = ConUtils.GetSimpleContype(TypeParse.StrToInt(info.Typeid));

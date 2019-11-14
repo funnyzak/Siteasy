@@ -133,7 +133,7 @@ namespace STA.Page
             string urlformat = string.Empty;
             string defurl = string.Empty;
             info.Filename = info.Filename == "" ? id.ToString() : info.Filename;
-
+           
             if (config.Dynamiced == 0 && !ConUtils.IsDynamicedCon(config, id))
             {
                 urlformat = sitedir + config.Htmlsavepath + info.Savepath + "/" + info.Filename + "_{0}" + config.Suffix;
