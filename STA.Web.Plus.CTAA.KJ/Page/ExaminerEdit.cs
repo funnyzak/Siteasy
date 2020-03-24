@@ -49,7 +49,7 @@ namespace STA.Web.Plus.CTAA.KJ.Page
             {
                 errorMsg = "请上传照片";
             }
-            else if (examiner.birthday <= 0 || examiner.graduateDate <= 0)
+            else if (examiner.birthday == 0 || examiner.graduateDate == 0)
             {
                 errorMsg = "日期有误";
             }
