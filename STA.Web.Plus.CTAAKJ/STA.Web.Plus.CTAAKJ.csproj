@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1CAFA1AC-9BAA-4154-965E-65902D20E294}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>STA.Web.Plus.CTAAKJ</RootNamespace>
+    <AssemblyName>STA.Web.Plus.CTAAKJ</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\HttpPost.cs" />
+    <Compile Include="Core\PlusUtils.cs" />
+    <Compile Include="Entity\ApiMethod.cs" />
+    <Compile Include="Entity\ConnectorConfig.cs" />
+    <Compile Include="Entity\Examinee.cs" />
+    <Compile Include="Entity\Examiner.cs" />
+    <Compile Include="Entity\ExaminerPaper.cs" />
+    <Compile Include="Entity\HttpPostResponse.cs" />
+    <Compile Include="Entity\Result.cs" />
+    <Compile Include="Entity\UploadFile.cs" />
+    <Compile Include="Page\ExaminerEdit.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\GradeBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\GradeQuery.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\PhotoUpload.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="about.xml" />
+    <Content Include="install.sql" />
+    <Content Include="readme.txt" />
+    <Content Include="templates\default\tpl\plus\grade.examiner.edit.htm" />
+    <Content Include="templates\default\tpl\plus\grade.photo.upload.htm" />
+    <Content Include="uninstall.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\STA.Common\STA.Common.csproj">
+      <Project>{28f820eb-abc2-46da-a3b9-e5d6e57f0b51}</Project>
+      <Name>STA.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\STA.Config\STA.Config.csproj">
+      <Project>{b4f77e92-f78d-4465-9e02-e3f3b97458db}</Project>
+      <Name>STA.Config</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\STA.Core\STA.Core.csproj">
+      <Project>{3bb60636-14e1-4cfc-aca6-b5ca1cbf8542}</Project>
+      <Name>STA.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\STA.Data\STA.Data.csproj">
+      <Project>{a216e9d1-34fd-4d98-b2c4-0b5f5e748bce}</Project>
+      <Name>STA.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\STA.Entity\STA.Entity.csproj">
+      <Project>{1db7f1d2-756e-428a-af63-e283ecf4f552}</Project>
+      <Name>STA.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\STA.Page\STA.Page.csproj">
+      <Project>{176da8cf-b03f-4bad-a7d3-1d1459d60e42}</Project>
+      <Name>STA.Page</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

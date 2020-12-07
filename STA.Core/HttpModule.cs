@@ -61,8 +61,8 @@ namespace STA.Core
             //设置Server的值
 
             _headersToCloak.ForEach(h => HttpContext.Current.Response.Headers.Remove(h));
-            HttpContext.Current.Response.Headers.Set("Server", "nginx");
-            HttpContext.Current.Response.Headers.Set("Powered-By", "Potato");
+            //HttpContext.Current.Response.Headers.Set("Server", "nginx");
+            //HttpContext.Current.Response.Headers.Set("Powered-By", "Potato");
         }
 
 

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0CB021D0-1AD0-467C-961C-98C1F4F6C191}"
 	ProjectSection(SolutionItems) = preProject
@@ -39,7 +39,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STA.Payment", "STA.Payment\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STA.CacLib", "STA.CacLib\STA.CacLib.csproj", "{670A5CD0-73CC-40CA-BC74-ED74F6C8B156}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STA.Web.Plus.CTAA.KJ", "STA.Web.Plus.CTAA.KJ\STA.Web.Plus.CTAA.KJ.csproj", "{C46FBDE8-D767-4185-9564-29DAC9439847}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STA.Web.Plus.CTAAKJ", "STA.Web.Plus.CTAAKJ\STA.Web.Plus.CTAAKJ.csproj", "{1CAFA1AC-9BAA-4154-965E-65902D20E294}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -107,13 +107,16 @@ Global
 		{670A5CD0-73CC-40CA-BC74-ED74F6C8B156}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{670A5CD0-73CC-40CA-BC74-ED74F6C8B156}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{670A5CD0-73CC-40CA-BC74-ED74F6C8B156}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C46FBDE8-D767-4185-9564-29DAC9439847}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C46FBDE8-D767-4185-9564-29DAC9439847}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C46FBDE8-D767-4185-9564-29DAC9439847}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C46FBDE8-D767-4185-9564-29DAC9439847}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CAFA1AC-9BAA-4154-965E-65902D20E294}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CAFA1AC-9BAA-4154-965E-65902D20E294}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CAFA1AC-9BAA-4154-965E-65902D20E294}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CAFA1AC-9BAA-4154-965E-65902D20E294}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4CC59051-7BF5-4158-83E2-6CB1A9FDCAA8}
 	EndGlobalSection
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
