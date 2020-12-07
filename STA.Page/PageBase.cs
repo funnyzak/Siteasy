@@ -735,8 +735,8 @@ namespace STA.Page
 
         protected internal void PageInfo(string msg, string url, int second)
         {
-            if (!ConUtils.IsCrossSitePost())
-                url = STARequest.GetUrlReferrer();
+            url = Utils.RemoveUnsafeStr(String.IsNullOrEmpty(url) && !ConUtils.IsCrossSitePost() ? STARequest.GetUrlReferrer() : url);
+
             if (url == "")
                 url = weburl;
 
