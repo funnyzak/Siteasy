@@ -60,6 +60,7 @@ namespace STA.Page
         public string defurl = "";
         protected override void PageShow()
         {
+            query = Utils.RemoveUnsafeSqlStr(query);
             if (config.Opensearch != 1 && oluser.Adminid <= 0)
             {
                 PageInfo("抱歉,搜索功能暂不开放使用", "back");
