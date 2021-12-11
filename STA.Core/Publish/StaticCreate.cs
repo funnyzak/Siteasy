@@ -14,12 +14,14 @@ namespace STA.Core.Publish
 {
     public class StaticCreate
     {
+        private static string fullHost = String.Format("http://{0}", STARequest.GetCurrentFullHost());
         private static string contenturl = "content.aspx?id={0}&page={1}";
         private static string specialurl = "special.aspx?id={0}";
         private static string specialgroupurl = "specgroup.aspx?id={0}&group={1}";
         private static string channelurl = "channel.aspx?id={0}&page={1}";
         private static string pageurl = "page.aspx?id={0}";
         private static string rssurl = "tools/rss.aspx?chl={0}&count={1}";
+
 
         public static bool CreateContent(GeneralConfigInfo config, int id, int page, string path, string filename)
         {
@@ -33,7 +35,7 @@ namespace STA.Core.Publish
 
                 filename = filename.Trim() == "" ? id.ToString() : filename.Trim();
                 Utils.CreateHTMLPage(Utils.GetMapPath(BaseConfigs.GetSitePath + config.Htmlsavepath + path.Trim() + "/"),
-                                     string.Format(config.Weburl + BaseConfigs.GetSitePath + "/" + contenturl, id, page),
+                                     string.Format(fullHost + BaseConfigs.GetSitePath + "/" + contenturl, id, page),
                                      (page == 1 ? filename : filename + "_" + page) + config.Suffix);
                 return true;
             }
@@ -52,7 +54,7 @@ namespace STA.Core.Publish
             {
                 filename = filename.Trim() == "" ? id.ToString() : filename.Trim();
                 return Utils.CreateHTMLPage(Utils.GetMapPath(BaseConfigs.GetSitePath + config.Htmlsavepath + path.Trim() + "/"),
-                                            string.Format(config.Weburl + BaseConfigs.GetSitePath + "/" + pageurl, id),
+                                            string.Format(fullHost + BaseConfigs.GetSitePath + "/" + pageurl, id),
                                             (page == 1 ? filename : filename + "_" + page) + config.Suffix);
             }
             catch (Exception ex)
@@ -69,7 +71,7 @@ namespace STA.Core.Publish
             try
             {
                 return Utils.CreateHTMLPage(Utils.GetMapPath(BaseConfigs.GetSitePath + "/"),
-                                            config.Weburl + BaseConfigs.GetSitePath + "/index.aspx",
+                                            fullHost + BaseConfigs.GetSitePath + "/index.aspx",
                                            "index" + config.Suffix);
             }
             catch (Exception ex)
@@ -86,7 +88,7 @@ namespace STA.Core.Publish
             try
             {
                 return Utils.CreateHTMLPage(Utils.GetMapPath(BaseConfigs.GetSitePath + "/"),
-                                            config.Weburl + BaseConfigs.GetSitePath + "/sitemap.aspx",
+                                            fullHost + BaseConfigs.GetSitePath + "/sitemap.aspx",
                                            "sitemap" + config.Suffix);
             }
             catch (Exception ex)
@@ -105,7 +107,7 @@ namespace STA.Core.Publish
                 //Contents.ConHtmlStatus(id, 1);
                 filename = filename.Trim() == "" ? id.ToString() : filename.Trim();
                 return Utils.CreateHTMLPage(Utils.GetMapPath(BaseConfigs.GetSitePath + config.Htmlsavepath + path.Trim() + "/"),
-                                            string.Format(config.Weburl + BaseConfigs.GetSitePath + "/" + specialurl, id),
+                                            string.Format(fullHost + BaseConfigs.GetSitePath + "/" + specialurl, id),
                                             filename + config.Suffix);
             }
             catch (Exception ex)
@@ -123,7 +125,7 @@ namespace STA.Core.Publish
             {
                 filename = filename.Trim() == "" ? id.ToString() : filename.Trim();
                 return Utils.CreateHTMLPage(Utils.GetMapPath(BaseConfigs.GetSitePath + config.Htmlsavepath + path.Trim() + "/"),
-                                            string.Format(config.Weburl + BaseConfigs.GetSitePath + "/" + specialgroupurl, id, group),
+                                            string.Format(fullHost + BaseConfigs.GetSitePath + "/" + specialgroupurl, id, group),
                                             filename + "_list_" + group.ToString() + config.Suffix);
             }
             catch (Exception ex)
@@ -156,7 +158,7 @@ namespace STA.Core.Publish
                 filename = filename.Trim() == "" ? id.ToString() : filename.Trim();
 
                 return Utils.CreateHTMLPage(Utils.GetMapPath(BaseConfigs.GetSitePath + config.Htmlsavepath + path + "/"),
-                                             string.Format(config.Weburl + BaseConfigs.GetSitePath + "/" + channelurl, id, page),
+                                             string.Format(fullHost + BaseConfigs.GetSitePath + "/" + channelurl, id, page),
                                              filename + config.Suffix);
             }
             catch (Exception ex)
@@ -171,7 +173,7 @@ namespace STA.Core.Publish
             try
             {
                 return Utils.CreateHTMLPage(Utils.GetMapPath(BaseConfigs.GetSitePath + "/sta/data/rss/"),
-                                             string.Format(config.Weburl + BaseConfigs.GetSitePath + "/" + rssurl, chlid, count),
+                                             string.Format(fullHost + BaseConfigs.GetSitePath + "/" + rssurl, chlid, count),
                                              chlid + ".xml");
             }
             catch (Exception ex)

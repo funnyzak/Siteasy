@@ -22,6 +22,7 @@ namespace STA.Web.UI
         public Vote()
         {
             votelist = vtype == "like" ? Votes.GetVoteByLikeid(relval) : Votes.GetVoteByIds(relval);
+            HttpContext.Current.Response.Headers.Add("Content-Type", display == "html" ? "text/html" : "application/javascript");
             HttpContext.Current.Response.Write(display == "html" ? Build() : Utils.HtmlToJs(Build()));
         }
 
